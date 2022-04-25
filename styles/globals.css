@@ -1,0 +1,15 @@
+html {
+  /* This is for a smooth scroll when selecting a option from the navbar on landing page */
+  scroll-behavior: smooth;
+}
+#__next {
+  /* Will maintain the footer stick to the bottom */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 1 auto;
+  display: flex;
+}
