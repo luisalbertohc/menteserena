@@ -16,6 +16,7 @@ import config from '@config';
 import { ViewColumnSharp } from '@material-ui/icons';
 import theme from '@components/theme';
 import { relative } from 'path/win32';
+import { constructArrayFieldValidation } from '@components/utils';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -261,19 +262,19 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
     academic_histories,
     profile_picture,
     area_of_focus,
-    specialties,
+    expertises,
     rate_and_services,
 
     // theoretical_approaches,
     // populations_serve,
   } = provider || {};
-  // console.log(provider)
+  console.log(provider)
 
   const avatarUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(
     profile_picture
   )}`;
   
-  const areaFocus = [...specialties, ...area_of_focus]
+  const areaFocus = [...expertises, ...area_of_focus]
 
   // to look for the highest year
   function checkMaxYearAcademic() {

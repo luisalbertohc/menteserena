@@ -13,7 +13,7 @@ const configByEnvironment: {
   [key in Environments]: Config;
 } = {
   [Environments.DEV]: {
-    MENTE_SERENA_API_BASE_URL: 'https://app-38491.on-aptible.com',
+    MENTE_SERENA_API_BASE_URL: 'https://app-38572.on-aptible.com',
   },
   [Environments.STAGING]: {
     MENTE_SERENA_API_BASE_URL: 'https://staging-api.tumenteserena.com',
