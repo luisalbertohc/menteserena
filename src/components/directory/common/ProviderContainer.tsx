@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flex: '1 1 100px',
     overflow: 'auto',
+    // [theme.breakpoints.up('sm')]: {
+    //   maxWidth: 595
+    // }
   },
   cardContainer: {
     marginTop: theme.spacing(4),

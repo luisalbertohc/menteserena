@@ -92,7 +92,7 @@ const Register = () => {
   const rolHandler = (e) => {
     let value = e.target.value
     setRol(value)
-    if (value === 'Terapeuta') {
+    if (value !== 'Selecciona tu rol') {
       setShowAlert(true)
     } else {
       setShowAlert(false)
@@ -149,7 +149,7 @@ const Register = () => {
         <Grid className={classes.inputContainer} container item direction="column">
           <Collapse in={showAlert} classes={{entered: classes.warningContainer}}>
             <Alert severity="warning" classes={{root: classes.warningText}}>
-              Estas a punto de registrarte como <strong>Terapeuta</strong>
+              Estas a punto de registrarte como <strong>{rol}</strong>
             </Alert>
           </Collapse>
           <TextField

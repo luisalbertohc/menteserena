@@ -2,6 +2,12 @@ html {
   /* This is for a smooth scroll when selecting a option from the navbar on landing page */
   scroll-behavior: smooth;
 }
+
+body {
+  /* improves the readability of texts */
+  text-rendering: optimizeLegibility;
+}
+
 #__next {
   /* Will maintain the footer stick to the bottom */
   display: flex;

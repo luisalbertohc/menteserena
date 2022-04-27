@@ -20,12 +20,17 @@ import { constructArrayFieldValidation } from '@components/utils';
 
 const useStyles = makeStyles(theme => ({
   card: {
+    margin: 'auto',
     marginBottom: 24,
     borderRadius: 5,
     width: 585,
     height: 'auto',
     background: theme.palette.common.white,
-    filter: 'drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2))'
+    filter: 'drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2))',
+    // prevents the content shows in two columns on desktop views
+    [theme.breakpoints.up('md')]: {
+      width: 610
+    }
   },
   cardHeader: {
     position: 'relative',
@@ -61,6 +66,8 @@ const useStyles = makeStyles(theme => ({
   },
   cardContent: {
     padding: theme.spacing(2),
+    // minHeight: 372,
+    // maxHeight: 372,
     '& > .MuiGrid-root:nth-child(n + 2)': {
       paddingTop: theme.spacing(3)
     },
@@ -329,12 +336,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
       //   isPortalCard,
       // })}
     >
-      <Grid
-        // Card Header
-        item
-        container
-        className={classes.cardHeader}
-      >
+      <Grid container item className={classes.cardHeader}>
         <Grid item>
           <Typography component="h3">
             {`${first_name} ${last_name}`}
@@ -355,7 +357,14 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
             </div>
           </Grid>
           <Grid container item direction="column" spacing={1}  style={{ width: smallSize ? 'auto' : 'inherit' }}>
-            {Boolean(academic_histories.length > 0)
+            <Grid className={ classes.cardInfoItem } item>
+              <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
+              <span className={ classes.cardInfoDegree }>
+                <strong>{academic_histories.length > 0 ? academicDegree() : ''}</strong>
+                {academic_histories.length > 0 ? academicInstitution() : ''}
+              </span>
+            </Grid>
+            {/* {Boolean(academic_histories.length > 0)
               ? <Grid className={ classes.cardInfoItem } item>
                   <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
                   <span className={ classes.cardInfoDegree }>
@@ -367,7 +376,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
                   <SchoolIcon style={{ color: '#A3A3A3' }}/>
                   <span></span>
                 </Grid>
-            }
+            } */}
             {/* {Boolean(available.length > 0)
               ? <Grid className={ classes.cardInfoItem } item>
                   <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
@@ -393,15 +402,38 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
             </Typography>
           </Grid>
           <Grid container item spacing={2}>
-            {areaFocus?.map((area, idx) => {
-              return (
-                <Grid item key={idx}>
-                  <div className={classes.cardBadge}>
-                    <span>{area}</span>
-                  </div>
-                </Grid>
-              )}
-            )}
+            {Boolean(areaFocus?.length > 5)
+              ? areaFocus?.map((area, i) => {
+                if (i === 6) {
+                  return (
+                    <Grid item key={i}>
+                      <div className={classes.cardBadge}>
+                        <span>...</span>
+                      </div>
+                    </Grid>
+                  )
+                } else {
+                  if (i < 6) {
+                    return (
+                      <Grid item key={i}>
+                        <div className={classes.cardBadge}>
+                          <span>{area}</span>
+                        </div>
+                      </Grid>
+                    )
+                  }
+                }
+              })
+              : areaFocus?.map((area, i) => {
+                return (
+                  <Grid item key={i}>
+                    <div className={classes.cardBadge}>
+                      <span>{area}</span>
+                    </div>
+                  </Grid>
+                )
+              })
+            }
           </Grid>
         </Grid>
         )}
@@ -424,12 +456,8 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
               width: smallSize ? "auto" : "inherit"
             }}
           >
-            <Grid item>
-              <span>{rate_and_services[0].session_type}</span>
-            </Grid>
-            <Grid item>
-              <span>${rate_and_services[0].cost} USD</span>
-            </Grid>
+            <Grid item><span>{rate_and_services[0].session_type}</span></Grid>
+            <Grid item><span>${rate_and_services[0].cost} USD</span></Grid>
           </Grid>
           )}
           <Grid item style={{ margin: smallSize ? "initial" : "auto" }}>
