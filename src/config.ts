@@ -19,7 +19,7 @@ const configByEnvironment: {
     MENTE_SERENA_API_BASE_URL: 'https://staging-api.tumenteserena.com',
   },
   [Environments.PROD]: {
-    MENTE_SERENA_API_BASE_URL: 'https://api.tumenteserena.com',
+    MENTE_SERENA_API_BASE_URL: 'https://app-38572.on-aptible.com',//'https://api.tumenteserena.com',
   },
 };
 
