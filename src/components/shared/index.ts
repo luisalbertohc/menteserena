@@ -18,3 +18,5 @@ export { default as FilterSelect } from './FilterSelect';
 export { default as PhoneField } from './PhoneField';
 export { default as SimpleCheckBox } from './SimpleCheckBox';
 export { default as NotificationBadge } from './NotificationBadge';
+
+export { default as AccordionNew } from './AccordionNew'

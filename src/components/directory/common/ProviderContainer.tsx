@@ -12,9 +12,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     flex: '1 1 100px',
     overflow: 'auto',
-    // [theme.breakpoints.up('sm')]: {
-    //   maxWidth: 595
-    // }
   },
   cardContainer: {
     marginTop: theme.spacing(4),
@@ -30,10 +27,16 @@ const useStyles = makeStyles(theme => ({
   },
   dialogContent: {
     position: 'relative',
-    height: 600,
     padding: `0px !important`,
+    height: 600,
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: 770,
+      height: 'auto',
+      maxHeight: 800
+    }
   },
   closeBtn: {
+    color: theme.palette.secondary.main,
     position: 'absolute',
     top: 4,
     right: 4,

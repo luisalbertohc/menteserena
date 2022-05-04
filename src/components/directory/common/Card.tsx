@@ -1,22 +1,22 @@
 import { useState } from 'react'
 
-import { Grid, makeStyles, Typography, useMediaQuery } from '@material-ui/core';
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
-import classnames from 'classnames';
+import { Grid, makeStyles, Typography, useMediaQuery } from '@material-ui/core'
+import PermIdentityIcon from '@material-ui/icons/PermIdentity'
+import classnames from 'classnames'
 
-import { Button, Chip as ChipMaterial } from '@material-ui/core';
-import DoneIcon from '@material-ui/icons/Done';
-import CloseIcon from '@material-ui/icons/Close';
-import SchoolIcon from '@material-ui/icons/School';
-import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import { Button, Chip as ChipMaterial } from '@material-ui/core'
+import DoneIcon from '@material-ui/icons/Done'
+import CloseIcon from '@material-ui/icons/Close'
+import SchoolIcon from '@material-ui/icons/School'
+import EventAvailableIcon from '@material-ui/icons/EventAvailable'
 
-import { Chip } from '@components/shared';
-import { useCognito } from '@components/context/AuthContext';
-import config from '@config';
-import { ViewColumnSharp } from '@material-ui/icons';
-import theme from '@components/theme';
-import { relative } from 'path/win32';
-import { constructArrayFieldValidation } from '@components/utils';
+import { Chip } from '@components/shared'
+import { useCognito } from '@components/context/AuthContext'
+import config from '@config'
+import { ViewColumnSharp } from '@material-ui/icons'
+import theme from '@components/theme'
+import { relative } from 'path/win32'
+import { constructArrayFieldValidation } from '@components/utils'
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -105,7 +105,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     height: '26px',
-    // backgroundColor: theme.palette.grey[200],
     backgroundColor: '#ECEEEC',
     color: theme.palette.grey[500],
     fontSize: '12px',
@@ -245,24 +244,25 @@ const useStyles = makeStyles(theme => ({
   //   textOverflow: 'ellipsis',
   // },
 
-}));
+}))
 
 interface CardProps {
-  provider: any;
-  isPortalCard?: boolean;
-  onClick: () => void;
+  provider: any
+  isPortalCard?: boolean
+  onClick: () => void
 }
 
 const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
   // verify that the size is equal to media query
-  const isMobileSize = useMediaQuery('(max-width: 770px)');
+  // const isMobileSize = useMediaQuery('(max-width: 770px)')
 
   // verify that the size is greater than 414px
   const smallSize = useMediaQuery('(min-width: 414px)')
 
   const {
+    available, // NO EXISTS YET
     first_name,
     last_name,
     health_cares,
@@ -270,60 +270,64 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
     profile_picture,
     area_of_focus,
     expertises,
-    rate_and_services,
-
-    // theoretical_approaches,
-    // populations_serve,
-  } = provider || {};
+    rate_and_services
+  } = provider || {}
   console.log(provider)
 
   const avatarUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(
     profile_picture
-  )}`;
+  )}`
   
   const areaFocus = [...expertises, ...area_of_focus]
 
-  // to look for the highest year
-  function checkMaxYearAcademic() {
-    let maxYear
-    if (academic_histories.length > 1) {
-      maxYear = academic_histories[0].year
-      academic_histories.forEach(element => {
-        if (element.year > maxYear) {
-          maxYear = element.year
-        }
-      })
-    } else {
-      maxYear = academic_histories[0].year
+  // returns the array in descending order
+  const academicHistoryOrdered = academic_histories?.sort(
+    function(a, b) {
+      return b.year - a.year
     }
-    return maxYear
-  }
+  )
 
-  // to search for the academic institution
-  const academicInstitution = () => {
-    let year = checkMaxYearAcademic()
-    let institution
-    academic_histories.forEach(element => {
-      checkYear: if (element.year === year) {
-        institution = element.institution
-        break checkYear
-      }
-    })
-    return institution
-  }
+  // // to look for the highest year
+  // function checkMaxYearAcademic() {
+  //   let maxYear
+  //   if (academic_histories.length > 1) {
+  //     maxYear = academic_histories[0].year
+  //     academic_histories.forEach(element => {
+  //       if (element.year > maxYear) {
+  //         maxYear = element.year
+  //       }
+  //     })
+  //   } else {
+  //     maxYear = academic_histories[0].year
+  //   }
+  //   return maxYear
+  // }
 
-  // to search for the academic degree
-  const academicDegree = () => {
-    let year = checkMaxYearAcademic()
-    let degree
-    academic_histories.forEach(element => {
-      checkYear: if (element.year === year) {
-        degree = element.degree
-        break checkYear
-      }
-    })
-    return degree
-  }
+  // // to search for the academic institution
+  // const academicInstitution = () => {
+  //   let year = checkMaxYearAcademic()
+  //   let institution
+  //   academic_histories.forEach(element => {
+  //     checkYear: if (element.year === year) {
+  //       institution = element.institution
+  //       break checkYear
+  //     }
+  //   })
+  //   return institution
+  // }
+
+  // // to search for the academic degree
+  // const academicDegree = () => {
+  //   let year = checkMaxYearAcademic()
+  //   let degree
+  //   academic_histories.forEach(element => {
+  //     checkYear: if (element.year === year) {
+  //       degree = element.degree
+  //       break checkYear
+  //     }
+  //   })
+  //   return degree
+  // }
 
   return (
     <Grid
@@ -360,8 +364,8 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
             <Grid className={ classes.cardInfoItem } item>
               <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
               <span className={ classes.cardInfoDegree }>
-                <strong>{academic_histories.length > 0 ? academicDegree() : ''}</strong>
-                {academic_histories.length > 0 ? academicInstitution() : ''}
+                <strong>{academic_histories.length > 0 ? academicHistoryOrdered[0].degree : ''}</strong>
+                {academic_histories.length > 0 ? academicHistoryOrdered[0].institution : ''}
               </span>
             </Grid>
             {/* {Boolean(academic_histories.length > 0)
@@ -388,7 +392,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
                 </Grid>
             } */}
             <Grid className={ classes.cardInfoItem } item>
-              <EventAvailableIcon style={{ color: theme.palette.secondary.main }}/>
+              <EventAvailableIcon style={{ color: available ? theme.palette.secondary.main : '#A3A3A3' }}/>
               <span>Disponible</span>
             </Grid>
           </Grid>
@@ -485,7 +489,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
                     isPortalCard,
                   })}
                 />
-              );
+              )
             })}
             {(theoretical_approaches?.length > 3 || (isMobileSize && theoretical_approaches?.length > 1)) && (
               <Chip
@@ -519,7 +523,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
                     isPortalCard,
                   })}
                 />
-              );
+              )
             })}
             {(specialties?.length > 2 || (isMobileSize && specialties?.length > 1)) && (
               <Chip
@@ -564,13 +568,13 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
                     </Grid>
                   </Grid>
                 </Grid>
-              );
+              )
             })
             .slice(0, 1)}
         </Grid>
       )} */}
     </Grid>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

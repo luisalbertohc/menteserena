@@ -19,9 +19,10 @@ const useStyles = makeStyles(theme => ({
     background: 'white',
     alignItems: 'center',
     // This will prevent that page content shows below navbar
-    zIndex: 99999,
+    zIndex: 1299,
     [theme.breakpoints.down('sm')]: {
       padding: '0px 27px',
+      zIndex: 1301
     },
   },
   container: {
