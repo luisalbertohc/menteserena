@@ -23,30 +23,41 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     marginBottom: 24,
     borderRadius: 5,
-    width: 585,
+    width: 324,
     height: 'auto',
     background: theme.palette.common.white,
     filter: 'drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2))',
     // prevents the content shows in two columns on desktop views
-    [theme.breakpoints.up('md')]: {
-      width: 610
+    [theme.breakpoints.up('sm')]: {
+      width: 574
     }
   },
   cardHeader: {
     position: 'relative',
     borderRadius: '5px 5px 0 0',
-    padding: theme.spacing(2, 3),
+    padding: '13px 0',
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
+    height: 47,
     backgroundImage: 'linear-gradient(90deg, #57C4C4 0%, #F4DCB3 100%)',
     color: theme.palette.common.white,
+    [theme.breakpoints.up('sm')]: {
+      height: 55,
+      padding: theme.spacing(2, 3)
+    },
     '& h3.MuiTypography-root': {
-      maxWidth: 200,
+      maxWidth: 175,
       fontSize: 18,
       fontWeight: 500,
       lineHeight: 1,
       letterSpacing: 1,
       whiteSpace: 'nowrap',
       overflow: 'hidden',
-      textOverflow: 'ellipsis'
+      textOverflow: 'ellipsis',
+      [theme.breakpoints.up('sm')]: {
+        maxWidth: 200,
+        fontSize: 20
+      }
     }
   },
   cardImage: {
@@ -61,7 +72,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       right: 'unset',
       left: '50%',
-      transform: 'translateX(-50%)'
+      transform: 'translateX(-50%)',
+      height: 88,
+      width: 88
     }
   },
   cardContent: {
@@ -104,10 +117,10 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0, 2),
     display: 'flex',
     alignItems: 'center',
-    height: '26px',
+    height: 22,
     backgroundColor: '#ECEEEC',
     color: theme.palette.grey[500],
-    fontSize: '12px',
+    fontSize: 12,
     lineHeight: 1,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -116,7 +129,8 @@ const useStyles = makeStyles(theme => ({
       textTransform: 'capitalize'
     },
     [theme.breakpoints.up('md')]: {
-      fontSize: '14px'
+      height: 24,
+      fontSize: 14
     }
   },
   cardBadgeIcon: {
@@ -125,6 +139,9 @@ const useStyles = makeStyles(theme => ({
     height: '16px'
   },
   cardButton: {
+    height: 35,
+    width: 128,
+    fontSize: 16,
     textTransform: 'none'
   },
   // card: {
@@ -401,7 +418,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
         {Boolean(areaFocus.length > 0) && (
         <Grid container item spacing={2}>
           <Grid item>
-            <Typography>
+            <Typography style={{ fontSize: 14 }}>
               <strong>Áreas de enfoque</strong>
             </Typography>
           </Grid>

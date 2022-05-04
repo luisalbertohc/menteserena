@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardContainer: {
     marginTop: theme.spacing(4),
+    flexDirection: "column",
     [theme.breakpoints.down('md')]: {
       justifyContent: 'center',
     },
