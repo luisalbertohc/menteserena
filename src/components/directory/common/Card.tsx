@@ -86,6 +86,9 @@ const useStyles = makeStyles(theme => ({
     },
     '& > .MuiGrid-root:last-child': {
       paddingBottom: theme.spacing(3)
+    },
+    '& .cardAreaFocus': {
+      paddingBottom: 0
     }
   },
   cardInfo: {
@@ -99,6 +102,10 @@ const useStyles = makeStyles(theme => ({
   cardInfoItem: {
     display: 'flex',
     alignItems: 'center',
+    fontSize: 12,
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 14
+    },
     '& svg': {
       marginRight: '10px'
     }
@@ -139,10 +146,14 @@ const useStyles = makeStyles(theme => ({
     height: '16px'
   },
   cardButton: {
+    marginTop: 16,
     height: 35,
     width: 128,
     fontSize: 16,
-    textTransform: 'none'
+    textTransform: 'none',
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 'inherit'
+    }
   },
   // card: {
   //   cursor: 'pointer',
@@ -409,8 +420,8 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
                 </Grid>
             } */}
             <Grid className={ classes.cardInfoItem } item>
-              <EventAvailableIcon style={{ color: available ? theme.palette.secondary.main : '#A3A3A3' }}/>
-              <span>Disponible</span>
+              <EventAvailableIcon style={{ color: !available ? theme.palette.secondary.main : '#A3A3A3' }}/>
+              <span>{ !available ? 'Disponible' : 'No disponible' }</span>
             </Grid>
           </Grid>
         </Grid>
@@ -422,7 +433,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
               <strong>Áreas de enfoque</strong>
             </Typography>
           </Grid>
-          <Grid container item spacing={2}>
+          <Grid container item spacing={1} className={ 'cardAreaFocus' }>
             {Boolean(areaFocus?.length > 5)
               ? areaFocus?.map((area, i) => {
                 if (i === 6) {
@@ -462,7 +473,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
         <Grid
           container
           item
-          spacing={2}
+          // spacing={2}
           style={{ justifyContent: smallSize ? "space-between" : "unset", color: theme.palette.grey[500] }}
           wrap={ smallSize ? "nowrap" : "wrap" }
         >
@@ -470,15 +481,16 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
           <Grid 
             container
             item
-            spacing={2}
+            // spacing={2}
             style={{
               justifyContent: smallSize ? "unset" : "space-between",
               alignItems: smallSize ? "center" : "unset",
-              width: smallSize ? "auto" : "inherit"
+              width: smallSize ? "auto" : "inherit",
+              lineHeight: 1
             }}
           >
             <Grid item><span>{rate_and_services[0].session_type}</span></Grid>
-            <Grid item><span>${rate_and_services[0].cost} USD</span></Grid>
+            <Grid item><span style={{ paddingLeft: smallSize ? 16 : "unset" }}>${rate_and_services[0].cost} USD</span></Grid>
           </Grid>
           )}
           <Grid item style={{ margin: smallSize ? "initial" : "auto" }}>
