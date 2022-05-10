@@ -14,6 +14,38 @@ const useStyles = makeStyles(theme => ({
       textDecoration: 'none',
     },
   },
+  // button: {
+  //   marginBottom: 20,
+  //   display: 'flex',
+  //   alignItems: 'flex-end',
+  //   width: '100%',
+  //   '& button': {
+  //     width: '100%',
+  //     height: 35,
+  //     textTransform: 'none',
+  //     '& .MuiButton-label': {
+  //       fontSize: 16
+  //     },
+  //     [theme.breakpoints.up('sm')]: {
+  //       width: 169,
+  //       margin: '0 auto'
+  //     }
+  //   }
+  // },
+  button: {
+    width: '100%',
+    height: 35,
+    textTransform: 'none',
+    '& .MuiButton-label': {
+      color: '#fff',
+      fontSize: 16,
+      textTransform: 'none'
+    },
+    [theme.breakpoints.up('sm')]: {
+      width: 169,
+      margin: '0 auto'
+    }
+  },
 }));
 
 const CheckEmail = ({ email }: { email: string }) => {
@@ -26,9 +58,15 @@ const CheckEmail = ({ email }: { email: string }) => {
       <Grid item>
         <Typography className={classes.title}>Verifica tu correo electrónico.</Typography>
         <Grid container justify="center" alignItems="center" className={classes.buttonContainer}>
-          <Typography component="a" href={`/auth/login?email=${encodeURIComponent(email || '')}`}>
-            Iniciar Session
-          </Typography>
+          <Button 
+            variant="contained"
+            color="primary"
+            disableElevation
+            href={`/auth/login?email=${encodeURIComponent(email || '')}`}
+            classes={{ root: classes.button }}
+          >
+            Iniciar Sesión
+          </Button>
         </Grid>
       </Grid>
     </Grid>

@@ -9,6 +9,9 @@ import { useCognito } from '@components/context/AuthContext';
 import { useSignOut } from '@api';
 
 const useStyles = makeStyles(theme => ({
+  logo: {
+    cursor: 'pointer'
+  },
   navBar: {
     height: 58,
     width: '100%',
@@ -73,12 +76,12 @@ const Navbar = () => {
         <Grid container className={classes.container}>
           <Hidden smDown>
             <Link href="/">
-              <img src="/images/mente_serena_logo.svg" alt="mente-serena" />
+              <img className={classes.logo} src="/images/mente_serena_logo.svg" alt="mente-serena" />
             </Link>
           </Hidden>
           <Hidden mdUp>
             <Link href="/">
-              <img src="/images/mente_serena_single_logo.svg" alt="mente-serena" />
+              <img className={classes.logo} src="/images/mente_serena_single_logo.svg" alt="mente-serena" />
             </Link>
           </Hidden>
           <Hidden smDown>
