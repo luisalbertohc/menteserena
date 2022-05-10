@@ -130,7 +130,8 @@ const useStyles = makeStyles(theme => ({
         fontSize: 16
       },
       [theme.breakpoints.up('sm')]: {
-        // width: 'auto'
+        width: 169,
+        margin: '0 auto'
       }
     }
   },
@@ -267,7 +268,6 @@ interface EditProfileScreenProps {
 const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenProps) => {
   const classes = useStyles()
   const {
-    degree, // NOT EXISTS YET
     first_name,
     last_name,
     profile_picture,
@@ -279,12 +279,19 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
     expertises,
     area_of_focus,
     academic_histories,
-    rate_and_services
+    rate_and_services,
+    medical_degree,
+    office_phone,
+    personal_phone,
+    phone_area_code,
+    office_area_code
   } = profile || {}
 
   const areaFocus = [...expertises, ...area_of_focus]
   const profileUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(profile_picture)}`
   const noProfileUrl = '/images/user.png'
+  console.log(profileUrl)
+  console.log(noProfileUrl)
 
   return (
     <Grid container classes={{ root: classes.dialog }}>
@@ -299,7 +306,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
       {/* title and username */}
       <Grid container item direction="column">
         <Grid item>
-        <Typography classes={{ root: classes.dialogDegree }}>{ degree ? degree : 'Doctor' }</Typography>
+        <Typography classes={{ root: classes.dialogDegree }}>{ medical_degree ? medical_degree : 'Doctor' }</Typography>
         </Grid>
         <Grid item>
           <Typography classes={{ root: classes.dialogUsername }}>{`${first_name} ${last_name}`}</Typography>

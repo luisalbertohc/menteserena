@@ -68,7 +68,6 @@ interface SignUpFormValues {
   first_name: string;
   password: string;
   last_name: string;
-  // rol: string;
   is_provider: boolean;
   terms_of_services: boolean;
 }
@@ -78,7 +77,6 @@ const defaultValues = {
   first_name: '',
   password: '',
   last_name: '',
-  // rol: '',
   is_provider: false,
   terms_of_services: false,
 };

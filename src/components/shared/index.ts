@@ -20,3 +20,4 @@ export { default as SimpleCheckBox } from './SimpleCheckBox';
 export { default as NotificationBadge } from './NotificationBadge';
 
 export { default as AccordionNew } from './AccordionNew'
+export { default as PhoneFieldPersonal } from './PhoneFieldPersonal'

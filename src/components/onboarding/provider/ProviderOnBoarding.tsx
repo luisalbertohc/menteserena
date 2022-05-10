@@ -20,7 +20,7 @@ import { IdleTimerContext } from '@components/context';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    maxWidth: 350,
+    maxWidth: 312,
     margin: 'auto',
   },
   indicatorContainer: {
@@ -54,9 +54,9 @@ const STEPS = [
 ];
 
 const STEPS_ERROR_VALIDATION_FIELDS = {
-  0: ['date_of_birth', 'gender', 'country', 'phone'],
+  0: ['date_of_birth', 'gender', 'country', 'phone', 'office_phone', 'personal_phone', 'phone_area_code', 'office_area_code'],
   1: getValues =>
-    constructArrayFieldValidation(getValues, 'academic_histories', ['degree', 'institution', 'year'], ['bio']),
+    constructArrayFieldValidation(getValues, 'academic_histories', ['degree', 'institution', 'year'], ['bio', 'medical_degree']),
   2: [],
   3: getValues =>
     constructArrayFieldValidation(
@@ -92,10 +92,15 @@ interface FormValues {
   }[];
   information_public: boolean;
   profile_picture: FileList | string;
+  medical_degree: string;
+  office_phone: string;
+  personal_phone: string;
+  phone_area_code: string;
+  office_area_code: string;
 }
 
 const RATE_AND_SERVICE_DEFAULTS = [
-  { session_type: 'Evaluacion Inicial', session_length: 50, cost: null, isDisable: true },
+  { session_type: 'Evaluación inicial o consulta', session_length: 50, cost: null, isDisable: true },
   { session_type: 'Seguimiento', session_length: 50, cost: null, isDisable: true },
   { session_type: 'Consulta', session_length: 50, cost: null, isDisable: true },
   {
@@ -129,6 +134,11 @@ const defaultValues: FormValues = {
   academic_histories: [],
   profile_picture: '',
   information_public: true,
+  medical_degree: '',
+  office_phone: '',
+  personal_phone: '',
+  phone_area_code: '',
+  office_area_code: ''
 };
 
 const onSubmit = async (submitValues: FormValues, getSession: () => Promise<CognitoUserSession>) => {

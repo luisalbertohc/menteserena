@@ -28,7 +28,7 @@ const PhoneField = ({ register, errors, defaultValue, name }) => {
         return (
           <TextField
             name={name}
-            label="Télefono de oficina"
+            label="Teléfono personal"
             placeholder="Ingresar número"
             variant="outlined"
             InputLabelProps={{

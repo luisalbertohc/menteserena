@@ -68,6 +68,7 @@ const useStyles = makeStyles(theme => ({
     width: 96,
     border: '5px solid #fff',
     borderRadius: '50%',
+    backgroundColor: '#e5e7eb',
     objectFit: 'cover',
     [theme.breakpoints.up('sm')]: {
       right: 'unset',
@@ -300,11 +301,10 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
     expertises,
     rate_and_services
   } = provider || {}
-  console.log(provider)
+  // console.log(provider)
 
-  const avatarUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(
-    profile_picture
-  )}`
+  const profileUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(profile_picture)}`
+  const noProfileUrl = '/images/user.png'
   
   const areaFocus = [...expertises, ...area_of_focus]
 
@@ -371,10 +371,10 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
       <Grid container item className={classes.cardHeader}>
         <Grid item>
           <Typography component="h3">
-            {`${first_name} ${last_name}`}
+            { `${first_name} ${last_name}` }
           </Typography>
         </Grid>
-        <img src={profile_picture ? avatarUrl : ''} className={ classes.cardImage } />
+        <img src={ profile_picture ? profileUrl : noProfileUrl } className={ classes.cardImage } />
       </Grid>
 
       <Grid container item spacing={2} className={ classes.cardContent }>
@@ -501,7 +501,7 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
 
       {/* <Grid container wrap="nowrap" className={classes.section}>
         <Grid className={classes.circle}>
-          <img src={profile_picture ? avatarUrl : ''} className={classes.image} />
+          <img src={profile_picture ? profileUrl : ''} className={classes.image} />
         </Grid>
         <Grid>
           <Grid className={classes.name}>

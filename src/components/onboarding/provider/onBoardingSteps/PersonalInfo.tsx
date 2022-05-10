@@ -1,4 +1,5 @@
-import { Button, Grid, makeStyles, Typography, TextField } from '@material-ui/core';
+import { useState } from 'react';
+import { Button, Grid, makeStyles, Typography, TextField, MenuItem } from '@material-ui/core';
 import { useFormContext, useFieldArray, Controller } from 'react-hook-form';
 import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons';
 
@@ -36,6 +37,25 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '18.75px',
     color: theme.palette.grey[700],
   },
+  select: {
+    '& .MuiSelect-select': {
+      paddingTop: 12,
+      paddingBottom: 12
+    },
+    '& .MuiSelect-select:focus': {
+      background: 'none'
+    }
+  },
+  selected: {
+    '& .MuiSelect-select': {
+      color: 'rgba(0, 0, 0, 0.87)'
+    }
+  },
+  unselected: {
+    '& .MuiSelect-select': {
+      color: theme.palette.grey[400]
+    },
+  }
 }));
 
 interface AcademicHistory {
@@ -59,6 +79,12 @@ const PersonalInfo = () => {
 
   const { fields, append, remove } = useFieldArray<AcademicHistoryValues>({ name: 'academic_histories' });
 
+  const [degree, setDegree] = useState<string>('Selecciona tu título académico')
+  const degreeHandler = (e) => {
+    let value = e.target.value
+    setDegree(value)
+  }
+
   return (
     <Grid container direction="column" justify="center" alignItems="center" item>
       <Grid container item justify="center" direction="column" alignItems="center">
@@ -74,7 +100,7 @@ const PersonalInfo = () => {
           rules={{
             maxLength: {
               value: 512,
-              message: 'No más de 512 caracteres.',
+              message: 'No más de 512 carácteres.',
             },
           }}
           render={({ field }) => (
@@ -83,24 +109,56 @@ const PersonalInfo = () => {
               multiline
               {...field}
               label="Biografía"
-              placeholder="Ingrese su biografía"
+              // placeholder="Ingrese su biografía"
+              placeholder="Ingrese detalles que desea compartir, para que potenciales pacientes le conozcan y se sientan en confianza de contactarle."
               variant="outlined"
               InputLabelProps={{
                 shrink: true,
               }}
-              error={Boolean(errors?.bio?.message)}
-              helperText={errors?.bio?.message}
+              inputProps={{
+                ...register('bio', {
+                  required: 'La biografía es requerida'
+                })
+              }}
+              error={ Boolean(errors?.bio?.message) }
+              helperText={ errors?.bio?.message }
             />
           )}
         />
+        <TextField
+          // id="select"
+          select // tell TextField to render like select element
+          variant="outlined"
+          InputLabelProps={{ shrink: true }}
+          label="Título académico"
+          name="degree"
+          value={ degree }
+          defaultValue={ getValues('degree') }
+          onChange={ degreeHandler }
+          classes={{ root: classes.select }}
+          className={ `${degree !== 'Selecciona tu título académico' ? classes.selected : classes.unselected}` }
+          SelectProps={{
+            renderValue: (degree) => degree
+          }}
+          inputProps={{
+            ...register('medical_degree', {
+              required: 'El título académico es requerido'
+            })
+          }}
+          error={ Boolean(errors.medical_degree?.message) }
+          helperText={ errors.medical_degree?.message }
+          >
+          <MenuItem key="Licenciado" value="Lcd.">Lcd.</MenuItem>
+          <MenuItem key="Doctor" value="Dr.">Dr.</MenuItem>
+        </TextField>
 
         <Grid container direction="column" alignItems="center">
           <Typography className={classes.title} color="primary">
             Historial Académico
           </Typography>
-          <Typography className={classes.subTitle} color="primary">
+          {/* <Typography className={classes.subTitle} color="primary">
             (Comenzar con el más reciente y añadir según sea necesario)
-          </Typography>
+          </Typography> */}
         </Grid>
         {fields.map((item, index) => {
           return (
@@ -115,7 +173,7 @@ const PersonalInfo = () => {
                 error={Boolean(errors?.academic_histories?.[index]?.degree?.message)}
                 helperText={errors?.academic_histories?.[index]?.degree?.message}
                 defaultValue={getValues(`academic_histories.${index}.degree`)}
-                {...register(`academic_histories.${index}.degree` as const, { required: 'Degree requerido' })}
+                {...register(`academic_histories.${index}.degree` as const, { required: 'Grado es requerido' })}
               />
               <TextField
                 variant="outlined"
@@ -127,10 +185,11 @@ const PersonalInfo = () => {
                 error={Boolean(errors?.academic_histories?.[index]?.institution?.message)}
                 helperText={errors?.academic_histories?.[index]?.institution?.message}
                 defaultValue={getValues(`academic_histories.${index}.institution`)}
-                {...register(`academic_histories.${index}.institution` as const, { required: 'Intitucion requerida' })}
+                {...register(`academic_histories.${index}.institution` as const, { required: 'Intitución es requerida' })}
               />
               <TextField
-                label="Año Obtenido "
+                // label="Año obtenido"
+                label="Año de obtención"
                 variant="outlined"
                 InputProps={{ className: classes.textField }}
                 InputLabelProps={{
@@ -140,10 +199,10 @@ const PersonalInfo = () => {
                 helperText={errors?.academic_histories?.[index]?.year?.message}
                 defaultValue={getValues(`academic_histories.${index}.year`)}
                 {...register(`academic_histories.${index}.year` as const, {
-                  required: 'Año requerido',
+                  required: 'Año de obtención es requerido',
                   pattern: {
                     value: /^[\d]{4}$/,
-                    message: 'Ingresar solo 4 digitos.',
+                    message: 'Ingresar solo 4 dígitos.',
                   },
                 })}
               />

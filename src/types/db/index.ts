@@ -55,7 +55,6 @@ export interface Provider {
   profile_picture: string;
   academic_histories: AcademicHistory[];
   rate_and_services: RateAndService[];
-
   expertises: string[];
   theoretical_approaches: string[];
   area_of_focus: string[];
@@ -65,6 +64,11 @@ export interface Provider {
   provider_code: string;
   id: number;
   provider_id: number;
+  medical_degree: string;
+  office_phone: string;
+  personal_phone: string;
+  phone_area_code: string;
+  office_area_code: string;
 }
 
 export interface AcademicHistory {
