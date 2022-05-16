@@ -5,8 +5,9 @@ import { Entity } from '@types';
 import { useQuery, UseQueryOptions, useMutation, UseMutationOptions, UseMutationResult } from 'react-query';
 import { useCognito, GetSession } from '@components/context/AuthContext';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
+// import * as firebase from '@libs/firebase'
 
-const getUser = async ({
+async function getUser({
   queryKey: [_key, { getSession, getAttributes }],
 }: {
   queryKey: [
@@ -16,14 +17,14 @@ const getUser = async ({
       getAttributes: any;
     }
   ];
-}): Promise<Entity> => {
+}): Promise<Entity> {
   const attributes = await getAttributes();
 
   const email = attributes.find(user => user.Name === 'email').Value;
   const email_verified = attributes.find(user => user.Name === 'email_verified').Value;
 
   const session = await getSession();
-
+ 
   const response = await api.post(
     `${config.MENTE_SERENA_API_BASE_URL}/api/user/me`,
     {
@@ -38,7 +39,7 @@ const getUser = async ({
   );
 
   return response.data;
-};
+}
 
 export const useUser = (useQueryOptions?: UseQueryOptions<Entity>) => {
   const { getSession, getAttributes } = useCognito();
@@ -113,10 +114,14 @@ const signOutLog = async ({ signOut, getSession, router }: SignOutLogProps): Pro
     );
     if (response.status === 200) {
       signOut();
+      // Here must goes the unsubscribe of Firebase
+      console.log('useSignOutLog')
       router.push('/');
     }
   } catch (error) {
     signOut();
+    // Here must goes the unsubscribe of Firebase
+    console.log('useSignOutLog')
     router.push('/');
   }
 };
@@ -124,6 +129,7 @@ const signOutLog = async ({ signOut, getSession, router }: SignOutLogProps): Pro
 export const useSignOut = (useMutationOptions?: UseMutationOptions): UseMutationResult => {
   const { getSession, signOut } = useCognito();
   const router = useRouter();
-
+  // firebase.deleteTokenFirebase()
+  console.log('useSignOut')
   return useMutation(() => signOutLog({ getSession, signOut, router }), useMutationOptions ?? {});
 };

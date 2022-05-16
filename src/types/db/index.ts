@@ -48,14 +48,14 @@ export interface Provider {
   onboarding_completed: string;
   bio: string;
   country: string;
-  phone: string;
+  // phone: string;
   gender: string;
   date_of_birth: string | Date;
   information_public: string;
   profile_picture: string;
   academic_histories: AcademicHistory[];
   rate_and_services: RateAndService[];
-  expertises: string[];
+  // expertises: string[];
   theoretical_approaches: string[];
   area_of_focus: string[];
   populations_serve: string[];

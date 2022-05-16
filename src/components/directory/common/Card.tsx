@@ -23,13 +23,15 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     marginBottom: 24,
     borderRadius: 5,
-    width: 324,
+    // width: 324,
+    width: '100%',
     height: 'auto',
     background: theme.palette.common.white,
     filter: 'drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2))',
     // prevents the content shows in two columns on desktop views
     [theme.breakpoints.up('sm')]: {
-      width: 574
+      // width: 574
+      maxWidth: 574
     }
   },
   cardHeader: {
@@ -38,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     padding: '13px 0',
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
-    height: 47,
+    height: 47, // REVISAR (no esta alineado al centro el texto)
     backgroundImage: 'linear-gradient(90deg, #57C4C4 0%, #F4DCB3 100%)',
     color: theme.palette.common.white,
     [theme.breakpoints.up('sm')]: {

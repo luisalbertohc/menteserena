@@ -7,7 +7,7 @@ import {
   GENDER_LIST,
   COUNTRY_LIST,
   POPULATION_SERV,
-  EXPERTISE,
+  // EXPERTISE,
   THEORETICAL_APPROACHES,
   HEALTH_PLANS,
   LANGUAGES,
@@ -90,13 +90,13 @@ const Filters = ({ className, isPortalFilters }: FiltersProps) => {
         control={control}
       />
 
-      <FilterSelect
+      {/* <FilterSelect
         label="Especialidad"
         options={EXPERTISE}
         className={filterSelectClasses}
         name="expertises"
         control={control}
-      />
+      /> */}
 
       <FilterSelect
         label="Acercamientos Terapéuticos"

@@ -11,14 +11,19 @@ const useStyles = makeStyles(theme => ({
       maxWidth: 312,
     },
     '& > div': {
-      marginBottom: theme.spacing(4),
+      marginBottom: theme.spacing(4)
     },
+    '& > .inputField': {
+      [theme.breakpoints.up('sm')]: {
+        marginBottom: 0
+      }
+    }
   },
   title: {
     fontSize: 20,
     lineHeight: '23.44px',
     fontWeight: 500,
-    marginBottom: theme.spacing(4),
+    // marginBottom: theme.spacing(4),
     textAlign: 'center',
   },
   textField: {
@@ -79,7 +84,7 @@ const PersonalInfo = () => {
 
   const { fields, append, remove } = useFieldArray<AcademicHistoryValues>({ name: 'academic_histories' });
 
-  const [degree, setDegree] = useState<string>('Selecciona tu título académico')
+  const [degree, setDegree] = useState<string>('Seleccione su título académico')
   const degreeHandler = (e) => {
     let value = e.target.value
     setDegree(value)
@@ -87,12 +92,12 @@ const PersonalInfo = () => {
 
   return (
     <Grid container direction="column" justify="center" alignItems="center" item>
-      <Grid container item justify="center" direction="column" alignItems="center">
-        <Typography className={classes.title} color="primary">
-          Información del Proveedor
-        </Typography>
-      </Grid>
       <Grid className={classes.inputContainer} container item direction="column" justify="center">
+        <Grid container direction="column" alignItems="center">
+          <Typography className={classes.title} color="primary">
+            Información del Proveedor
+          </Typography>
+        </Grid>
         <Controller
           control={control}
           name="bio"
@@ -109,7 +114,6 @@ const PersonalInfo = () => {
               multiline
               {...field}
               label="Biografía"
-              // placeholder="Ingrese su biografía"
               placeholder="Ingrese detalles que desea compartir, para que potenciales pacientes le conozcan y se sientan en confianza de contactarle."
               variant="outlined"
               InputLabelProps={{
@@ -126,17 +130,16 @@ const PersonalInfo = () => {
           )}
         />
         <TextField
-          // id="select"
           select // tell TextField to render like select element
           variant="outlined"
           InputLabelProps={{ shrink: true }}
-          label="Título académico"
+          label="Título Académico"
           name="degree"
           value={ degree }
           defaultValue={ getValues('degree') }
           onChange={ degreeHandler }
           classes={{ root: classes.select }}
-          className={ `${degree !== 'Selecciona tu título académico' ? classes.selected : classes.unselected}` }
+          className={ `${degree !== 'Seleccione su título académico' ? classes.selected : classes.unselected}` }
           SelectProps={{
             renderValue: (degree) => degree
           }}
@@ -156,14 +159,13 @@ const PersonalInfo = () => {
           <Typography className={classes.title} color="primary">
             Historial Académico
           </Typography>
-          {/* <Typography className={classes.subTitle} color="primary">
-            (Comenzar con el más reciente y añadir según sea necesario)
-          </Typography> */}
         </Grid>
         {fields.map((item, index) => {
           return (
             <Grid key={item.id} container justify="center" wrap="nowrap" className={classes.inputContainer}>
               <TextField
+                placeholder="Ingrese grado"
+                className={ 'inputField' }
                 label="Grado"
                 variant="outlined"
                 InputProps={{ className: classes.textField }}
@@ -173,9 +175,12 @@ const PersonalInfo = () => {
                 error={Boolean(errors?.academic_histories?.[index]?.degree?.message)}
                 helperText={errors?.academic_histories?.[index]?.degree?.message}
                 defaultValue={getValues(`academic_histories.${index}.degree`)}
-                {...register(`academic_histories.${index}.degree` as const, { required: 'Grado es requerido' })}
+                // {...register(`academic_histories.${index}.degree` as const, { required: 'Grado es requerido' })}
+                {...register(`academic_histories.${index}.degree` as const, { required: 'El grado es requerido' })}
               />
               <TextField
+                placeholder="Ingrese institución"
+                className={ 'inputField' }
                 variant="outlined"
                 label="Institución"
                 InputProps={{ className: classes.textField }}
@@ -185,11 +190,14 @@ const PersonalInfo = () => {
                 error={Boolean(errors?.academic_histories?.[index]?.institution?.message)}
                 helperText={errors?.academic_histories?.[index]?.institution?.message}
                 defaultValue={getValues(`academic_histories.${index}.institution`)}
-                {...register(`academic_histories.${index}.institution` as const, { required: 'Intitución es requerida' })}
+                // {...register(`academic_histories.${index}.institution` as const, { required: 'Intitución es requerida' })}
+                {...register(`academic_histories.${index}.institution` as const, { required: 'La institución es requerida' })}
               />
               <TextField
+                placeholder="Ingrese año"
+                className={ 'inputField' }
                 // label="Año obtenido"
-                label="Año de obtención"
+                label="Año de Obtención"
                 variant="outlined"
                 InputProps={{ className: classes.textField }}
                 InputLabelProps={{
@@ -199,17 +207,24 @@ const PersonalInfo = () => {
                 helperText={errors?.academic_histories?.[index]?.year?.message}
                 defaultValue={getValues(`academic_histories.${index}.year`)}
                 {...register(`academic_histories.${index}.year` as const, {
-                  required: 'Año de obtención es requerido',
+                  required: 'El año de obtención es requerido',
                   pattern: {
                     value: /^[\d]{4}$/,
                     message: 'Ingresar solo 4 dígitos.',
                   },
+                  validate: value => value > 1900 || 'El año no es válido.'
                 })}
               />
-
-              <Button className={classes.deleteButton} onClick={() => remove(index)}>
-                <DeleteIcon color="error" />
-              </Button>
+              {Boolean(index === 0)
+                ?
+                  <Button className={classes.deleteButton} disabled={true} onClick={() => remove(index)}>
+                    <DeleteIcon color="disabled" />
+                  </Button>
+                :
+                  <Button className={classes.deleteButton} onClick={() => remove(index)}>
+                    <DeleteIcon color="error" />
+                  </Button>
+              }
             </Grid>
           );
         })}

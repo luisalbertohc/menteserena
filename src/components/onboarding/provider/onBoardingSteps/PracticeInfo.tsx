@@ -2,7 +2,8 @@ import { Grid, makeStyles, Typography } from '@material-ui/core';
 import { useFormContext } from 'react-hook-form';
 
 import { MultipleSelect } from '@components/shared';
-import { AREA_OF_FOCUS, POPULATION_SERV, THEORETICAL_APPROACHES, EXPERTISE } from '../../constants';
+// import { AREA_OF_FOCUS, POPULATION_SERV, THEORETICAL_APPROACHES, EXPERTISE } from '../../constants';
+import { AREA_OF_FOCUS, POPULATION_SERV, THEORETICAL_APPROACHES } from '../../constants';
 
 const useStyles = makeStyles(theme => ({
   inputContainer: {
@@ -33,7 +34,7 @@ const PracticeInfo = () => {
       <Grid className={classes.inputContainer} container item direction="column" justify="center">
         <MultipleSelect
           options={AREA_OF_FOCUS}
-          label="Área de Enfoque"
+          label="Áreas de Enfoque"
           control={control}
           name="area_of_focus"
           defaultValue={getValues('area_of_focus')}
@@ -47,13 +48,16 @@ const PracticeInfo = () => {
           defaultValue={getValues('populations_serve')}
         />
 
-        <MultipleSelect
+        {/* <MultipleSelect
           options={EXPERTISE}
           label="Especialidad"
           control={control}
           name="expertises"
           defaultValue={getValues('expertises')}
-        />
+          inputProps={{
+            value: 'prueba'
+          }}
+        /> */}
 
         <MultipleSelect
           options={THEORETICAL_APPROACHES}

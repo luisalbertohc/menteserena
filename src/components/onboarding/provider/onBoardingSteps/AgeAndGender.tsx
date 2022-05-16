@@ -106,7 +106,7 @@ const AgeAndGender = () => {
           label="Género"
           control={control}
           name="gender"
-          rules={{ required: 'Es requerido ingresar una opcion.' }}
+          rules={{ required: 'Es requerido ingresar una opción.' }}
         />
 
         <Select
@@ -126,11 +126,14 @@ const AgeAndGender = () => {
             searchPlaceholder={ 'Buscar' }
             searchNotFound={ 'No hay coincidencias' }
             country={ 'pr' }
-            value={ personalAreaCode }
+            countryCodeEditable={ false } // avoid can edit the country code
+            value={ getValues(personalAreaCode) }
             onChange={ (personalAreaCode) => setPersonalAreaCode(personalAreaCode) }
             inputProps={{
               name: 'phone_area_code',
               required: true,
+              tabindex: -1,
+              disabled: true // avoid can edit the input
             }}
           />
           <PhoneFieldPersonal errors={errors} register={register} defaultValue={getValues('personal_phone')} name="personal_phone" />
@@ -144,11 +147,14 @@ const AgeAndGender = () => {
             searchPlaceholder={ 'Buscar' }
             searchNotFound={ 'No hay coincidencias' }
             country={ 'pr' }
-            value={ officeAreaCode }
+            countryCodeEditable={ false } // avoid can edit the country code
+            value={ getValues(officeAreaCode) }
             onChange={ (officeAreaCode) => setOfficeAreaCode(officeAreaCode) }
             inputProps={{
               name: 'office_area_code',
               required: true,
+              tabindex: -1,
+              disabled: true // avoid can edit the input
             }}
           />
           <PhoneField errors={errors} register={register} defaultValue={getValues('office_phone')} name="office_phone" />

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+// import * as firebase from '@libs/firebase'
 
 const CheckOnboarding = ({ user, redirectTo, children }) => {
   const router = useRouter();
@@ -8,6 +9,7 @@ const CheckOnboarding = ({ user, redirectTo, children }) => {
     return null;
   }
 
+  console.log(user.user.id)
   return <>{children}</>;
 };
 

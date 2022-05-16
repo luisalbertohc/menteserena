@@ -1,5 +1,5 @@
 import { Grid, makeStyles, Button, Typography, Container } from '@material-ui/core'
-import { LocationOn as LocationOnIcon, PermIdentity as PermIdentityIcon } from '@material-ui/icons/'
+// import { LocationOn as LocationOnIcon, PermIdentity as PermIdentityIcon } from '@material-ui/icons/'
 
 import GradeIcon from '@material-ui/icons/Grade'
 import EventAvailableIcon from '@material-ui/icons/EventAvailable'
@@ -13,14 +13,14 @@ import Presentation from './sections/Presentation'
 import AcademicHistory from './sections/AcademicHistory'
 import RateAndServices from './sections/RateAndServices'
 
-import Specialty from './sections/Specialty'
-import Credentials from './sections/Credentials'
-import RateOfService from './sections/RateOfService'
-import HealthPlans from './sections/HealthPlans'
-import { Chip, Description } from '@components/shared'
+// import Specialty from './sections/Specialty'
+// import Credentials from './sections/Credentials'
+// import RateOfService from './sections/RateOfService'
+// import HealthPlans from './sections/HealthPlans'
+// import { Chip, Description } from '@components/shared'
 
-import Avatar from '@components/profile/Avatar'
-import { url } from 'inspector'
+// import Avatar from '@components/profile/Avatar'
+// import { url } from 'inspector'
 
 const useStyles = makeStyles(theme => ({
   dialog: {
@@ -79,9 +79,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   dialogUsername: {
-    // marginBottom: 30,
-    marginBottom: 60,
-    // width: '50%',
+    marginBottom: 30,    
+    width: '50%',
     fontSize: 18,
     fontWeight: 600,
     textTransform: 'capitalize',
@@ -290,8 +289,6 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
   const areaFocus = [...expertises, ...area_of_focus]
   const profileUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(profile_picture)}`
   const noProfileUrl = '/images/user.png'
-  console.log(profileUrl)
-  console.log(noProfileUrl)
 
   return (
     <Grid container classes={{ root: classes.dialog }}>
@@ -306,7 +303,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
       {/* title and username */}
       <Grid container item direction="column">
         <Grid item>
-        <Typography classes={{ root: classes.dialogDegree }}>{ medical_degree ? medical_degree : 'Doctor' }</Typography>
+        <Typography classes={{ root: classes.dialogDegree }}>{ medical_degree ? medical_degree : 'Dr.' }</Typography>
         </Grid>
         <Grid item>
           <Typography classes={{ root: classes.dialogUsername }}>{`${first_name} ${last_name}`}</Typography>
@@ -322,7 +319,8 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
             <GradeIcon style={{ color: theme.palette.secondary.main }}/>
             <Typography>
               <strong>Planes de salud: </strong>
-              <span>{ Boolean(health_cares.length > 0) && (health_cares?.join(', ')) }</span>
+              {/* CAMBIARRRRRRRRRRRRRR No soy proveedor de planes de salud */}
+              <span>{ Boolean(health_cares.length > 0) ? health_cares?.join(', ') : 'No es proveedor de planes de salud' }</span>
             </Typography>
           </Grid>
           {/* target population */}
@@ -330,7 +328,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
             <PersonIcon style={{ color: theme.palette.secondary.main }}/>
             <Typography>
               <strong>Población objetivo: </strong>
-              <span>{ Boolean(populations_serve.length > 0) && (populations_serve?.join(', ')) }</span>
+              <span>{Boolean(populations_serve.length > 0) ? populations_serve?.join(', ') : 'No hay registros' }</span>
             </Typography>
           </Grid>
         </Grid>

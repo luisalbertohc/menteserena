@@ -10,6 +10,7 @@ import PasswordInput from './shared/PasswordInput';
 import { Loading } from '@components/shared';
 import { useCognito } from '@components/context/AuthContext';
 import { cognitoErrorHandling } from './utils/cognitoErrorHandling';
+// import * as firebase from '@libs/firebase'
 
 const useStyles = makeStyles(theme => ({
   inputContainer: {
@@ -35,6 +36,7 @@ const useStyles = makeStyles(theme => ({
 const LoginForm = () => {
   const classes = useStyles();
   const [cognitoError, setCognitoError] = useState('');
+  // const [isTokenFound, setTokenFound] = useState(false)
 
   const router = useRouter();
   const {
@@ -57,6 +59,7 @@ const LoginForm = () => {
   const onSubmit = async submitValues => {
     try {
       await authContext.signInWithEmail(submitValues.email, submitValues.password);
+      // firebase.getTokenFirebase()
       router.push('/portal');
     } catch (err) {
       setCognitoError(cognitoErrorHandling(err.code));
