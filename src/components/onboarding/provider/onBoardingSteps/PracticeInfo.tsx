@@ -33,7 +33,7 @@ const PracticeInfo = () => {
       </Grid>
       <Grid className={classes.inputContainer} container item direction="column" justify="center">
         <MultipleSelect
-          options={AREA_OF_FOCUS}
+          options={AREA_OF_FOCUS} 
           label="Áreas de Enfoque"
           control={control}
           name="area_of_focus"
