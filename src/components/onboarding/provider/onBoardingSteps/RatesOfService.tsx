@@ -20,8 +20,11 @@ const useStyles = makeStyles(theme => ({
       maxWidth: 312,
     },
     '& > div': {
-      marginBottom: theme.spacing(4),
+      marginBottom: theme.spacing(4)
     },
+    '& > button': {
+      marginBottom: theme.spacing (4)
+    }
   },
   addButton: {
     marginBottom: theme.spacing(3),
@@ -32,9 +35,10 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1),
   },
   deleteButton: {
+    marginTop: 8,
     display: 'flex',
     alignItems: 'center',
-    height: 40,
+    height: 40
   },
 }));
 
@@ -62,9 +66,9 @@ const RatesOfService = () => {
   return (
     <Grid container justify="center" direction="column" alignItems="center">
       <Grid container item justify="center" alignItems="center" direction="column">
-        <Typography className={classes.title} color="primary">
+        {/* <Typography className={classes.title} color="primary">
           Honorarios
-        </Typography>
+        </Typography> */}
         <Typography className={classes.title} color="primary">
           Seguro de Salud
         </Typography>
@@ -97,10 +101,13 @@ const RatesOfService = () => {
               error={Boolean(errors?.rate_and_services?.[index]?.session_type?.message)}
               helperText={errors?.rate_and_services?.[index]?.session_type?.message}
               defaultValue={getValues(`rate_and_services.${index}.session_type`)}
+              inputProps={{
+                title: `${item.session_type}`
+              }}
               {...register(`rate_and_services.${index}.session_type` as const, { required: 'Sesión requerida' })}
             />
             <TextField
-              label="Duracion de la Sesion (minutos)"
+              label="Duración de la Sesión (minutos)"
               type="number"
               variant="outlined"
               InputProps={{ className: classes.textField }}
@@ -111,10 +118,10 @@ const RatesOfService = () => {
               helperText={errors?.rate_and_services?.[index]?.session_length?.message}
               defaultValue={getValues(`rate_and_services.${index}.session_length`)}
               {...register(`rate_and_services.${index}.session_length` as const, {
-                required: 'Duracion requerida',
+                required: 'Duración requerida',
                 pattern: {
                   value: /^[\d]{1,3}$/,
-                  message: 'Ingrese solo digitos. (###)',
+                  message: 'Ingrese solo dígitos. (###)',
                 },
               })}
             />
@@ -132,16 +139,23 @@ const RatesOfService = () => {
               helperText={errors?.rate_and_services?.[index]?.cost?.message}
               defaultValue={getValues(`rate_and_services.${index}.cost`)}
               {...register(`rate_and_services.${index}.cost` as const, {
+                required: 'Costo requerido',
                 pattern: {
                   value: /^$|^\$?\d+(,\d{3})*(\.\d*)?$/,
                   message: 'Ingrese un costo valido.',
                 },
               })}
             />
-
-            <Button className={classes.deleteButton} onClick={() => remove(index)}>
-              <DeleteIcon color="error" />
-            </Button>
+            {Boolean(index === 0)
+              ?
+                <Button className={classes.deleteButton} disabled={true} onClick={() => remove(index)}>
+                  <DeleteIcon color="disabled" />
+                </Button>
+              :
+                <Button className={classes.deleteButton} onClick={() => remove(index)}>
+                  <DeleteIcon color="error" />
+                </Button>
+            }
           </Grid>
         );
       })}

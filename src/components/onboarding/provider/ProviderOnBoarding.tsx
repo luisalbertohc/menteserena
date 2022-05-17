@@ -54,7 +54,9 @@ const STEPS = [
 ];
 
 const STEPS_ERROR_VALIDATION_FIELDS = {
-  0: ['date_of_birth', 'gender', 'country', 'phone', 'office_phone', 'personal_phone', 'phone_area_code', 'office_area_code'],
+  // delete phonne field
+  // 0: ['date_of_birth', 'gender', 'country', 'phone', 'office_phone', 'personal_phone', 'phone_area_code', 'office_area_code'],
+  0: ['date_of_birth', 'gender', 'country', 'office_phone', 'personal_phone', 'phone_area_code', 'office_area_code'],
   1: getValues =>
     constructArrayFieldValidation(getValues, 'academic_histories', ['degree', 'institution', 'year'], ['bio', 'medical_degree']),
   2: [],
@@ -71,17 +73,17 @@ interface FormValues {
   gender: string;
   date_of_birth: Date | null;
   country: string;
-  phone: string;
+  // phone: string;
   spoken_languages: string[];
   bio: string;
   health_cares: string[];
   area_of_focus: string[];
   populations_serve: string[];
-  expertises: string[];
+  // expertises: string[];
   theoretical_approaches: string[];
   academic_histories: {
     degree: string;
-    institution: number;
+    institution: string;
     year: number;
   }[];
   rate_and_services: {
@@ -99,39 +101,32 @@ interface FormValues {
   office_area_code: string;
 }
 
+const ACADEMIC_HISTORIES_DEFAULTS = [
+  { degree: '', institution: '', year: null }
+]
+
 const RATE_AND_SERVICE_DEFAULTS = [
-  { session_type: 'Evaluación inicial o consulta', session_length: 50, cost: null, isDisable: true },
-  { session_type: 'Seguimiento', session_length: 50, cost: null, isDisable: true },
-  { session_type: 'Consulta', session_length: 50, cost: null, isDisable: true },
-  {
-    session_type: 'Evaluación Psicométrica (Informe)',
-    session_length: null,
-    cost: null,
-    isDisable: true,
-  },
-  {
-    session_type: 'Evaluación Psicoeducativa (Informe)',
-    session_length: null,
-    cost: null,
-    isDisable: true,
-  },
+  { session_type: 'Evaluación inicial ó consulta', session_length: null, cost: null, isDisable: true },
+  { session_type: 'Seguimiento', session_length: null, cost: null, isDisable: true },
+  { session_type: 'Evaluación Psicométrica (Informe)', session_length: null, cost: null, isDisable: true },
+  { session_type: 'Evaluación Psicoeducativa (Informe)', session_length: null, cost: null, isDisable: true },
   { session_type: 'Evaluación Psicológica (Informe)', session_length: null, cost: null, isDisable: true },
-];
+];  
 
 const defaultValues: FormValues = {
   date_of_birth: null,
   gender: '',
   country: '',
-  phone: '',
+  // phone: '',
   spoken_languages: [],
   bio: '',
   health_cares: [],
   area_of_focus: [],
   populations_serve: [],
-  expertises: [],
+  // expertises: [],
   theoretical_approaches: [],
   rate_and_services: RATE_AND_SERVICE_DEFAULTS,
-  academic_histories: [],
+  academic_histories: ACADEMIC_HISTORIES_DEFAULTS,
   profile_picture: '',
   information_public: true,
   medical_degree: '',

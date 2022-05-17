@@ -22,14 +22,15 @@ const PhoneField = ({ register, errors, defaultValue, name }) => {
           value: /^\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/,
           message: 'Ingresar solo 10 dígitos.',
         },
+        validate: value => value !== '(000) 000-0000' || 'El teléfono no puede contener solo ceros.'
       })}
     >
       {() => {
         return (
           <TextField
             name={name}
-            label="Teléfono personal"
-            placeholder="Ingresar número"
+            label="Teléfono Personal"
+            placeholder="Ingrese número"
             variant="outlined"
             InputLabelProps={{
               shrink: true,

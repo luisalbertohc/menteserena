@@ -21,6 +21,7 @@ const ProviderPortalPage = () => {
     refetchOnWindowFocus: false,
   });
   const classes = useStyles();
+  // console.log(entity)
 
   if (isLoading) {
     return <Loading />;

@@ -1,5 +1,6 @@
 import { Button, Grid, makeStyles, Typography, Hidden, Container } from '@material-ui/core';
 import { useRouter } from 'next/router';
+// import * as firebase from '@libs/firebase';
 
 const useStyles = makeStyles(theme => ({
   hero: {
@@ -57,6 +58,12 @@ const useStyles = makeStyles(theme => ({
 const Header = () => {
   const classes = useStyles();
   const router = useRouter();
+  // const [notification, setNotification] = useState({title: '', body: ''})
+
+  // firebase.onMessageListener().then(payload => {
+  //   setNotification({title: payload.notification.title, body: payload.notification.body})
+  //   console.log(payload)
+  // }).catch(err => console.log('failed: ', err))
 
   return (
     <Container>

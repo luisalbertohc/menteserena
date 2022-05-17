@@ -91,11 +91,15 @@ export const GENDER_LIST = [
 ];
 
 export const AREA_OF_FOCUS = [
+  { title: 'Asuntos de la Mujer' },
   { title: 'Uso Problemático de Sustancias' },
+  { title: 'Asuntos de la Comunidad LGBT+' },
   { title: 'Coraje' },
   { title: 'Problemas Alimenticios' },
+  { title: 'Asuntos de Etnia' },
   { title: 'Ansiedad' },
   { title: 'Dificultades Emocionales' },
+  { title: 'Asuntos de Raza' },
   { title: 'Trastorno Bipolar' },
   { title: 'Quemazón' },
   { title: 'Condición Médica Crónica' },
@@ -144,10 +148,11 @@ export const AREA_OF_FOCUS = [
   { title: 'Trauma' },
   { title: 'Violencia' },
   { title: 'Orientación Vocacional' },
-  { title: 'Otro' },
+  { title: 'Otro' }
 ];
 
 export const HEALTH_PLANS = [
+  { title: 'No soy proveedor de planes de salud' },
   { title: 'Triple S' },
   { title: 'MCS' },
   { title: 'Mapfre' },
@@ -156,8 +161,7 @@ export const HEALTH_PLANS = [
   { title: 'MMM' },
   { title: 'First Medical' },
   { title: 'Medicare' },
-  { title: 'Humana' },
-  { title: 'No soy proveedor de planes de salud.' },
+  { title: 'Humana' }
 ];
 
 export const POPULATION_SERV = [
@@ -166,7 +170,7 @@ export const POPULATION_SERV = [
   { title: 'Jóvenes Adultos' },
   { title: 'Adolescentes' },
   { title: 'Adultos Mayores' },
-  { title: 'Familias o Parejas' },
+  { title: 'Familias o Parejas' }
 ];
 
 export const THEORETICAL_APPROACHES = [
@@ -180,19 +184,19 @@ export const THEORETICAL_APPROACHES = [
   { title: 'Terapia de Aceptación y Compromiso' },
   { title: 'Neurofeedback' },
   { title: 'Biofeedback' },
-  { title: 'Arte terapia' },
+  { title: 'Arte Terapia' },
   { title: 'Terapias Expresivas' },
   { title: 'Terapia de Música' },
   { title: 'Psicodrama' },
   { title: 'Terapia de Escritura' },
-  { title: 'Terapia de Juego' },
+  { title: 'Terapia de Juego' }
 ];
 
-export const EXPERTISE = [
-  { title: 'Asuntos de la Mujer' },
-  { title: 'Asuntos de la Comunidad LGBT+' },
-  { title: 'Asuntos de Etnia' },
-  { title: 'Asuntos de Raza' },
-];
+// export const EXPERTISE = [
+//   { title: 'Asuntos de la Mujer' },
+//   { title: 'Asuntos de la Comunidad LGBT+' },
+//   { title: 'Asuntos de Etnia' },
+//   { title: 'Asuntos de Raza' },
+// ];
 
 export const LANGUAGES = [{ title: 'Español' }, { title: 'Inglés' }, { title: 'ASL' }, { title: 'PRSL' }];

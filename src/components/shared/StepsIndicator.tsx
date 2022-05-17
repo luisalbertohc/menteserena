@@ -7,8 +7,11 @@ const useStyles = makeStyles(theme => ({
   },
   label: {
     fontWeight: 700,
-    fontSize: 14,
+    fontSize: 10,
     lineHeight: '16.41px',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 14
+    }
   },
   stepper: {
     padding: 0,

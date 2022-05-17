@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 const PatientPortal = () => {
   const { isLoading, data: entity } = useUser();
   const classes = useStyles();
-
+  // console.log(entity)
   if (isLoading) {
     return <Loading />;
   }
