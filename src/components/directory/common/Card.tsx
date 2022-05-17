@@ -394,8 +394,8 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
             <Grid className={ classes.cardInfoItem } item>
               <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
               <span className={ classes.cardInfoDegree }>
-                <strong>{academic_histories.length > 0 ? academicHistoryOrdered[0].degree : ''}</strong>
-                {academic_histories.length > 0 ? academicHistoryOrdered[0].institution : ''}
+                <strong>{academic_histories.length > 0 ? academicHistoryOrdered[0].degree : 'Veritatis'}</strong>
+                {academic_histories.length > 0 ? academicHistoryOrdered[0].institution : 'Illo Mollitia Aliquam'}
               </span>
             </Grid>
             {/* {Boolean(academic_histories.length > 0)

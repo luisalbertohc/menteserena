@@ -60,6 +60,25 @@ const useStyles = makeStyles(theme => ({
     '& .MuiSelect-select': {
       color: theme.palette.grey[400]
     },
+  },
+  button: {
+    width: '100%',
+    height: 40,
+    backgroundColor: theme.palette.error.main,
+    textTransform: 'none',
+    '& .MuiButton-label': {
+      color: '#fff',
+      fontSize: 14,
+      textTransform: 'none'
+    },
+    // [theme.breakpoints.up('sm')]: {
+    //   width: 169,
+    //   margin: '0 auto'
+    // }
+  },
+  buttonIcon: {
+    marginRight: 20,
+    color: theme.palette.common.white
   }
 }));
 
@@ -159,6 +178,14 @@ const PersonalInfo = () => {
           <Typography className={classes.title} color="primary">
             Historial Académico
           </Typography>
+          <Button 
+            variant="contained"
+            // disableElevation
+            classes={{ root: classes.button }}
+          >
+            <DeleteIcon classes={{ root: classes.buttonIcon }} />
+            ELIMINAR
+          </Button>
         </Grid>
         {fields.map((item, index) => {
           return (

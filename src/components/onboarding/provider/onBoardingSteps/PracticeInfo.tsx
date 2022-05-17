@@ -38,6 +38,7 @@ const PracticeInfo = () => {
           control={control}
           name="area_of_focus"
           defaultValue={getValues('area_of_focus')}
+          rules={{ required: 'Ingrese al menos un área de enfoque.' }}
         />
 
         <MultipleSelect
@@ -46,6 +47,7 @@ const PracticeInfo = () => {
           control={control}
           name="populations_serve"
           defaultValue={getValues('populations_serve')}
+          rules={{ required: 'Ingrese al menos una población de interés.' }}
         />
 
         {/* <MultipleSelect
