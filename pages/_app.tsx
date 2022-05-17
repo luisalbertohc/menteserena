@@ -17,7 +17,7 @@ import AuthProvider from '@components/context/AuthContext';
 const description =
   'Mantén tu salud mental donde quieras y cuando quieras producto puertorriqueño que actualiza la práctica clínica a los tiempos tecnológicos en los que vivimos. Fomentamos una comunidad que prioriza la salud mental, a la vez que los hace más accesibles, cool y libres de estigma.';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const MyApp = ({ Component, pageProps, err }: AppProps & {err: any}) => {
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -66,7 +66,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                 <NavBar />
               )}
               <main>
-                <Component {...pageProps} />
+                <Component {...pageProps} err={err}/>
               </main>
               {isOnboarding && <Footer />}
             </QueryClientProvider>
