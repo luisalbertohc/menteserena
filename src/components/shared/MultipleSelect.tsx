@@ -60,6 +60,7 @@ const MultipleSelect = ({
           variant="outlined"
           error={Boolean(errors[name])}
           helperText={errors[name]?.message}
+          required={ true }
           InputLabelProps={{
             shrink: true,
           }}

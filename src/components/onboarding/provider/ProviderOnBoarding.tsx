@@ -54,7 +54,6 @@ const STEPS = [
 ];
 
 const STEPS_ERROR_VALIDATION_FIELDS = {
-  // delete phonne field
   // 0: ['date_of_birth', 'gender', 'country', 'phone', 'office_phone', 'personal_phone', 'phone_area_code', 'office_area_code'],
   0: ['date_of_birth', 'gender', 'country', 'office_phone', 'personal_phone', 'phone_area_code', 'office_area_code'],
   1: getValues =>
@@ -73,13 +72,13 @@ interface FormValues {
   gender: string;
   date_of_birth: Date | null;
   country: string;
-  // phone: string;
+  phone: string;
   spoken_languages: string[];
   bio: string;
   health_cares: string[];
   area_of_focus: string[];
   populations_serve: string[];
-  // expertises: string[];
+  expertises: string[];
   theoretical_approaches: string[];
   academic_histories: {
     degree: string;
@@ -117,13 +116,13 @@ const defaultValues: FormValues = {
   date_of_birth: null,
   gender: '',
   country: '',
-  // phone: '',
+  phone: '',
   spoken_languages: [],
   bio: '',
   health_cares: [],
   area_of_focus: [],
   populations_serve: [],
-  // expertises: [],
+  expertises: [],
   theoretical_approaches: [],
   rate_and_services: RATE_AND_SERVICE_DEFAULTS,
   academic_histories: ACADEMIC_HISTORIES_DEFAULTS,
@@ -132,8 +131,8 @@ const defaultValues: FormValues = {
   medical_degree: '',
   office_phone: '',
   personal_phone: '',
-  phone_area_code: '',
-  office_area_code: ''
+  phone_area_code: '+1',
+  office_area_code: '+1'
 };
 
 const onSubmit = async (submitValues: FormValues, getSession: () => Promise<CognitoUserSession>) => {
@@ -148,12 +147,13 @@ const onSubmit = async (submitValues: FormValues, getSession: () => Promise<Cogn
     profile_picture: submitValues.profile_picture?.length ? submitValues.profile_picture[0] : '',
     date_of_birth: submitValues.date_of_birth ? formatISO(new Date(submitValues.date_of_birth)) : '',
   }).forEach(([key, value]: [string, any]) => formData.append(key, value));
-
+  
   const response = await api.post('api/provider/onboarding', formData, {
     headers: {
       authorization: `bearer ${session.getAccessToken().getJwtToken()}`,
     },
   });
+  console.log(formData)
 
   if (response.status === 200) {
     Router.push('/portal/provider');

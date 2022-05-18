@@ -1,9 +1,8 @@
-import { Grid, makeStyles, Typography } from '@material-ui/core';
-import { useFormContext } from 'react-hook-form';
+import { Grid, makeStyles, Typography } from '@material-ui/core'
+import { useFormContext } from 'react-hook-form'
 
-import { MultipleSelect } from '@components/shared';
-// import { AREA_OF_FOCUS, POPULATION_SERV, THEORETICAL_APPROACHES, EXPERTISE } from '../../constants';
-import { AREA_OF_FOCUS, POPULATION_SERV, THEORETICAL_APPROACHES } from '../../constants';
+import { MultipleSelect } from '@components/shared'
+import { AREA_OF_FOCUS, POPULATION_SERV, THEORETICAL_APPROACHES, EXPERTISE } from '../../constants'
 
 const useStyles = makeStyles(theme => ({
   inputContainer: {
@@ -18,27 +17,33 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 500,
     marginBottom: theme.spacing(4),
   },
-}));
+}))
 
 const PracticeInfo = () => {
-  const classes = useStyles();
-  const { control, getValues } = useFormContext();
+  const classes = useStyles()
+  const { control, getValues } = useFormContext()
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
+
       <Grid container item justify="center" direction="column" alignItems="center">
-        <Typography className={classes.title} color="primary">
+        <Typography className={ classes.title } color="primary">
           Información de la Práctica
         </Typography>
       </Grid>
-      <Grid className={classes.inputContainer} container item direction="column" justify="center">
+
+      <Grid className={ classes.inputContainer } container item direction="column" justify="center">
+
+        {/* area of focus */}
         <MultipleSelect
-          options={AREA_OF_FOCUS} 
+          options={ AREA_OF_FOCUS } 
           label="Áreas de Enfoque"
-          control={control}
+          control={ control }
           name="area_of_focus"
-          defaultValue={getValues('area_of_focus')}
-          rules={{ required: 'Ingrese al menos un área de enfoque.' }}
+          rules={{
+            // validate: value => value > 0 || "Ingrese al menos un área de enfoque"
+            required: "Ingrese al menos un área de enfoque"
+          }}
         />
 
         <MultipleSelect
@@ -47,7 +52,7 @@ const PracticeInfo = () => {
           control={control}
           name="populations_serve"
           defaultValue={getValues('populations_serve')}
-          rules={{ required: 'Ingrese al menos una población de interés.' }}
+          rules={{ required: 'Ingrese al menos una población de interés' }}
         />
 
         {/* <MultipleSelect
@@ -56,9 +61,6 @@ const PracticeInfo = () => {
           control={control}
           name="expertises"
           defaultValue={getValues('expertises')}
-          inputProps={{
-            value: 'prueba'
-          }}
         /> */}
 
         <MultipleSelect
@@ -70,7 +72,7 @@ const PracticeInfo = () => {
         />
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default PracticeInfo;
+export default PracticeInfo

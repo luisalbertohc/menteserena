@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { Button, Grid, makeStyles, Typography, TextField, MenuItem } from '@material-ui/core';
-import { useFormContext, useFieldArray, Controller } from 'react-hook-form';
-import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons';
+import { Button, Grid, makeStyles, Typography, TextField, MenuItem, useMediaQuery } from '@material-ui/core'
+import { useFormContext, useFieldArray, Controller } from 'react-hook-form'
+import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   inputContainer: {
@@ -23,24 +22,23 @@ const useStyles = makeStyles(theme => ({
     fontSize: 20,
     lineHeight: '23.44px',
     fontWeight: 500,
-    // marginBottom: theme.spacing(4),
-    textAlign: 'center',
+    textAlign: 'center'
   },
   textField: {
     height: 40,
     padding: 'unset',
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
   deleteButton: {
     display: 'flex',
     alignItems: 'center',
-    height: 40,
+    height: 40
   },
   subTitle: {
     fontWeight: 400,
     fontSize: 16,
     lineHeight: '18.75px',
-    color: theme.palette.grey[700],
+    color: theme.palette.grey[700]
   },
   select: {
     '& .MuiSelect-select': {
@@ -58,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
   unselected: {
     '& .MuiSelect-select': {
-      color: theme.palette.grey[400]
+      color: 'rgba(0, 0, 0, 0.26)'
     },
   },
   button: {
@@ -70,57 +68,51 @@ const useStyles = makeStyles(theme => ({
       color: '#fff',
       fontSize: 14,
       textTransform: 'none'
-    },
-    // [theme.breakpoints.up('sm')]: {
-    //   width: 169,
-    //   margin: '0 auto'
-    // }
+    }
   },
   buttonIcon: {
-    marginRight: 20,
-    color: theme.palette.common.white
+    marginRight: 10,
+    marginBottom: 4,
+    color: theme.palette.common.white,
+    fontSize: 18,
+    [theme.breakpoints.up('sm')]: {
+      marginBottom: 'unset',
+      fontSize: 24
+    }
   }
-}));
+}))
 
 interface AcademicHistory {
-  degree: string;
-  institution: string;
-  year: number;
+  degree: string
+  institution: string
+  year: number
 }
 
 interface AcademicHistoryValues {
-  academic_histories: Array<AcademicHistory>;
+  academic_histories: Array<AcademicHistory>
 }
 
 const PersonalInfo = () => {
-  const classes = useStyles();
-  const {
-    register,
-    getValues,
-    formState: { errors },
-    control,
-  } = useFormContext<any>();
-
-  const { fields, append, remove } = useFieldArray<AcademicHistoryValues>({ name: 'academic_histories' });
-
-  const [degree, setDegree] = useState<string>('Seleccione su título académico')
-  const degreeHandler = (e) => {
-    let value = e.target.value
-    setDegree(value)
-  }
+  const classes = useStyles()
+  const { register, getValues, formState: { errors }, control, } = useFormContext<any>()
+  const { fields, append, remove } = useFieldArray<AcademicHistoryValues>({ name: 'academic_histories' })
+  const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
 
   return (
     <Grid container direction="column" justify="center" alignItems="center" item>
       <Grid className={classes.inputContainer} container item direction="column" justify="center">
+
         <Grid container direction="column" alignItems="center">
           <Typography className={classes.title} color="primary">
             Información del Proveedor
           </Typography>
         </Grid>
+
+        {/* biography */}
         <Controller
-          control={control}
+          control={ control }
           name="bio"
-          defaultValue={getValues('bio')}
+          defaultValue={ getValues('bio') }
           rules={{
             maxLength: {
               value: 512,
@@ -129,9 +121,9 @@ const PersonalInfo = () => {
           }}
           render={({ field }) => (
             <TextField
-              rows={5}
+              rows={ 5 }
               multiline
-              {...field}
+              { ...field }
               label="Biografía"
               placeholder="Ingrese detalles que desea compartir, para que potenciales pacientes le conozcan y se sientan en confianza de contactarle."
               variant="outlined"
@@ -148,48 +140,55 @@ const PersonalInfo = () => {
             />
           )}
         />
-        <TextField
-          select // tell TextField to render like select element
-          variant="outlined"
-          InputLabelProps={{ shrink: true }}
-          label="Título Académico"
+
+        {/* degree */}
+        <Controller
           name="degree"
-          value={ degree }
-          defaultValue={ getValues('degree') }
-          onChange={ degreeHandler }
-          classes={{ root: classes.select }}
-          className={ `${degree !== 'Seleccione su título académico' ? classes.selected : classes.unselected}` }
-          SelectProps={{
-            renderValue: (degree) => degree
-          }}
-          inputProps={{
-            ...register('medical_degree', {
-              required: 'El título académico es requerido'
-            })
-          }}
-          error={ Boolean(errors.medical_degree?.message) }
-          helperText={ errors.medical_degree?.message }
-          >
-          <MenuItem key="Licenciado" value="Lcd.">Lcd.</MenuItem>
-          <MenuItem key="Doctor" value="Dr.">Dr.</MenuItem>
-        </TextField>
+          control={ control }
+          render={({
+            field: {
+              onChange, // a function which sends the input's value to the library
+              value: value = 'Seleccione su título académico' //	the current value of the controlled component
+            }
+          }) => (
+            <TextField
+              select // tell TextField to render like select element
+              variant="outlined"
+              InputLabelProps={{ shrink: true }}
+              label="Título Académico"
+              value={ value }
+              onChange={ onChange }
+              classes={{ root: classes.select }}
+              className={ `${value !== 'Seleccione su título académico' ? classes.selected : classes.unselected}` }
+              SelectProps={{
+                renderValue: (value) => value
+              }}
+              inputProps={{
+                ...register('medical_degree', {
+                  required: 'El título académico es requerido'
+                })
+              }}
+              error={ Boolean(errors.medical_degree?.message) }
+              helperText={ errors.medical_degree?.message }
+            >
+              <MenuItem key="Licenciado" value="Lcd.">Lcd.</MenuItem>
+              <MenuItem key="Doctor" value="Dr.">Dr.</MenuItem>
+            </TextField>
+          )}
+        />
 
         <Grid container direction="column" alignItems="center">
           <Typography className={classes.title} color="primary">
             Historial Académico
           </Typography>
-          <Button 
-            variant="contained"
-            // disableElevation
-            classes={{ root: classes.button }}
-          >
-            <DeleteIcon classes={{ root: classes.buttonIcon }} />
-            ELIMINAR
-          </Button>
         </Grid>
+
+        {/* academic histories */}
         {fields.map((item, index) => {
           return (
-            <Grid key={item.id} container justify="center" wrap="nowrap" className={classes.inputContainer}>
+            <Grid key={ item.id } container justify="center" wrap="nowrap" className={ classes.inputContainer }>
+
+              {/* degree */}
               <TextField
                 placeholder="Ingrese grado"
                 className={ 'inputField' }
@@ -199,12 +198,13 @@ const PersonalInfo = () => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                error={Boolean(errors?.academic_histories?.[index]?.degree?.message)}
-                helperText={errors?.academic_histories?.[index]?.degree?.message}
-                defaultValue={getValues(`academic_histories.${index}.degree`)}
-                // {...register(`academic_histories.${index}.degree` as const, { required: 'Grado es requerido' })}
-                {...register(`academic_histories.${index}.degree` as const, { required: 'El grado es requerido' })}
+                error={ Boolean(errors?.academic_histories?.[index]?.degree?.message) }
+                helperText={ errors?.academic_histories?.[index]?.degree?.message }
+                defaultValue={ getValues(`academic_histories.${index}.degree`) }
+                { ...register(`academic_histories.${index}.degree` as const, { required: 'El grado es requerido' }) }
               />
+
+              {/* institution */}
               <TextField
                 placeholder="Ingrese institución"
                 className={ 'inputField' }
@@ -214,25 +214,25 @@ const PersonalInfo = () => {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                error={Boolean(errors?.academic_histories?.[index]?.institution?.message)}
-                helperText={errors?.academic_histories?.[index]?.institution?.message}
-                defaultValue={getValues(`academic_histories.${index}.institution`)}
-                // {...register(`academic_histories.${index}.institution` as const, { required: 'Intitución es requerida' })}
-                {...register(`academic_histories.${index}.institution` as const, { required: 'La institución es requerida' })}
+                error={ Boolean(errors?.academic_histories?.[index]?.institution?.message) }
+                helperText={ errors?.academic_histories?.[index]?.institution?.message }
+                defaultValue={ getValues(`academic_histories.${index}.institution`) }
+                { ...register(`academic_histories.${index}.institution` as const, { required: 'La institución es requerida' }) }
               />
+
+              {/* year */}
               <TextField
                 placeholder="Ingrese año"
                 className={ 'inputField' }
-                // label="Año obtenido"
                 label="Año de Obtención"
                 variant="outlined"
                 InputProps={{ className: classes.textField }}
                 InputLabelProps={{
                   shrink: true,
                 }}
-                error={Boolean(errors?.academic_histories?.[index]?.year?.message)}
-                helperText={errors?.academic_histories?.[index]?.year?.message}
-                defaultValue={getValues(`academic_histories.${index}.year`)}
+                error={ Boolean(errors?.academic_histories?.[index]?.year?.message) }
+                helperText={ errors?.academic_histories?.[index]?.year?.message }
+                defaultValue={ getValues(`academic_histories.${index}.year`) }
                 {...register(`academic_histories.${index}.year` as const, {
                   required: 'El año de obtención es requerido',
                   pattern: {
@@ -242,36 +242,46 @@ const PersonalInfo = () => {
                   validate: value => value > 1900 || 'El año no es válido.'
                 })}
               />
+
+              {/* delete button */}
               {Boolean(index === 0)
                 ?
-                  <Button className={classes.deleteButton} disabled={true} onClick={() => remove(index)}>
-                    <DeleteIcon color="disabled" />
+                  <Button 
+                    disabled={ true }
+                    variant={ smallSize ? 'text' : 'contained' }
+                    className={ classes.deleteButton }
+                    classes={{ root: smallSize ? '' : classes.button }}
+                    onClick={ () => remove(index) }
+                  >
+                    <DeleteIcon classes={{ root: smallSize ? '' : classes.buttonIcon }} />
+                    { Boolean(smallSize) ? '' : 'ELIMINAR' }
                   </Button>
                 :
-                  <Button className={classes.deleteButton} onClick={() => remove(index)}>
-                    <DeleteIcon color="error" />
+                  <Button 
+                    variant={ smallSize ? 'text' : 'contained' }
+                    className={ classes.deleteButton }
+                    classes={{ root: smallSize ? '' : classes.button }}
+                    onClick={ () => remove(index) }
+                  >
+                    <DeleteIcon color="error" classes={{ root: smallSize ? '' : classes.buttonIcon }} />
+                    { Boolean(smallSize) ? '' : 'ELIMINAR' }
                   </Button>
               }
             </Grid>
-          );
+          )
         })}
+
+        {/* next button */}
         <Grid container justify="center">
-          <Button
-            onClick={() =>
-              append({
-                degree: '',
-                institution: '',
-                year: null,
-              })
-            }
-          >
+          <Button onClick={() => append({ degree: '', institution: '', year: null, })}>
             <AddIcon />
             Añadir
           </Button>
         </Grid>
+
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default PersonalInfo;
+export default PersonalInfo

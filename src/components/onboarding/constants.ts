@@ -192,11 +192,11 @@ export const THEORETICAL_APPROACHES = [
   { title: 'Terapia de Juego' }
 ];
 
-// export const EXPERTISE = [
-//   { title: 'Asuntos de la Mujer' },
-//   { title: 'Asuntos de la Comunidad LGBT+' },
-//   { title: 'Asuntos de Etnia' },
-//   { title: 'Asuntos de Raza' },
-// ];
+export const EXPERTISE = [
+  { title: 'Asuntos de la Mujer' },
+  { title: 'Asuntos de la Comunidad LGBT+' },
+  { title: 'Asuntos de Etnia' },
+  { title: 'Asuntos de Raza' },
+];
 
 export const LANGUAGES = [{ title: 'Español' }, { title: 'Inglés' }, { title: 'ASL' }, { title: 'PRSL' }];

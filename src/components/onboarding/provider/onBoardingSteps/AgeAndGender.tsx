@@ -1,11 +1,10 @@
-import { useState } from 'react'
-import { Grid, makeStyles, Typography, TextField } from '@material-ui/core';
-import { useFormContext, Controller } from 'react-hook-form';
-import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Grid, makeStyles, Typography, TextField } from '@material-ui/core'
+import { useFormContext, Controller } from 'react-hook-form'
+import Autocomplete from '@material-ui/lab/Autocomplete'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import { COUNTRY_LIST, GENDER_LIST, LANGUAGES } from '../../constants';
-import { Select, EditableSelect, DatePickerField, PhoneField, PhoneFieldPersonal } from '@components/shared';
+import { COUNTRY_LIST, GENDER_LIST, LANGUAGES } from '../../constants'
+import { Select, EditableSelect, DatePickerField, PhoneField, PhoneFieldPersonal } from '@components/shared'
 
 const useStyles = makeStyles(theme => ({
   phone: {
@@ -68,119 +67,145 @@ const useStyles = makeStyles(theme => ({
   icon: {
     marginLeft: theme.spacing(2),
   }
-}));
+}))
 
 const AgeAndGender = () => {
-  const classes = useStyles();
-  const {
-    getValues,
-    control,
-    register,
-    formState: { errors },
-  } = useFormContext();
-  
-  const [personalAreaCode, setPersonalAreaCode] = useState("")
-  const [officeAreaCode, setOfficeAreaCode] = useState("")
+  const classes = useStyles()
+  const { getValues, control, register, formState: { errors }, } = useFormContext()
 
   return (
     <Grid container direction="column" justify="center" alignItems="center" item>
+
       <Grid container item justify="center" direction="column" alignItems="center">
         <Typography className={classes.title} color="primary">
           ¡Bienvenido a Mente Serena!
         </Typography>
         <Typography className={classes.subTitle} color="primary">
-          Configura tu perfil.
+          Configura tu perfil
         </Typography>
       </Grid>
+
       <Grid className={classes.inputContainer} container item direction="column" justify="center">
+
+        {/* date of birth */}
         <DatePickerField
-          control={control}
+          control={ control }
           name="date_of_birth"
           rules={{ required: 'Es requerido ingresar su fecha de nacimiento.' }}
           placeHolder="mm/dd/yyyy"
           label="Fecha de Nacimiento"
         />
 
+        {/* gender */}
         <EditableSelect
-          options={GENDER_LIST}
+          options={ GENDER_LIST }
           label="Género"
-          control={control}
+          control={ control }
           name="gender"
           rules={{ required: 'Es requerido ingresar una opción.' }}
         />
 
+        {/* country */}
         <Select
           label="Pueblo Donde Ejerce"
           placeholder="Seleccione su municipio"
-          control={control}
+          control={ control }
           name="country"
-          options={COUNTRY_LIST}
+          options={ COUNTRY_LIST }
           rules={{ required: 'Es requerido ingresar su municipio.' }}
         />
 
+        {/* personal phone */}
         <div className={ classes.phone }>
-          <PhoneInput
-            regions={ ['north-america', 'south-america', 'central-america', 'carribean'] }
-            enableSearch={ true }
-            disableSearchIcon={ true }
-            searchPlaceholder={ 'Buscar' }
-            searchNotFound={ 'No hay coincidencias' }
-            country={ 'pr' }
-            countryCodeEditable={ false } // avoid can edit the country code
-            value={ getValues(personalAreaCode) }
-            onChange={ (personalAreaCode) => setPersonalAreaCode(personalAreaCode) }
-            inputProps={{
-              name: 'phone_area_code',
-              required: true,
-              tabindex: -1,
-              disabled: true // avoid can edit the input
-            }}
-          />
-          <PhoneFieldPersonal errors={errors} register={register} defaultValue={getValues('personal_phone')} name="personal_phone" />
-        </div>
 
+          {/* area code */}
+          <Controller
+            name="phone_area_code"
+            control={ control }
+            render={({
+              field: {
+                onChange, // a function which sends the input's value to the library
+                value: value //	the current value of the controlled component
+              }
+            }) => (
+              <PhoneInput
+                masks={{ pr: '(+...) ..-..-..' }}
+                regions={ ['north-america', 'south-america', 'central-america', 'carribean'] }
+                enableSearch={ true }
+                disableSearchIcon={ true }
+                searchPlaceholder={ 'Buscar' }
+                searchNotFound={ 'No hay coincidencias' }
+                country={ 'pr' }
+                countryCodeEditable={ false } // avoid can edit the country code
+                value={ value }
+                onChange={ onChange }
+                inputProps={{
+                  tabindex: -1, // prevents the element from being accessible via sequential keyboard navigation
+                  disabled: true // avoid can edit the input
+                }}
+              />
+            )}
+          />
+          <PhoneFieldPersonal errors={ errors } register={ register } defaultValue={ getValues('personal_phone') } name="personal_phone"/>
+        </div>
+        
+        {/* office phone */}
         <div className={ classes.phone }>
-          <PhoneInput
-            regions={ ['north-america', 'south-america', 'central-america', 'carribean'] }
-            enableSearch={ true }
-            disableSearchIcon={ true }
-            searchPlaceholder={ 'Buscar' }
-            searchNotFound={ 'No hay coincidencias' }
-            country={ 'pr' }
-            countryCodeEditable={ false } // avoid can edit the country code
-            value={ getValues(officeAreaCode) }
-            onChange={ (officeAreaCode) => setOfficeAreaCode(officeAreaCode) }
-            inputProps={{
-              name: 'office_area_code',
-              required: true,
-              tabindex: -1,
-              disabled: true // avoid can edit the input
-            }}
-          />
-          <PhoneField errors={errors} register={register} defaultValue={getValues('office_phone')} name="office_phone" />
-        </div>
 
+          {/* area code */}
+          <Controller
+            name="office_area_code"
+            control={ control }
+            render={({
+              field: {
+                onChange, // a function which sends the input's value to the library
+                value: value //	the current value of the controlled component
+              }
+            }) => (
+              <PhoneInput
+                regions={ ['north-america', 'south-america', 'central-america', 'carribean'] }
+                enableSearch={ true }
+                disableSearchIcon={ true }
+                searchPlaceholder={ 'Buscar' }
+                searchNotFound={ 'No hay coincidencias' }
+                country={ 'pr' }
+                countryCodeEditable={ false } // avoid can edit the country code
+                value={ value }
+                onChange={ onChange }
+                inputProps={{
+                  tabindex: -1, // prevents the element from being accessible via sequential keyboard navigation
+                  disabled: true // avoid can edit the input
+                }}
+              />
+            )}
+          />
+          <PhoneField errors={ errors } register={ register } defaultValue={ getValues('office_phone') } name="office_phone"/>
+        </div>
+        
+        {/* spoken languages */}
         <Controller
-          control={control}
+          control={ control }
           name="spoken_languages"
-          defaultValue={getValues('spoken_languages')}
-          render={({ field: { onChange, value: values } }) => (
+          defaultValue={ getValues('spoken_languages') }
+          render={({ 
+            field: { onChange, value: values }
+          }) => (
             <Autocomplete
-              value={values.map(value => ({ title: value }))}
-              onChange={(_, currentValues) => {
+              value={ values.map(value => ({ title: value })) }
+              onChange={ (_, currentValues) => {
                 const valuesAsArray = currentValues.map(value => {
                   if ('title' in value) {
-                    return value.title;
+                    return value.title
                   }
-                });
-                onChange(valuesAsArray);
+                })
+                onChange(valuesAsArray)
               }}
               multiple
               size="small"
-              options={LANGUAGES}
-              getOptionLabel={option => option.title}
-              getOptionSelected={(option, value) => option.title === value.title}
-              renderInput={params => (
+              options={ LANGUAGES }
+              getOptionLabel={ option => option.title }
+              getOptionSelected={ (option, value) => option.title === value.title }
+              renderInput={ params => (
                 <TextField
                   {...params}
                   variant="outlined"
@@ -188,16 +213,17 @@ const AgeAndGender = () => {
                   label="Idiomas Hablados"
                   placeholder="Seleccione las que apliquen"
                   InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                   }}
                 />
               )}
             />
           )}
         />
+
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default AgeAndGender;
+export default AgeAndGender
