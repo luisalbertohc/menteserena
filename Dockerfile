@@ -7,10 +7,13 @@ WORKDIR /app
 COPY . /app
 
 COPY package.json yarn.lock /app/
-RUN yarn
+# Install deps 
+RUN cd /app &&  npm install 
+
 ADD .aptible.env /app/.aptible.env
-RUN set -a && . /app/.aptible.env && yarn build
+RUN set -a && . /app/.aptible.env && npm run build
 
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+ENTRYPOINT [ "npm", "run", "start" ]
+#CMD ["yarn", "start"]
