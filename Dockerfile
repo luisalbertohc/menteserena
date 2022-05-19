@@ -11,6 +11,6 @@ RUN yarn
 COPY package.json yarn.lock /app/
 ADD .env /app/.aptible.env
 
-RUN set -a && . /app/.aptible.env && yarn build
+RUN yarn build
 EXPOSE 3000
 CMD ["yarn", "start"]
