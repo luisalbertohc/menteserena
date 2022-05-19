@@ -2,14 +2,15 @@
 FROM node:14.17.0-alpine3.12
 
 RUN apk add --no-cache bash
-
+ENV PORT=3000
 WORKDIR /app
 
-COPY package.json yarn.lock /app/
+COPY . /app
 RUN yarn
 
-COPY . /app
+COPY package.json yarn.lock /app/
+ADD .env /app/.aptible.env
 
+RUN yarn build
 EXPOSE 3000
-
-CMD ["yarn", "dev"]
+CMD ["yarn", "start"]
