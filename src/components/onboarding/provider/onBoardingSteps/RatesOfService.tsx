@@ -66,9 +66,6 @@ const RatesOfService = () => {
   return (
     <Grid container justify="center" direction="column" alignItems="center">
       <Grid container item justify="center" alignItems="center" direction="column">
-        {/* <Typography className={classes.title} color="primary">
-          Honorarios
-        </Typography> */}
         <Typography className={classes.title} color="primary">
           Seguro de Salud
         </Typography>

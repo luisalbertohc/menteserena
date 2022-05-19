@@ -13,6 +13,9 @@ import Presentation from './sections/Presentation'
 import AcademicHistory from './sections/AcademicHistory'
 import RateAndServices from './sections/RateAndServices'
 
+// Notas:
+// - Depurar componente
+
 // import Specialty from './sections/Specialty'
 // import Credentials from './sections/Credentials'
 // import RateOfService from './sections/RateOfService'
@@ -319,8 +322,8 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
             <GradeIcon style={{ color: theme.palette.secondary.main }}/>
             <Typography>
               <strong>Planes de salud: </strong>
-              {/* CAMBIARRRRRRRRRRRRRR No soy proveedor de planes de salud */}
-              <span>{ Boolean(health_cares.length > 0) ? health_cares?.join(', ') : 'No es proveedor de planes de salud' }</span>
+              {/* in case the field health_cares return empty will be show it the following text */}
+              <span>{ Boolean(health_cares.length > 0) ? health_cares?.join(', ') : 'No soy proveedor de planes de salud' }</span>
             </Typography>
           </Grid>
           {/* target population */}
@@ -352,8 +355,8 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
           <Grid item classes={{ root: classes.dialogItem }}>
             <PhoneIcon style={{ color: theme.palette.secondary.main }}/>
             <Typography>
-              <strong>{`${phone.slice(0,5)} `}</strong>
-              <span>{phone.slice(6)}</span>
+              <strong>{ Boolean(phone !== null) ? `${ phone.slice(0,5) }` : `${ office_phone.slice(0,5) }` }</strong>
+              <span>{ Boolean(phone !== null) ? `${ phone.slice(6) }` : `${ office_phone.slice(6) }` }</span>
             </Typography>
           </Grid>
         </Grid>

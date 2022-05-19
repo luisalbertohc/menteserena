@@ -82,15 +82,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-interface AcademicHistory {
-  degree: string
-  institution: string
-  year: number
-}
-
-interface AcademicHistoryValues {
-  academic_histories: Array<AcademicHistory>
-}
+interface AcademicHistory { degree: string; institution: string; year: number }
+interface AcademicHistoryValues { academic_histories: Array<AcademicHistory> }
 
 const PersonalInfo = () => {
   const classes = useStyles()
@@ -178,7 +171,7 @@ const PersonalInfo = () => {
         />
 
         <Grid container direction="column" alignItems="center">
-          <Typography className={classes.title} color="primary">
+          <Typography className={ classes.title } color="primary">
             Historial Académico
           </Typography>
         </Grid>

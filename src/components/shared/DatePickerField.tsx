@@ -75,6 +75,7 @@ const DatePickerField = ({
         }}
         InputProps={{
           endAdornment: <EventIcon className={classes.icon} />,
+          className: 'dateOfBirth'
         }}
         InputLabelProps={{ shrink: true }}
         {...checkForErrors(errors)}

@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(5),
       },
       '&.center': {
-        maxWidth: 595,
+        maxWidth: 770,
         flex: '1 1 auto',
       },
     },

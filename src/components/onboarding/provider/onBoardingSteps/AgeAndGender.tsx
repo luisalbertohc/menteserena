@@ -6,6 +6,11 @@ import 'react-phone-input-2/lib/style.css'
 import { COUNTRY_LIST, GENDER_LIST, LANGUAGES } from '../../constants'
 import { Select, EditableSelect, DatePickerField, PhoneField, PhoneFieldPersonal } from '@components/shared'
 
+// Notas:
+// - Agregar máscara a los códigos de áreas
+// - Optimizar valor por defecto de los códigos de área
+// - Optimizr CSS
+
 const useStyles = makeStyles(theme => ({
   phone: {
     display: 'flex',
@@ -15,6 +20,7 @@ const useStyles = makeStyles(theme => ({
       width: 95
     },
     '& .form-control': {
+      color: 'rgba(0, 0, 0, 0.87)',
       borderRadius: 4,
       width: 95,
       height: 40,
@@ -122,6 +128,7 @@ const AgeAndGender = () => {
           <Controller
             name="phone_area_code"
             control={ control }
+            defaultValue={ getValues('phone_area_code') }
             render={({
               field: {
                 onChange, // a function which sends the input's value to the library
@@ -129,7 +136,6 @@ const AgeAndGender = () => {
               }
             }) => (
               <PhoneInput
-                masks={{ pr: '(+...) ..-..-..' }}
                 regions={ ['north-america', 'south-america', 'central-america', 'carribean'] }
                 enableSearch={ true }
                 disableSearchIcon={ true }
@@ -156,6 +162,7 @@ const AgeAndGender = () => {
           <Controller
             name="office_area_code"
             control={ control }
+            defaultValue={ getValues('office_area_code') }
             render={({
               field: {
                 onChange, // a function which sends the input's value to the library

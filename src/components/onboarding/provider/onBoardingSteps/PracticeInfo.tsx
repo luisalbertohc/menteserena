@@ -1,8 +1,11 @@
 import { Grid, makeStyles, Typography } from '@material-ui/core'
 import { useFormContext } from 'react-hook-form'
-
 import { MultipleSelect } from '@components/shared'
 import { AREA_OF_FOCUS, POPULATION_SERV, THEORETICAL_APPROACHES, EXPERTISE } from '../../constants'
+
+// Notas:
+// - Eliminar tanto el componente como la importación de las constantes de expertises
+// - Estandarizar componente
 
 const useStyles = makeStyles(theme => ({
   inputContainer: {
@@ -40,19 +43,14 @@ const PracticeInfo = () => {
           label="Áreas de Enfoque"
           control={ control }
           name="area_of_focus"
-          rules={{
-            // validate: value => value > 0 || "Ingrese al menos un área de enfoque"
-            required: "Ingrese al menos un área de enfoque"
-          }}
         />
 
         <MultipleSelect
-          options={POPULATION_SERV}
+          options={ POPULATION_SERV }
           label="Poblaciones de Interés"
-          control={control}
+          control={ control }
           name="populations_serve"
-          defaultValue={getValues('populations_serve')}
-          rules={{ required: 'Ingrese al menos una población de interés' }}
+          defaultValue={ getValues('populations_serve') }
         />
 
         {/* <MultipleSelect
@@ -64,12 +62,13 @@ const PracticeInfo = () => {
         /> */}
 
         <MultipleSelect
-          options={THEORETICAL_APPROACHES}
+          options={ THEORETICAL_APPROACHES }
           label="Acercamientos Terapéuticos"
-          control={control}
+          control={ control }
           name="theoretical_approaches"
-          defaultValue={getValues('theoretical_approaches')}
+          defaultValue={ getValues('theoretical_approaches') }
         />
+
       </Grid>
     </Grid>
   )
