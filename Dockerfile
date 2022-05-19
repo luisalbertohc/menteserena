@@ -2,18 +2,15 @@
 FROM node:14.17.0-alpine3.12
 
 RUN apk add --no-cache bash
-
+ENV PORT=3000
 WORKDIR /app
+
 COPY . /app
+RUN yarn
 
 COPY package.json yarn.lock /app/
-# Install deps 
-RUN cd /app &&  npm install 
-
 ADD .env /app/.aptible.env
-RUN set -a && . /app/.aptible.env && npm run build
 
+RUN set -a && . /app/.aptible.env && yarn build
 EXPOSE 3000
-
-ENTRYPOINT [ "npm", "run", "start" ]
-#CMD ["yarn", "start"]
+CMD ["yarn", "start"]
