@@ -25,6 +25,6 @@ const configByEnvironment: {
 
 //TODO: Check this NEXT_PUBLIC_ENVIRONMENT
 const config =
-  (configByEnvironment?.[process.env.NEXT_PUBLIC_ENVIRONMENT] as Config) ?? configByEnvironment[Environments.PROD];
+  (configByEnvironment?.[process.env.NEXT_PUBLIC_ENVIRONMENT] as Config) ?? configByEnvironment[Environments.DEV];
 
 export default config;
