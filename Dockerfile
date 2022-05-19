@@ -10,7 +10,7 @@ COPY package.json yarn.lock /app/
 # Install deps 
 RUN cd /app &&  npm install 
 
-ADD .aptible.env /app/.aptible.env
+ADD .env /app/.aptible.env
 RUN set -a && . /app/.aptible.env && npm run build
 
 EXPOSE 3000
