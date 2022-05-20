@@ -24,8 +24,8 @@ const useStyles = makeStyles(theme => ({
   headerContainer: {
     marginBottom: 30,
     display: 'flex',
-    justifyContent: 'space-between', // No estaba antes
-    borderBottom: `1px solid ${theme.palette.grey[200]}`,
+    justifyContent: 'space-between',
+    borderBottom: `1px solid ${ theme.palette.grey[200] }`,
     width: '100%',
     padding: '28px 0px 12px 14px',
     '& > svg': {

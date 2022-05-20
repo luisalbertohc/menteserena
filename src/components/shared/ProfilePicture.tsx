@@ -8,9 +8,7 @@ import config from '@config'
 import { useCognito } from '@components/context/AuthContext'
 
 // Notas:
-// - Eliminar código comentado, una vez sean aprobados los cambios
-// - Evaluar estandarización u optimización de los componentes
-// - Evaluar CSS
+// - Evaluar optimización de los componentes
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 500,
     lineHeight: '21.09px',
     marginBottom: theme.spacing(3),
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.main
   },
   smallTitle: {
     '& > p': {
@@ -33,10 +31,7 @@ const useStyles = makeStyles(theme => ({
       fontWeight: 400,
       lineHeight: '15px',
       color: theme.palette.grey[900],
-    },
-    // [theme.breakpoints.down('sm')]: {
-    //   justifyContent: 'start',
-    // },
+    }
   },
   circle: {
     height: 150,
@@ -45,31 +40,28 @@ const useStyles = makeStyles(theme => ({
     border: `3px dashed ${theme.palette.primary.main}`,
     background: '#F3F4F6',
     marginBottom: theme.spacing(3),
-    position: 'relative',
+    position: 'relative'
   },
   details: {
     color: theme.palette.grey[600],
     fontSize: 16,
     fontWeight: 400,
     lineHeight: '22.4px',
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(3)
   },
   smallDetails: {
     textAlign: 'center',
     '& > p': {
       fontSize: 14,
       fontWeight: 400,
-    },
-    [theme.breakpoints.down('sm')]: {
-      justifyContent: 'start',
-    },
+    }
   },
   profileImage: {
     height: 150,
     width: 150,
     borderRadius: '50%',
     position: 'absolute',
-    objectFit: 'cover',
+    objectFit: 'cover'
   },
   uploadButton: {
     color: theme.palette.primary.main,
@@ -109,10 +101,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       maxWidth: '100%'
     }
-    // [theme.breakpoints.down('sm')]: {
-    //   justifyContent: ' start'
-    // },
-  },
+  }
 }))
 
 interface ProfilePictureProps {
@@ -147,10 +136,6 @@ const ProfilePicture = ({ isProfileView }: ProfilePictureProps) => {
   return (
     <Grid container item direction="column" justify="center" className={ classes.container }>
 
-      {/* <Grid item container justify="center" className={ classnames({ [classes.smallTitle]: isProfileView }) }>
-        <Typography className={classes.title}>Foto de Perfil</Typography>
-      </Grid> */}
-
       <Grid item container justify="center" className={ classnames({ [classes.imageContainer]: isProfileView }) }>
         <Grid container alignItems="center" justify="center" className={classes.circle}>
           {profile_picture && objectUrl ? (
@@ -180,7 +165,7 @@ const ProfilePicture = ({ isProfileView }: ProfilePictureProps) => {
             </>
           )}
         </Grid>
-        <Grid container item justify="center" className={classnames({[classes.details]: true, [classes.smallDetails]: isProfileView })}>
+        <Grid container item justify="center" className={ classnames({[classes.details]: true, [classes.smallDetails]: isProfileView }) }>
           <Typography>Sube tu foto de perfil aquí </Typography>
           <Typography>(Tamaño recomendado de al menos 200 x 200)</Typography>
         </Grid>

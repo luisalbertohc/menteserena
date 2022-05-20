@@ -16,6 +16,8 @@ export interface ExtendedUser {
   email: string;
   user_type: string;
   email_verified: string;
+  personal_phone: string; // Recién incorporado (faltaría agregar el código de área correspondiente)
+  office_phone: string; // Recién incorporado (faltaría agregar el código de área correspondiente)
   deactivated: boolean;
   is_admin: boolean;
   created_at: Date;

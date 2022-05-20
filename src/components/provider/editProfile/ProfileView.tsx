@@ -355,8 +355,10 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
           <Grid item classes={{ root: classes.dialogItem }}>
             <PhoneIcon style={{ color: theme.palette.secondary.main }}/>
             <Typography>
-              <strong>{ Boolean(phone !== null) ? `${ phone.slice(0,5) }` : `${ office_phone.slice(0,5) }` }</strong>
-              <span>{ Boolean(phone !== null) ? `${ phone.slice(6) }` : `${ office_phone.slice(6) }` }</span>
+              {/* <strong>{ Boolean(phone !== null) ? `${ phone.slice(0,5) } ` : `${ office_phone.slice(0,5) } ` }</strong>
+              <span>{ Boolean(phone !== null) ? `${ phone.slice(6) }` : `${ office_phone.slice(6) }` }</span> */}
+              <strong>{ Boolean(office_phone) ? `${ office_phone.slice(0,5) } ` : `${ phone.slice(0,5) } ` }</strong>
+              <span>{ Boolean(office_phone) ? `${ office_phone.slice(6) }` : `${ phone.slice(6) }` }</span>
             </Typography>
           </Grid>
         </Grid>

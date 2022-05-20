@@ -2,6 +2,11 @@ import { Grid, makeStyles } from '@material-ui/core';
 import classnames from 'classnames';
 import { useFormContext } from 'react-hook-form';
 
+// Notas:
+// - Eliminar campos después de su confirmación
+// - Optimizar componente
+// - Evaluar CSS
+
 import {
   AREA_OF_FOCUS,
   GENDER_LIST,

@@ -83,6 +83,14 @@ const UsersTable = ({ token }) => {
       label: 'E-Mail',
     },
     {
+      name: 'personal_phone',
+      label: 'Personal Phone',
+    },
+    {
+      name: 'office_phone',
+      label: 'Office Phone',
+    },
+    {
       name: 'inserted_at',
       label: 'Date Created',
       options: {

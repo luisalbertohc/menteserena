@@ -3,10 +3,13 @@ import { Loading } from '@components/shared';
 import { CheckOnboarding } from '@components/auth';
 import HomeScreen from '@components/patient/Home';
 import { Container, makeStyles } from '@material-ui/core';
-
 import { withAuthenticationRequired } from '@components/context/AuthContext';
 import { SocketContext, IdleTimerContext } from '@components/context';
 import { UnauthorizedUser } from '@components/layout';
+
+// Notas:
+// - Eliminar console logs
+// - Depurar código
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -19,7 +22,8 @@ const useStyles = makeStyles(theme => ({
 const PatientPortal = () => {
   const { isLoading, data: entity } = useUser();
   const classes = useStyles();
-  // console.log(entity)
+  console.log('Entre como paciente')
+  console.log(`Estos son mis datos: ${entity}`)
   if (isLoading) {
     return <Loading />;
   }

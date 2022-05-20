@@ -4,9 +4,12 @@ import { CheckOnboarding } from '@components/auth';
 import HomeScreen from '@components/provider/Home';
 import { Container, makeStyles } from '@material-ui/core';
 import { SocketContext, IdleTimerContext } from '@components/context';
-
 import { withAuthenticationRequired } from '@components/context/AuthContext';
 import { UnauthorizedUser } from '@components/layout';
+
+// Notas:
+// - Eliminar console logs
+// - Depurar código
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -21,7 +24,8 @@ const ProviderPortalPage = () => {
     refetchOnWindowFocus: false,
   });
   const classes = useStyles();
-  // console.log(entity)
+  console.log('Entre como terapeuta')
+  console.log(`Estos son mis datos: ${entity}`)
 
   if (isLoading) {
     return <Loading />;

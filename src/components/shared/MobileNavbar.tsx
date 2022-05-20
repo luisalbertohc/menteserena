@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     background: theme.palette.common.white,
     boxShadow: ' 0px -2px 4px rgba(0, 0, 0, 0.15)',
     //This will prevent that page content shows below navbar
-    zIndex: 1,
+    zIndex: 1302,
   },
   indicator: {
     top: 0,

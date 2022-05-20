@@ -1,11 +1,32 @@
-import { Button, Grid, TextField, makeStyles, useMediaQuery, MenuItem, Typography } from '@material-ui/core'
+import { Button, Grid, TextField, makeStyles, useMediaQuery, MenuItem } from '@material-ui/core'
 import { useFieldArray, useFormContext, Controller } from 'react-hook-form'
 import { Delete as DeleteIcon, Add as AddIcon } from '@material-ui/icons'
 import Title from '../Title'
 
+// Notas:
+// - Evaluar optimización de los componentes
+
 const useStyles = makeStyles(theme => ({
-  inputContainer: {
-    // maxWidth: 675,
+  wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    margin: '0 auto',
+    maxWidth: 312,
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'space-between',
+      maxWidth: '100%'
+    },
+    // styling all the children
+    '& > div': {
+      marginBottom: theme.spacing(4),
+      width: '100%',
+    }
+  },
+  academicRecord: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
       maxWidth: 312,
@@ -87,12 +108,9 @@ const AcademicHistory = () => {
   const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
 
   return (
-    <Grid container direction="column" justify="center" alignItems="center" item>
-      <Grid className={classes.inputContainer} container item direction="column" justify="center">
+    <div className={ classes.wrapper }>
 
-        <Grid container>
-          <Title label="Información Personal" />
-        </Grid>
+        <Title label="Información Personal" />
 
         {/* biography */}
         <Controller
@@ -147,9 +165,7 @@ const AcademicHistory = () => {
               onChange={ onChange }
               classes={{ root: classes.select }}
               className={ `${value !== 'Seleccione su título académico' ? classes.selected : classes.unselected}` }
-              SelectProps={{
-                renderValue: (value) => value
-              }}
+              SelectProps={{ renderValue: (value) => value }}
               inputProps={{
                 ...register('medical_degree', {
                   required: 'El título académico es requerido'
@@ -164,14 +180,12 @@ const AcademicHistory = () => {
           )}
         />
 
-        <Grid container>
-          <Title label="Historial Académico" />
-        </Grid>
+        <Title label="Historial Académico" />
 
         {/* academic histories */}
         {fields.map((item, index) => {
           return (
-            <Grid key={ item.id } container justify="center" wrap="nowrap" className={ classes.inputContainer }>
+            <div key={ item.id } className={ classes.academicRecord }>
 
               {/* degree */}
               <TextField
@@ -252,180 +266,19 @@ const AcademicHistory = () => {
                     { Boolean(smallSize) ? '' : 'ELIMINAR' }
                   </Button>
               }
-            </Grid>
+            </div>
           )
         })}
 
         {/* next button */}
         <Grid container justify="center">
-          <Button onClick={() => append({ degree: '', institution: '', year: null, })}>
+          <Button variant="contained" color="primary" onClick={() => append({ degree: '', institution: '', year: null, })}>
             <AddIcon />
             Añadir
           </Button>
         </Grid>
 
-      </Grid>
-    </Grid>
-    // <Grid className={classes.inputContainer} container item direction="column" justify="center">
-      
-    //   <Grid container>
-    //     <Title label="Información Personal" />
-    //   </Grid>
-      
-    //   {/* biography */}
-    //   <TextField
-    //     name="bio"
-    //     rows={ 5 }
-    //     multiline
-    //     label="Biografía"
-    //     placeholder="Ingrese su biografía"
-    //     variant="outlined"
-    //     error={ Boolean(errors?.bio?.message) }
-    //     helperText={ errors?.bio?.message }
-    //     InputLabelProps={{ shrink: true }}
-    //     inputProps={{
-    //       ...register('bio', {
-    //         maxLength: {
-    //           value: 512,
-    //           message: 'No más de 512 caracteres.',
-    //         },
-    //       }),
-    //     }}
-    //   />
-
-    //   {/* degree */}
-    //   <Controller
-    //       name="degree"
-    //       control={ control }
-    //       render={({
-    //         field: {
-    //           onChange, // a function which sends the input's value to the library
-    //           value: value = 'Seleccione su título académico' //	the current value of the controlled component
-    //         }
-    //       }) => (
-    //         <TextField
-    //           select // tell TextField to render like select element
-    //           variant="outlined"
-    //           InputLabelProps={{ shrink: true }}
-    //           label="Título Académico"
-    //           value={ value }
-    //           onChange={ onChange }
-    //           classes={{ root: classes.select }}
-    //           className={ `${value !== 'Seleccione su título académico' ? classes.selected : classes.unselected}` }
-    //           SelectProps={{
-    //             renderValue: (value) => value
-    //           }}
-    //           inputProps={{
-    //             ...register('medical_degree', {
-    //               required: 'El título académico es requerido'
-    //             })
-    //           }}
-    //           error={ Boolean(errors.medical_degree?.message) }
-    //           helperText={ errors.medical_degree?.message }
-    //         >
-    //           <MenuItem key="Licenciado" value="Lcd.">Lcd.</MenuItem>
-    //           <MenuItem key="Doctor" value="Dr.">Dr.</MenuItem>
-    //         </TextField>
-    //       )}
-    //     />
-        
-
-    //   <Grid container>
-    //     <Title label="Historial Académico" />
-    //   </Grid>
-
-    //   {fields.map((item, index) => {
-    //     return (
-    //       <Grid key={ item.id } container justify="center" wrap="nowrap" className={ classes.inputContainer }>
-
-    //         {/* degree */}
-    //         <TextField
-    //           label="Grado Obtenido"
-    //           variant="outlined"
-    //           InputProps={{ className: classes.textField }}
-    //           InputLabelProps={{ shrink: true }}
-    //           error={ Boolean(errors?.academic_histories?.[index]?.degree?.message) }
-    //           helperText={ errors?.academic_histories?.[index]?.degree?.message }
-    //           inputProps={{
-    //             ...register(`academic_histories.${index}.degree` as const, { required: 'Grado requerido' }),
-    //             defaultValue: getValues(`academic_histories.${index}.degree`),
-    //           }}
-    //         />
-
-    //         {/* institution */}
-    //         <TextField
-    //           variant="outlined"
-    //           label="Institución"
-    //           InputProps={{ className: classes.textField }}
-    //           InputLabelProps={{ shrink: true }}
-    //           error={ Boolean(errors?.academic_histories?.[index]?.institution?.message) }
-    //           helperText={ errors?.academic_histories?.[index]?.institution?.message }
-    //           inputProps={{
-    //             ...register(`academic_histories.${index}.institution` as const, { required: 'Institución requerida' }),
-    //             defaultValue: getValues(`academic_histories.${index}.institution`),
-    //           }}
-    //         />
-
-    //         {/* year */}
-    //         <TextField
-    //           label="Año"
-    //           variant="outlined"
-    //           InputProps={{ className: classes.textField }}
-    //           InputLabelProps={{ shrink: true }}
-    //           error={ Boolean(errors?.academic_histories?.[index]?.year?.message) }
-    //           helperText={ errors?.academic_histories?.[index]?.year?.message }
-    //           inputProps={{
-    //             ...register(`academic_histories.${index}.year` as const, {
-    //               required: 'Año requerido',
-    //               pattern: {
-    //                 value: /^[\d]{4}$/,
-    //                 message: 'Ingresar solo 4 digitos.',
-    //               },
-    //             }),
-    //             defaultValue: getValues(`academic_histories.${index}.year`),
-    //           }}
-    //         />
-
-    //         {/* <Button className={ classes.deleteButton } onClick={ () => remove(index) }>
-    //           <DeleteIcon color="error" />
-    //         </Button> */}
-    //         {/* delete button */}
-    //         {Boolean(index === 0)
-    //           ?
-    //             <Button 
-    //               disabled={ true }
-    //               variant={ smallSize ? 'text' : 'contained' }
-    //               className={ classes.deleteButton }
-    //               classes={{ root: smallSize ? '' : classes.button }}
-    //               onClick={ () => remove(index) }
-    //             >
-    //               <DeleteIcon classes={{ root: smallSize ? '' : classes.buttonIcon }} />
-    //               { Boolean(smallSize) ? '' : 'ELIMINAR' }
-    //             </Button>
-    //           :
-    //             <Button 
-    //               variant={ smallSize ? 'text' : 'contained' }
-    //               className={ classes.deleteButton }
-    //               classes={{ root: smallSize ? '' : classes.button }}
-    //               onClick={ () => remove(index) }
-    //             >
-    //               <DeleteIcon color="error" classes={{ root: smallSize ? '' : classes.buttonIcon }} />
-    //               { Boolean(smallSize) ? '' : 'ELIMINAR' }
-    //             </Button>
-    //           }
-    //       </Grid>
-    //     )
-    //   })}
-
-    //   {/* add button */}
-    //   <Grid container justify="center">
-    //     <Button color="primary" variant="contained" onClick={ () => append({ degree: '', institution: '', year: null }) }>
-    //       <AddIcon />
-    //       Añadir
-    //     </Button>
-    //   </Grid>
-
-    // </Grid>
+    </div>
   )
 }
 
