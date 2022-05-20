@@ -40,7 +40,7 @@ const AccordionNew = ({
 
   return (
     <>
-      <Collapse in={ isCollapsed } collapsedSize={ collapsedSize } className={ classes.collapseWrapper }>
+      <Collapse in={ isCollapsed } collapsedHeight={ collapsedSize } className={ classes.collapseWrapper }>
         { children }
       </Collapse>
       <Typography
