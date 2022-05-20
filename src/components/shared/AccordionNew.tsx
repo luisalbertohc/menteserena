@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
       marginRight: theme.spacing(1),
     },
   },
-}));
+}))
 
 interface AccordionProps {
   children: ReactNode
@@ -43,13 +43,8 @@ const AccordionNew = ({
       <Collapse in={ isCollapsed } collapsedHeight={ collapsedSize } className={ classes.collapseWrapper }>
         { children }
       </Collapse>
-      <Typography
-        color="primary"
-        className={ classes.collapseButton }
-        onClick={() => {
-          setIsCollapsed(!isCollapsed)
-        }}
-      >
+      <Typography color="primary" className={ classes.collapseButton } onClick={ () => { setIsCollapsed(!isCollapsed) } }>
+
         {/* to swap the button elements */}
         {!hideCollapsedBtn && (isCollapsed
           ? (
@@ -66,7 +61,7 @@ const AccordionNew = ({
         )}
       </Typography>
     </>
-  );
-};
+  )
+}
 
 export default AccordionNew 

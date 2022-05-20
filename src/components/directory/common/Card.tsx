@@ -1,36 +1,27 @@
-import { useState } from 'react'
-
-import { Grid, makeStyles, Typography, useMediaQuery } from '@material-ui/core'
-import PermIdentityIcon from '@material-ui/icons/PermIdentity'
-import classnames from 'classnames'
-
-import { Button, Chip as ChipMaterial } from '@material-ui/core'
+import { Grid, makeStyles, Typography, useMediaQuery, Button } from '@material-ui/core'
 import DoneIcon from '@material-ui/icons/Done'
 import CloseIcon from '@material-ui/icons/Close'
 import SchoolIcon from '@material-ui/icons/School'
 import EventAvailableIcon from '@material-ui/icons/EventAvailable'
-
-import { Chip } from '@components/shared'
-import { useCognito } from '@components/context/AuthContext'
 import config from '@config'
-import { ViewColumnSharp } from '@material-ui/icons'
 import theme from '@components/theme'
-import { relative } from 'path/win32'
-import { constructArrayFieldValidation } from '@components/utils'
+
+// Notas:
+// - Evaluar optimización de los componentes
+// - Quedan variables por definiar o incorporar (available)
+// - Existen condicionales por redefinir (a la espera de la incorporación de algunas variables)
 
 const useStyles = makeStyles(theme => ({
   card: {
     margin: 'auto',
     marginBottom: 24,
     borderRadius: 5,
-    // width: 324,
     width: '100%',
     height: 'auto',
     background: theme.palette.common.white,
     filter: 'drop-shadow(1px 1px 3px rgba(0, 0, 0, 0.2))',
     // prevents the content shows in two columns on desktop views
     [theme.breakpoints.up('sm')]: {
-      // width: 574
       maxWidth: 574
     }
   },
@@ -40,12 +31,16 @@ const useStyles = makeStyles(theme => ({
     padding: '13px 0',
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
-    height: 47, // REVISAR (no esta alineado al centro el texto)
+    height: 47,
     backgroundImage: 'linear-gradient(90deg, #57C4C4 0%, #F4DCB3 100%)',
     color: theme.palette.common.white,
     [theme.breakpoints.up('sm')]: {
       height: 55,
       padding: theme.spacing(2, 3)
+    },
+    '& > div': {
+      display: 'flex',
+      alignItems: 'center'
     },
     '& h3.MuiTypography-root': {
       maxWidth: 175,
@@ -82,8 +77,6 @@ const useStyles = makeStyles(theme => ({
   },
   cardContent: {
     padding: theme.spacing(2),
-    // minHeight: 372,
-    // maxHeight: 372,
     '& > .MuiGrid-root:nth-child(n + 2)': {
       paddingTop: theme.spacing(3)
     },
@@ -158,142 +151,36 @@ const useStyles = makeStyles(theme => ({
       marginTop: 'inherit'
     }
   },
-  // card: {
-  //   cursor: 'pointer',
-  //   height: 'auto',
-  //   width: 585,
-  //   background: theme.palette.common.white,
-  //   padding: theme.spacing(2),
-  //   border: '1px solid #D1D5DB',
-  //   boxSizing: 'border-box',
-  //   borderRadius: 4,
-  //   marginBottom: theme.spacing(4),
-  //   marginRight: theme.spacing(2),
-  //   '&.isPortalCard': {
-  //     marginRight: 'unset',
-  //   },
-  //   [theme.breakpoints.down('sm')]: {
-  //     marginRight: 'unset',
-  //   },
-  // },
-  // clickable: {
-  //   transition: 'background 250ms',
-  //   '&:hover': {
-  //     background: theme.palette.grey[50],
-  //   },
-  // },
-  // section: {
-  //   borderBottom: '1px solid #E5E7EB',
-  // },
-  // circle: {
-  //   height: 88,
-  //   width: 88,
-  //   borderRadius: '50%',
-  //   background: '#D1D5DB',
-  //   marginRight: theme.spacing(1),
-  //   position: 'relative',
-  // },
-  // image: {
-  //   height: 88,
-  //   width: 88,
-  //   borderRadius: '50%',
-  //   objectFit: 'cover',
-  // },
-  // name: {
-  //   fontSize: 18,
-  //   fontWeight: 700,
-  //   lineHeight: '24px',
-  //   color: theme.palette.grey[900],
-  //   marginBottom: theme.spacing(1),
-  // },
-  // userInfo: {
-  //   fontSize: 14,
-  //   fontWeight: 400,
-  //   lineHeight: '18px',
-  //   color: theme.palette.grey[900],
-  //   marginBottom: theme.spacing(2),
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   '& > svg': {
-  //     fill: theme.palette.grey[600],
-  //     fontSize: 20,
-  //     marginRight: theme.spacing(1),
-  //   },
-  // },
-  // title: {
-  //   fontSize: 18,
-  //   fontWeight: 400,
-  //   lineHeight: '24px',
-  //   color: theme.palette.grey[700],
-  //   margin: theme.spacing(2, 0),
-  // },
-  // rateAndServiceContainer: {},
-  // sessionType: {
-  //   fontSize: 16,
-  //   fontWeight: 700,
-  //   lineHeight: '21px',
-  //   color: theme.palette.grey[900],
-  // },
-  // cost: {
-  //   width: 'auto',
-  //   height: 30,
-  //   background: '#D1FAE5',
-  //   padding: theme.spacing(0.5),
-  //   '& > p': {
-  //     fontSize: 13,
-  //     whiteSpace: 'nowrap',
-  //     fontWeight: 400,
-  //     lineHeight: '21px',
-  //     color: '#047857',
-  //   },
-  // },
-  // smallTextChip: {
-  //   '&.isPortalCard': {
-  //     marginRight: 9,
-  //   },
-  //   [theme.breakpoints.down('sm')]: {
-  //     fontSize: 12,
-  //   },
-  // },
-  // chipContainer: {
-  //   marginBottom: 'unset',
-  //   marginLeft: theme.spacing(2),
-  //   '&.isPortalCard': {
-  //     marginRight: 9,
-  //   },
-  //   [theme.breakpoints.down('sm')]: {
-  //     fontSize: 12,
-  //   },
-  // },
-  // labelChip: {
-  //   display: 'block',
-  //   height: '100%',
-  //   maxWidth: 120,
-  //   padding: 6,
-  //   overflow: 'hidden',
-  //   whiteSpace: 'nowrap',
-  //   textOverflow: 'ellipsis',
-  // },
-
+  cardRateServicesWrapper: {
+    flexWrap: 'wrap',
+    justifyContent: 'unset',
+    color: theme.palette.grey[500],
+    [theme.breakpoints.up('sm')]: {
+      flexWrap: 'nowrap',
+      justifyContent: 'space-between'
+    }
+  },
+  cardRateServicesContainer: {
+    justifyContent: 'space-between',
+    alignItems: 'unset',
+    width: 'inherit',
+    lineHeight: 1,
+    [theme.breakpoints.up('sm')]: {
+      justifyContent: 'unset',
+      alignItems: 'center',
+      width: 'auto'
+    }
+  }
 }))
 
 interface CardProps {
   provider: any
-  isPortalCard?: boolean
   onClick: () => void
 }
 
-const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
-  const classes = useStyles()
-
-  // verify that the size is equal to media query
-  // const isMobileSize = useMediaQuery('(max-width: 770px)')
-
-  // verify that the size is greater than 414px
-  const smallSize = useMediaQuery('(min-width: 414px)')
-
+const Card = ({ provider, onClick }: CardProps) => {
   const {
-    available, // NO EXISTS YET
+    available,
     first_name,
     last_name,
     health_cares,
@@ -303,11 +190,10 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
     expertises,
     rate_and_services
   } = provider || {}
-  // console.log(provider)
-
+  const classes = useStyles()
   const profileUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(profile_picture)}`
   const noProfileUrl = '/images/user.png'
-  
+  const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
   const areaFocus = [...expertises, ...area_of_focus]
 
   // returns the array in descending order
@@ -317,119 +203,51 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
     }
   )
 
-  // // to look for the highest year
-  // function checkMaxYearAcademic() {
-  //   let maxYear
-  //   if (academic_histories.length > 1) {
-  //     maxYear = academic_histories[0].year
-  //     academic_histories.forEach(element => {
-  //       if (element.year > maxYear) {
-  //         maxYear = element.year
-  //       }
-  //     })
-  //   } else {
-  //     maxYear = academic_histories[0].year
-  //   }
-  //   return maxYear
-  // }
-
-  // // to search for the academic institution
-  // const academicInstitution = () => {
-  //   let year = checkMaxYearAcademic()
-  //   let institution
-  //   academic_histories.forEach(element => {
-  //     checkYear: if (element.year === year) {
-  //       institution = element.institution
-  //       break checkYear
-  //     }
-  //   })
-  //   return institution
-  // }
-
-  // // to search for the academic degree
-  // const academicDegree = () => {
-  //   let year = checkMaxYearAcademic()
-  //   let degree
-  //   academic_histories.forEach(element => {
-  //     checkYear: if (element.year === year) {
-  //       degree = element.degree
-  //       break checkYear
-  //     }
-  //   })
-  //   return degree
-  // }
-
   return (
-    <Grid
-      container
-      zeroMinWidth
-      className={classes.card}
-      // className={classnames({
-      //   [classes.card]: true,
-      //   [classes.clickable]: Boolean(onClick),
-      //   isPortalCard,
-      // })}
-    >
-      <Grid container item className={classes.cardHeader}>
+    <Grid container zeroMinWidth className={ classes.card }>
+
+      <Grid container item className={ classes.cardHeader }>
         <Grid item>
           <Typography component="h3">
-            { `${first_name} ${last_name}` }
+            { `${ first_name } ${ last_name }` }
           </Typography>
         </Grid>
-        <img src={ profile_picture ? profileUrl : noProfileUrl } className={ classes.cardImage } />
+        <img src={ profile_picture ? profileUrl : noProfileUrl } className={ classes.cardImage }/>
       </Grid>
 
-      <Grid container item spacing={2} className={ classes.cardContent }>
-        <Grid container item spacing={2} className={ classes.cardInfo }>
+      <Grid container item spacing={ 2 } className={ classes.cardContent }>
+        <Grid container item spacing={ 2 } className={ classes.cardInfo }>
+
+          {/* health cares */}
           <Grid item style={{ marginRight: smallSize ? 'unset' : 'auto' }}>
             <div className={ classes.cardBadge }>
               <span>Planes de salud</span>
-              {Boolean(health_cares.length > 0)
+              {Boolean(health_cares.length > 0 && health_cares[0] !== 'No soy proveedor de planes de salud')
                 ? <DoneIcon className={ classes.cardBadgeIcon } style={{ color: theme.palette.secondary.main }}/>
                 : <CloseIcon className={ classes.cardBadgeIcon } style={{ color: '#A3A3A3' }}/>
               }
             </div>
           </Grid>
+
+          {/* academic record */}
           <Grid container item direction="column" spacing={1}  style={{ width: smallSize ? 'auto' : 'inherit' }}>
             <Grid className={ classes.cardInfoItem } item>
               <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
               <span className={ classes.cardInfoDegree }>
-                <strong>{academic_histories.length > 0 ? academicHistoryOrdered[0].degree : 'Veritatis'}</strong>
-                {academic_histories.length > 0 ? academicHistoryOrdered[0].institution : 'Illo Mollitia Aliquam'}
+                <strong>{academic_histories.length > 0 ? academicHistoryOrdered[0].degree : ''}</strong>
+                {academic_histories.length > 0 ? academicHistoryOrdered[0].institution : ''}
               </span>
             </Grid>
-            {/* {Boolean(academic_histories.length > 0)
-              ? <Grid className={ classes.cardInfoItem } item>
-                  <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
-                  <span className={ classes.cardInfoDegree }>
-                    <strong>{academic_histories.length > 0 ? academicDegree() : ''}</strong>
-                    {academic_histories.length > 0 ? academicInstitution() : ''}
-                  </span>
-                </Grid>
-              : <Grid className={ classes.cardInfoItem } item>
-                  <SchoolIcon style={{ color: '#A3A3A3' }}/>
-                  <span></span>
-                </Grid>
-            } */}
-            {/* {Boolean(available.length > 0)
-              ? <Grid className={ classes.cardInfoItem } item>
-                  <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
-                  <span>Disponible</span>
-                </Grid>
-              : <Grid className={ classes.cardInfoItem } item>
-                  <SchoolIcon style={{ color: theme.palette.grey[500] }}/>
-                  <span>Disponible</span>
-                </Grid>
-            } */}
             <Grid className={ classes.cardInfoItem } item>
               <EventAvailableIcon style={{ color: !available ? theme.palette.secondary.main : '#A3A3A3' }}/>
               <span>{ !available ? 'Disponible' : 'No disponible' }</span>
             </Grid>
           </Grid>
         </Grid>
-
+        
+        {/* area of focus */}
         {Boolean(areaFocus.length > 0) && (
-        <Grid container item spacing={2}>
+        <Grid container item spacing={ 2 }>
           <Grid item>
             <Typography style={{ fontSize: 14 }}>
               <strong>Áreas de enfoque</strong>
@@ -472,138 +290,20 @@ const Card = ({ provider, isPortalCard, onClick }: CardProps) => {
         </Grid>
         )}
         
-        <Grid
-          container
-          item
-          // spacing={2}
-          style={{ justifyContent: smallSize ? "space-between" : "unset", color: theme.palette.grey[500] }}
-          wrap={ smallSize ? "nowrap" : "wrap" }
-        >
+        {/* rate and services */}
+        <Grid container item className={ classes.cardRateServicesWrapper }>
           {Boolean(rate_and_services?.length > 0) && (
-          <Grid 
-            container
-            item
-            // spacing={2}
-            style={{
-              justifyContent: smallSize ? "unset" : "space-between",
-              alignItems: smallSize ? "center" : "unset",
-              width: smallSize ? "auto" : "inherit",
-              lineHeight: 1
-            }}
-          >
-            <Grid item><span>{rate_and_services[0].session_type}</span></Grid>
-            <Grid item><span style={{ paddingLeft: smallSize ? 16 : "unset" }}>${rate_and_services[0].cost} USD</span></Grid>
-          </Grid>
+            <Grid container item className={ classes.cardRateServicesContainer }>
+              <Grid item><span>{ rate_and_services[0].session_type }</span></Grid>
+              <Grid item><span style={{ paddingLeft: smallSize ? 16 : "unset" }}>${ rate_and_services[0].cost } USD</span></Grid>
+            </Grid>
           )}
           <Grid item style={{ margin: smallSize ? "initial" : "auto" }}>
-            <Button variant="contained" color="primary" classes={{ root: classes.cardButton }} disableElevation onClick={onClick}>Ver perfil</Button>
+            <Button variant="contained" color="primary" classes={{ root: classes.cardButton }} disableElevation onClick={ onClick }>Ver perfil</Button>
           </Grid>
         </Grid>
       </Grid>
 
-      {/* <Grid container wrap="nowrap" className={classes.section}>
-        <Grid className={classes.circle}>
-          <img src={profile_picture ? profileUrl : ''} className={classes.image} />
-        </Grid>
-        <Grid>
-          <Grid className={classes.name}>
-            {first_name} {last_name}
-          </Grid>
-          <Grid container wrap="nowrap">
-            {theoretical_approaches?.slice(0, isMobileSize ? 1 : 3)?.map((approach, idx) => {
-              return (
-                <Chip
-                  key={idx}
-                  label={approach}
-                  className={classnames(classes.labelChip, {
-                    [classes.smallTextChip]: true,
-                    isPortalCard,
-                  })}
-                />
-              )
-            })}
-            {(theoretical_approaches?.length > 3 || (isMobileSize && theoretical_approaches?.length > 1)) && (
-              <Chip
-                label={`${theoretical_approaches.slice(isMobileSize ? 1 : 3).length} +`}
-                className={classnames({
-                  [classes.smallTextChip]: true,
-                  isPortalCard,
-                })}
-              />
-            )}
-          </Grid>
-          {Boolean(populations_serve.length) && (
-            <Typography className={classes.userInfo}>
-              <PermIdentityIcon />
-              {populations_serve?.join(', ')}
-            </Typography>
-          )}
-        </Grid>
-      </Grid>
-      {Boolean(specialties?.length) && (
-        <Grid container className={classes.section}>
-          <Typography className={classes.title}>Especialidad</Typography>
-          <Grid container>
-            {specialties?.slice(0, isMobileSize ? 1 : 2)?.map((specialty, idx) => {
-              return (
-                <Chip
-                  key={idx}
-                  label={specialty}
-                  className={classnames({
-                    [classes.smallTextChip]: true,
-                    isPortalCard,
-                  })}
-                />
-              )
-            })}
-            {(specialties?.length > 2 || (isMobileSize && specialties?.length > 1)) && (
-              <Chip
-                label={`${specialties.slice(isMobileSize ? 1 : 2).length} +`}
-                className={classnames({
-                  [classes.smallTextChip]: true,
-                  isPortalCard,
-                })}
-              />
-            )}
-          </Grid>
-        </Grid>
-      )}
-      {Boolean(rate_and_services?.length) && (
-        <Grid container>
-          <Grid container alignItems="center">
-            <Typography className={classes.title}>Honorarios</Typography>
-            {rate_and_services?.length && (
-              <Chip
-                label={`${rate_and_services.slice(1).length} +`}
-                className={classnames({
-                  [classes.chipContainer]: true,
-                  isPortalCard,
-                })}
-              />
-            )}
-          </Grid>
-          {rate_and_services
-            ?.map((service, idx) => {
-              return (
-                <Grid
-                  key={idx}
-                  container
-                  justify="space-between"
-                  alignItems="center"
-                  className={classes.rateAndServiceContainer}
-                >
-                  <Typography className={classes.sessionType}>{service.session_type}</Typography>
-                  <Grid container className={classes.cost}>
-                    <Grid component={Typography} container alignItems="center" justify="center">
-                      $ {service.cost} USD
-                    </Grid>
-                  </Grid>
-                </Grid>
-              )
-            })
-            .slice(0, 1)}
-        </Grid>
-      )} */}
     </Grid>
   )
 }
