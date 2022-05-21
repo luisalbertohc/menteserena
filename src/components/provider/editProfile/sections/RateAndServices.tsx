@@ -4,7 +4,6 @@ import { AccordionNew } from '@components/shared'
 const useStyles = makeStyles(theme => ({
   serviceContainer: {
     flexWrap: 'nowrap',
-    // justifyContent: 'space-between',
     marginBottom: theme.spacing(2),
     borderRadius: 5,
     padding: theme.spacing(1),
