@@ -4,6 +4,7 @@ import { AccordionNew } from '@components/shared'
 const useStyles = makeStyles(theme => ({
   serviceContainer: {
     flexWrap: 'nowrap',
+    // justifyContent: 'space-between',
     marginBottom: theme.spacing(2),
     borderRadius: 5,
     padding: theme.spacing(1),
@@ -68,21 +69,27 @@ const RateAndService = ({ rateAndServices }: RateAndServiceProps) => {
       <Grid container item>
         {rateAndServices.map((service, index) => {
           return (
-            <Grid container item justifyContent="space-between" alignItems="center" className={ classes.serviceContainer } key={ index }>
+            <Grid container item justify="space-between" alignItems="center" className={ classes.serviceContainer } key={ index }>
+
               <Grid container item direction="column" className={ classes.serviceItem }>
+
                 {/* session type */}
                 <Grid item>
                   <Typography className={ classes.serviceName }>{ service.session_type }</Typography>
                 </Grid>
+
                 {/* session length */}
                 <Grid item>
                   <Typography>{ service.session_length } min</Typography>
                 </Grid>
+
               </Grid>
+
               {/* cost */}
               <Grid item>
                 <Typography className={ classes.servicePrice }>$ { service.cost } USD</Typography>
               </Grid>
+
             </Grid>
           )
         })}
