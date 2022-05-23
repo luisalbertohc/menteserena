@@ -128,8 +128,12 @@ const RatesOfService = () => {
               error={ Boolean(errors?.rate_and_services?.[index]?.session_type?.message) }
               helperText={ errors?.rate_and_services?.[index]?.session_type?.message }
               defaultValue={ getValues(`rate_and_services.${index}.session_type`) }
-              inputProps={{ title: `${ item.session_type }` }}
-              { ...register(`rate_and_services.${ index }.session_type` as const, { required: 'Sesión requerida' }) }
+              inputProps={{
+                title: `${ item.session_type }`,
+                ...register(`rate_and_services.${index}.session_type` as const, {
+                  required: 'Sesión requerida'
+                })
+              }}
             />
 
             {/* session length */}

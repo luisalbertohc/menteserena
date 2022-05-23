@@ -222,7 +222,7 @@ const Card = ({ provider, onClick }: CardProps) => {
           <Grid item style={{ marginRight: smallSize ? 'unset' : 'auto' }}>
             <div className={ classes.cardBadge }>
               <span>Planes de salud</span>
-              {Boolean(health_cares.length > 0 && health_cares[0] !== 'No soy proveedor de planes de salud')
+              {Boolean(health_cares.length > 0 && health_cares[0] !== 'No soy proveedor de planes de salud' && health_cares[0] !== 'no soy proveedor de planes de salud.' && health_cares[0] !== 'no soy proveedor de planes de salud')
                 ? <DoneIcon className={ classes.cardBadgeIcon } style={{ color: theme.palette.secondary.main }}/>
                 : <CloseIcon className={ classes.cardBadgeIcon } style={{ color: '#A3A3A3' }}/>
               }
@@ -230,7 +230,7 @@ const Card = ({ provider, onClick }: CardProps) => {
           </Grid>
 
           {/* academic record */}
-          <Grid container item direction="column" spacing={1}  style={{ width: smallSize ? 'auto' : 'inherit' }}>
+          <Grid container item direction="column" spacing={ 1 }  style={{ width: smallSize ? 'auto' : 'inherit' }}>
             <Grid className={ classes.cardInfoItem } item>
               <SchoolIcon style={{ color: theme.palette.secondary.main }}/>
               <span className={ classes.cardInfoDegree }>
@@ -258,7 +258,7 @@ const Card = ({ provider, onClick }: CardProps) => {
               ? areaFocus?.map((area, i) => {
                 if (i === 6) {
                   return (
-                    <Grid item key={i}>
+                    <Grid item key={ i }>
                       <div className={classes.cardBadge}>
                         <span>...</span>
                       </div>

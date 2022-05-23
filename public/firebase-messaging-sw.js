@@ -4,12 +4,6 @@ importScripts('https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging-compa
 
 // Initialize the Firebase app in the service worker by passing the generated config
 var firebaseConfig = {
-  // apiKey: "AIzaSyBGJg-XD5EXTpPXtJriRTTmEckQrJjH47U",
-  // authDomain: "test-notifications-e925a.firebaseapp.com",
-  // projectId: "test-notifications-e925a",
-  // storageBucket: "test-notifications-e925a.appspot.com",
-  // messagingSenderId: "857970139179",
-  // appId: "1:857970139179:web:ace6e93e5a2b18f2f88a6e"
   apiKey: "AIzaSyAXdSIVNX-ET-f7AIuNwXzkMOYNpMCdGdQ",
   authDomain: "menteserena-e4db7.firebaseapp.com",
   projectId: "menteserena-e4db7",
@@ -24,15 +18,6 @@ firebase.initializeApp(firebaseConfig)
 // Retrieve firebase messaging
 const messaging = firebase.messaging()
 
-// if ('serviceWorker' in navigator) {
-//   console.log('in the service worker')
-//   navigator.serviceWorker.register('../firebase-messaging-sw.js').then(function(registration) {
-//     console.log('Registration successful, scope is:', registration.scope)
-//   }).catch(function(err) {
-//     console.log('Service worker registration failed, error:', err)
-//   })
-// }
-
 messaging.onBackgroundMessage(function(payload) {
   console.log('Received background message ', payload)
   const notificationTitle = payload.notification.title
@@ -42,3 +27,31 @@ messaging.onBackgroundMessage(function(payload) {
   self.registration.showNotification(notificationTitle,
     notificationOptions)
 })
+
+self.addEventListener('notificationclick', (event) => {
+
+  event.notification.close()  
+  if (!event.notification.data.pathname) return
+  const pathname = event.notification.data.pathname
+  const url = new URL(pathname, self.location.origin).href
+  
+  event.waitUntil(self.clients
+    .matchAll({ type: 'window', includeUncontrolled: true })
+    .then((clientsArr) => {
+      const hadWindowToFocus = clientsArr.some((windowClient) => windowClient.url === url ? (windowClient.focus(), true) : false)
+      if (!hadWindowToFocus)self.clients
+        .openWindow(url)
+        .then((windowClient) => windowClient ? windowClient.focus() : null)
+    })
+  )
+})
+
+// function handleClick (event) {
+//   event.notification.close()
+//   // Open the url you set on notification.data
+//   clients.openWindow(event.notification.data.url)
+//   console.log(event.notification)
+//   console.log(event.notification.data)
+// }
+
+// self.addEventListener('notificationclick', handleClick)

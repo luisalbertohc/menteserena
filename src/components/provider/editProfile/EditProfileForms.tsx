@@ -28,7 +28,6 @@ const useStyles = makeStyles(theme => ({
     borderBottom: `1px solid ${ theme.palette.grey[200] }`,
     width: '100%',
     padding: '28px 0px 12px',
-    // padding: '28px 0px 12px 14px',
     '& > svg': {
       marginRight: theme.spacing(2),
       fill: theme.palette.primary.main,
@@ -73,26 +72,35 @@ const useStyles = makeStyles(theme => ({
 }))
 
 interface FormValues {
-  gender: string
-  date_of_birth: Date | null
-  country: string
-  phone: string
-  spoken_languages: string[]
-  bio: string
-  health_cares: string[]
-  area_of_focus: string[]
-  populations_serve: string[]
-  expertises: string[]
-  theoretical_approaches: string[]
-  medical_degree,
-  office_phone: string,
-  personal_phone: string,
-  phone_area_code: string,
-  office_area_code: string,
-  academic_histories: { degree: string; institution: number; year: number }[]
-  rate_and_services: { session_type: string; session_length: number; cost: number; isDisable: boolean }[]
-  information_public: boolean
-  profile_picture: FileList
+  gender: string;
+  date_of_birth: Date | null;
+  country: string;
+  phone: string;
+  spoken_languages: string[];
+  bio: string;
+  health_cares: string[];
+  area_of_focus: string[];
+  populations_serve: string[];
+  expertises: string[];
+  theoretical_approaches: string[];
+  medical_degree: string;
+  office_phone: string;
+  personal_phone: string;
+  phone_area_code: string;
+  office_area_code: string;
+  academic_histories: {
+    degree: string;
+    institution: number;
+    year: number;
+  }[];
+  rate_and_services: {
+    session_type: string;
+    session_length: number;
+    cost: number;
+    isDisable: boolean;
+  }[];
+  information_public: boolean;
+  profile_picture: FileList;
 }
 
 interface EditProfileFormsProps {
@@ -198,64 +206,3 @@ const EditProfileForms = ({ backToProfile, profile }: EditProfileFormsProps) => 
 }
 
 export default EditProfileForms
-
-{/* <Grid className={ classes.container }>
-
-<Grid className={ classes.headerContainer }>
-  <ArrowBackIcon onClick={ backToProfile } />
-  <Typography color="primary" className={ classes.header }>
-    Editar Perfil
-  </Typography>
-</Grid>
-
-<Grid container>
-  <Typography className={ classes.subHeader }>
-    Actualiza tu información personal aquí
-  </Typography>
-</Grid>
-
-<FormProvider { ...formMethods }>
-
-  <Grid container justify="space-between">
-    <Grid container item xs={ 12 } alignItems="flex-start" className={ classes.imageContainer }>
-      <ProfilePicture isProfileView />
-    </Grid>
-    <Grid container item xs={ 12 } className={ classes.inputsContainer }>
-      <PersonalInformation />
-    </Grid>
-  </Grid>
-
-  <Grid container item md={ 12 }>
-    <AcademicHistory />
-    <PracticeInfo />
-    <RatesOfService />
-    <LabelCheckBox
-      control={ formMethods.control }
-      name="information_public"
-      label="Incluirme en el Directorio de Terapeutas para que los pacientes potenciales puedan encontrarme, acepto y entiendo que esto significa que la información que incluí se hará pública"
-    />
-    <Button
-      fullWidth
-      disabled={ isSubmitting || Boolean(Object.keys(errors).length) }
-      color="primary"
-      variant="contained"
-      className={ classes.submitButton }
-      onClick={ handleSubmit(values => onSubmit(values, getSession, refetch)) }
-    >
-      { isSubmitting ? <Loading size={ 20 } /> : 'Guardar' }
-    </Button>
-
-    {isSubmitted && isSubmitSuccessful && (
-      <Typography className={ classes.infoBox } variant="body2" align="center" color="primary">
-        Se Guardo Exitosamente
-      </Typography>
-    )}
-    {isSubmitted && !isSubmitSuccessful && (
-      <Typography className={ classes.infoBox } variant="body2" align="center" color="error">
-        Sucedió un error, verifique los valores
-      </Typography>
-    )}
-  </Grid>
-
-</FormProvider>
-</Grid> */}
