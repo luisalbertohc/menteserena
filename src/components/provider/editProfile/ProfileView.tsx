@@ -1,4 +1,4 @@
-import { Grid, makeStyles, Button, Typography } from '@material-ui/core'
+import { Grid, makeStyles, Button, Typography, useMediaQuery } from '@material-ui/core'
 import GradeIcon from '@material-ui/icons/Grade'
 import EventAvailableIcon from '@material-ui/icons/EventAvailable'
 import RoomIcon from '@material-ui/icons/Room'
@@ -32,8 +32,10 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     right: 24,
     [theme.breakpoints.up('sm')]: {
-      top: 52,
-      right: '50.5px'
+      top: 'unset',
+      bottom: 65,
+      right: '50%',
+      transform: 'translateX(50%)'
     }
   },
   dialogImageCouch: {
@@ -71,7 +73,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   dialogUsername: {
-    marginBottom: 30,    
+    // marginBottom: 30,    
+    marginBottom: 60,    
     width: '50%',
     fontSize: 18,
     fontWeight: 600,
@@ -100,6 +103,15 @@ const useStyles = makeStyles(theme => ({
       [theme.breakpoints.up('sm')]: {
         fontSize: 20
       }
+    }
+  },
+  dialogItemProfile: {
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    marginBottom: theme.spacing(3),
+    [theme.breakpoints.up('sm')]: {
+      marginBottom: 0
     }
   },
   dialogItemMargin: {
@@ -193,6 +205,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
     office_area_code
   } = profile || {}
 
+  const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
   const areaFocus = [...expertises, ...area_of_focus]
   const profileUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(profile_picture)}`
   const noProfileUrl = '/images/user.png'
@@ -201,11 +214,13 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
     <Grid container classes={{ root: classes.dialog }}>
 
       {/* profile picture */}
-      <div className={ classes.dialogImage }>
-        <div className={ classes.dialogImageCouch }>
-          <img src={ profile_picture ? profileUrl : noProfileUrl } className={ classes.dialogImageProfile }/>
+      {Boolean(!smallSize) && (
+        <div className={ classes.dialogImage }>
+          <div className={ classes.dialogImageCouch }>
+            <img src={ profile_picture ? profileUrl : noProfileUrl } className={ classes.dialogImageProfile }/>
+          </div>  
         </div>
-      </div>
+      )}
 
       {/* title and username */}
       <Grid container item direction="column">
@@ -218,9 +233,9 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
       </Grid>
 
       {/* personal info */}
-      <Grid container item spacing={2}>
+      <Grid container item spacing={ 2 }>
 
-        <Grid container item direction="column" xs={6} sm={5}>
+        <Grid container item direction="column" xs={ 6 } sm={ 5 }>
 
           {/* health cares */}
           <Grid item classes={{ root: classes.dialogItem }}>
@@ -242,7 +257,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
           </Grid>
         </Grid>
 
-        <Grid container item direction="column" xs={6} sm={3}>
+        <Grid container item direction="column" xs={ 6 } sm={ 3 }>
 
           {/* available */}
           <Grid item classes={{ root: classes.dialogItem }}>
@@ -270,26 +285,38 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
           </Grid>
         </Grid>
 
-        {actionProfile && (
-          <Grid container item xs={12} sm={4} className={ classes.dialogItemMargin }>
-            <Grid item classes={{ root: classes.dialogButton }}>
-              <Button variant="contained" color="primary" disableElevation onClick={actionProfile}>Contactar</Button>
-            </Grid>
-          </Grid>
-        )}
+        <Grid container item direction="column" xs={ 12 } sm={ 4 } className={ classes.dialogItemProfile  }>
 
-        {editProfile && (
-          <Grid container item xs={12} sm={4} className={ classes.dialogItemMargin }>
+          {/* profile picture */}
+          {Boolean(smallSize) && (
+            <div className={ classes.dialogImage }>
+              <div className={ classes.dialogImageCouch }>
+                <img src={ profile_picture ? profileUrl : noProfileUrl } className={ classes.dialogImageProfile }/>
+              </div>  
+            </div>
+          )}
+
+          {/* action button */}
+          {actionProfile && (
             <Grid item classes={{ root: classes.dialogButton }}>
-              <Button variant="contained" color="primary" disableElevation onClick={editProfile}>Editar Perfil</Button>
+              <Button variant="contained" color="primary" disableElevation onClick={ actionProfile }>Contactar</Button>
             </Grid>
-          </Grid>
-        )}
+          )}
+
+          {/* edit button */}
+          {editProfile && (
+            <Grid item classes={{ root: classes.dialogButton }}>
+              <Button variant="contained" color="primary" disableElevation onClick={ editProfile }>Editar Perfil</Button>
+            </Grid>
+          )}
+
+        </Grid>
       </Grid>
 
       <Grid container item className={ classes.dialogBorders}>
+
         {/* presentation */}
-        <Grid item xs={12} sm={6} className={ `${classes.dialogContentLeft} ${classes.dialogItemMargin}` }>
+        <Grid item xs={ 12 } sm={ 6 } className={ `${ classes.dialogContentLeft } ${ classes.dialogItemMargin }` }>
           <Grid item>
             <Typography className={ classes.dialogTitle }>Presentación</Typography>
           </Grid>
@@ -299,6 +326,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
             )}
           </Grid>
         </Grid>
+
         {/* area focus */}
         <Grid container item xs={12} sm={6} className={ `${classes.dialogContentRight} ${classes.dialogItemMargin}` }>
           <Grid item>
@@ -313,6 +341,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
       </Grid>
 
       <Grid container item>
+
         {/* rate and services */}
         <Grid item xs={12} sm={6} className={ `${classes.dialogContentLeft} ${classes.dialogItemMargin}` }>
           <Grid item>
@@ -324,6 +353,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
             )}
           </Grid>
         </Grid>
+
         {/* academic histories */}
         <Grid container item xs={12} sm={6} className={ `${classes.dialogContentRight} ${classes.dialogItemMargin}` }>
           <Grid item>
@@ -335,6 +365,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
             )}
           </Grid>
         </Grid>
+
       </Grid>
     </Grid>
   )

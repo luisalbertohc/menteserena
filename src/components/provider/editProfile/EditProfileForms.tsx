@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     borderBottom: `1px solid ${ theme.palette.grey[200] }`,
     width: '100%',
-    padding: '28px 0px 12px 14px',
+    padding: '28px 0px 12px',
+    // padding: '28px 0px 12px 14px',
     '& > svg': {
       marginRight: theme.spacing(2),
       fill: theme.palette.primary.main,
