@@ -199,8 +199,10 @@ const AcademicHistory = () => {
                 }}
                 error={ Boolean(errors?.academic_histories?.[index]?.degree?.message) }
                 helperText={ errors?.academic_histories?.[index]?.degree?.message }
-                defaultValue={ getValues(`academic_histories.${index}.degree`) }
-                { ...register(`academic_histories.${index}.degree` as const, { required: 'El grado es requerido' }) }
+                inputProps={{
+                  ...register(`academic_histories.${index}.degree` as const, { required: 'El grado es requerido' }),
+                  defaultValue: getValues(`academic_histories.${index}.degree`)
+                }}
               />
 
               {/* institution */}
@@ -215,8 +217,10 @@ const AcademicHistory = () => {
                 }}
                 error={ Boolean(errors?.academic_histories?.[index]?.institution?.message) }
                 helperText={ errors?.academic_histories?.[index]?.institution?.message }
-                defaultValue={ getValues(`academic_histories.${index}.institution`) }
-                { ...register(`academic_histories.${index}.institution` as const, { required: 'La institución es requerida' }) }
+                inputProps={{
+                  ...register(`academic_histories.${index}.institution` as const, { required: 'La institución es requerida' }),
+                  defaultValue: getValues(`academic_histories.${index}.institution`) 
+                }}
               />
 
               {/* year */}
@@ -231,15 +235,16 @@ const AcademicHistory = () => {
                 }}
                 error={ Boolean(errors?.academic_histories?.[index]?.year?.message) }
                 helperText={ errors?.academic_histories?.[index]?.year?.message }
-                defaultValue={ getValues(`academic_histories.${index}.year`) }
-                {...register(`academic_histories.${index}.year` as const, {
-                  required: 'El año de obtención es requerido',
-                  pattern: {
-                    value: /^[\d]{4}$/,
-                    message: 'Ingresar solo 4 dígitos.',
-                  },
-                  validate: value => value > 1900 || 'El año no es válido.'
-                })}
+                inputProps={{
+                  ...register(`academic_histories.${index}.year` as const, {
+                    required: 'El año de obtención es requerido',
+                    pattern: {
+                      value: /^[\d]{4}$/,
+                      message: 'Ingresar solo 4 dígitos',
+                    },
+                  }),
+                  validate: value => value > 1900 || 'El año no es válido'
+                }}
               />
 
               {/* delete button */}
