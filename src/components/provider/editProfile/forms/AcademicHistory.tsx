@@ -243,6 +243,7 @@ const AcademicHistory = () => {
                       message: 'Ingresar solo 4 dígitos',
                     },
                   }),
+                  defaultValue: getValues(`academic_histories.${index}.year`),
                   validate: value => value > 1900 || 'El año no es válido'
                 }}
               />

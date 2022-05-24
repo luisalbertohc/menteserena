@@ -127,12 +127,12 @@ const RatesOfService = () => {
               InputLabelProps={{ shrink: true }}
               error={ Boolean(errors?.rate_and_services?.[index]?.session_type?.message) }
               helperText={ errors?.rate_and_services?.[index]?.session_type?.message }
-              defaultValue={ getValues(`rate_and_services.${index}.session_type`) }
               inputProps={{
                 title: `${ item.session_type }`,
                 ...register(`rate_and_services.${index}.session_type` as const, {
                   required: 'Sesión requerida'
-                })
+                }),
+                defaultValue: getValues(`rate_and_services.${index}.session_type`)
               }}
             />
 
@@ -145,14 +145,16 @@ const RatesOfService = () => {
               InputLabelProps={{ shrink: true }}
               error={ Boolean(errors?.rate_and_services?.[index]?.session_length?.message) }
               helperText={ errors?.rate_and_services?.[index]?.session_length?.message }
-              defaultValue={ getValues(`rate_and_services.${index}.session_length`) }
-              {...register(`rate_and_services.${index}.session_length` as const, {
-                required: 'Duración requerida',
-                pattern: {
-                  value: /^[\d]{1,3}$/,
-                  message: 'Ingrese solo dígitos. (###)',
-                },
-              })}
+              inputProps={{
+                ...register(`rate_and_services.${index}.session_length` as const, {
+                  required: 'Duración requerida',
+                  pattern: {
+                    value: /^[\d]{1,3}$/,
+                    message: 'Ingrese solo dígitos. (###)',
+                  },
+                }),
+                defaultValue: getValues(`rate_and_services.${index}.session_length`)
+              }}
             />
 
             {/* cost */}
@@ -166,14 +168,16 @@ const RatesOfService = () => {
               }}
               error={ Boolean(errors?.rate_and_services?.[index]?.cost?.message) }
               helperText={ errors?.rate_and_services?.[index]?.cost?.message }
-              defaultValue={ getValues(`rate_and_services.${index}.cost`) }
-              {...register(`rate_and_services.${ index }.cost` as const, {
-                required: 'Costo requerido',
-                pattern: {
-                  value: /^$|^\$?\d+(,\d{3})*(\.\d*)?$/,
-                  message: 'Ingrese un costo valido.',
-                },
-              })}
+              inputProps={{
+                ...register(`rate_and_services.${ index }.cost` as const, {
+                  required: 'Costo requerido',
+                  pattern: {
+                    value: /^$|^\$?\d+(,\d{3})*(\.\d*)?$/,
+                    message: 'Ingrese un costo valido.',
+                  },
+                }),
+                defaultValue: getValues(`rate_and_services.${index}.cost`)
+              }}
             />
 
             {/* delete button */}
