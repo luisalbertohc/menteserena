@@ -105,7 +105,7 @@ const AcademicHistory = () => {
   const classes = useStyles()
   const { fields, append, remove } = useFieldArray<AcademicHistoryValues>({ name: 'academic_histories' })
   const { getValues, control, register, formState: { errors }, } = useFormContext()
-  const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
+  const smallSize = useMediaQuery('(min-width: 600px)') // verify that the size is greater than 600px
 
   return (
     <div className={ classes.wrapper }>

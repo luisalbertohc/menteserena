@@ -48,7 +48,7 @@ interface RateAndServiceProps {
 const RateAndService = ({ rateAndServices }: RateAndServiceProps) => {
   
   const classes = useStyles()
-  const smallSize = useMediaQuery('(min-width: 414px)') // verify that the width of the window is greater than 414px
+  const smallSize = useMediaQuery('(min-width: 600px)') // verify that the width of the window is greater than 600px
   const heightForManyElements = smallSize ? 204 : 188
   const heightForFewElements = smallSize ? 132 : 120
   const heightForAnElement = smallSize ? 58 : 52

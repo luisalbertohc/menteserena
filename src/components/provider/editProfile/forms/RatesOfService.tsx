@@ -95,7 +95,7 @@ const RatesOfService = () => {
   const classes = useStyles()
   const { register, control, getValues, formState: { errors }, } = useFormContext<any>()
   const { fields, append, remove } = useFieldArray<RateAndServiceValues>({ name: 'rate_and_services' })
-  const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
+  const smallSize = useMediaQuery('(min-width: 600px)') // verify that the size is greater than 600px
 
   return (
     <div className={ classes.wrapper }>
