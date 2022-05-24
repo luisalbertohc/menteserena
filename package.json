@@ -23,7 +23,6 @@
     "classnames": "^2.3.1",
     "date-fns": "^2.22.1",
     "date-fns-tz": "^1.1.6",
-    "detect-node": "^2.1.0",
     "firebase": "^9.8.1",
     "mui-datatables": "^3.7.7",
     "next": "10.2.0",

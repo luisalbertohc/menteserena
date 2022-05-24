@@ -1,4 +1,3 @@
-import isNode from 'detect-node'
 import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage, deleteToken } from "firebase/messaging"
 
@@ -24,7 +23,7 @@ const firebaseApp = initializeApp(firebaseConfig)
 const messaging = getMessaging(firebaseApp)
 
 // send data to backend
-const sendToken = (currentToken, operationType ,userId) => {
+const sendToken = (currentToken, operationType , userId) => {
   const HEADERS = new Headers()
   HEADERS.append("Content-Type", "application/json")
   
@@ -51,12 +50,12 @@ const sendToken = (currentToken, operationType ,userId) => {
     .catch(error => console.log('error', error))
 }
 
-export const getTokenFirebase = (setTokenFound, userId) => {
+export const getTokenFirebase = (setTokenFound, operationType, userId) => {
   return getToken(messaging, { vapidKey: 'BKpGmGaE2RpLDNa1Mbo4WJkUTOrHxZumHqL1x9KgJ_wzz9Z0X4pj9TihYQpxR3moiR4zFVPemp6ug-tNWASKpaA' }).then((currentToken) => {
     if (currentToken) {
       console.log('current token for client: ', currentToken)
       setTokenFound(true)
-      sendToken(currentToken, userId)
+      sendToken(currentToken, operationType, userId)
     } else {
       console.log('No registration token available. Request permission to generate one.')
       setTokenFound(false)
