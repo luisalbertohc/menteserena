@@ -1,5 +1,14 @@
+import isNode from 'detect-node'
 import { initializeApp } from 'firebase/app'
 import { getMessaging, getToken, onMessage, deleteToken } from "firebase/messaging"
+
+export async function analyticsLogEvents(event, params) {
+  if (!isNode) {
+    const firebase = await import('firebase/app')
+    await import('firebase/analytics')
+    firebase.default.analytics().logEvent(event, params)
+  }
+}
 
 var firebaseConfig = {
   apiKey: "AIzaSyAXdSIVNX-ET-f7AIuNwXzkMOYNpMCdGdQ",
@@ -15,12 +24,12 @@ const firebaseApp = initializeApp(firebaseConfig)
 const messaging = getMessaging(firebaseApp)
 
 // send data to backend
-const sendToken = (currentToken, userId) => {
+const sendToken = (currentToken, operationType ,userId) => {
   const HEADERS = new Headers()
   HEADERS.append("Content-Type", "application/json")
   
   const DATA = JSON.stringify({
-    "operation_type": "subscribe",
+    "operation_type": operationType,
     "user_id": userId,
     "id_device": "id dispositivo",
     "token_device": currentToken,
@@ -78,5 +87,3 @@ export const onMessageListener = () =>
       resolve(payload)
     })
 })
-
-

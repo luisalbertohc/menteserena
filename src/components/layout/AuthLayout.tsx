@@ -2,7 +2,7 @@ import { Grid, Hidden, makeStyles, Container } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   formContainer: {
-    marginTop: 48,
+    margin: '48px 0',
     '& > div': {
       width: 466,
     },

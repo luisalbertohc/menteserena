@@ -23,35 +23,8 @@ messaging.onBackgroundMessage(function(payload) {
   const notificationTitle = payload.notification.title
   const notificationOptions = {
     body: payload.notification.body,
+    icon: './images/mente_serena_single_logo.png'
   }
   self.registration.showNotification(notificationTitle,
     notificationOptions)
 })
-
-self.addEventListener('notificationclick', (event) => {
-
-  event.notification.close()  
-  if (!event.notification.data.pathname) return
-  const pathname = event.notification.data.pathname
-  const url = new URL(pathname, self.location.origin).href
-  
-  event.waitUntil(self.clients
-    .matchAll({ type: 'window', includeUncontrolled: true })
-    .then((clientsArr) => {
-      const hadWindowToFocus = clientsArr.some((windowClient) => windowClient.url === url ? (windowClient.focus(), true) : false)
-      if (!hadWindowToFocus)self.clients
-        .openWindow(url)
-        .then((windowClient) => windowClient ? windowClient.focus() : null)
-    })
-  )
-})
-
-// function handleClick (event) {
-//   event.notification.close()
-//   // Open the url you set on notification.data
-//   clients.openWindow(event.notification.data.url)
-//   console.log(event.notification)
-//   console.log(event.notification.data)
-// }
-
-// self.addEventListener('notificationclick', handleClick)

@@ -115,14 +115,14 @@ const signOutLog = async ({ signOut, getSession, router }: SignOutLogProps): Pro
     if (response.status === 200) {
       signOut();
       // Here must goes the unsubscribe of Firebase
-      firebase.deleteTokenFirebase()
+      // firebase.deleteTokenFirebase()
       console.log('useSignOutLog')
       router.push('/');
     }
   } catch (error) {
     signOut();
     // Here must goes the unsubscribe of Firebase
-    firebase.deleteTokenFirebase()
+    // firebase.deleteTokenFirebase()
     console.log('useSignOutLog')
     router.push('/');
   }

@@ -107,7 +107,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   cardInfoDegree: {
-    maxWidth: '200px',
+    maxWidth: '190px',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -193,7 +193,7 @@ const Card = ({ provider, onClick }: CardProps) => {
   const classes = useStyles()
   const profileUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(profile_picture)}`
   const noProfileUrl = '/images/user.png'
-  const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
+  const smallSize = useMediaQuery('(min-width: 600px)') // verify that the size is greater than 600px
   const areaFocus = [...expertises, ...area_of_focus]
 
   // returns the array in descending order

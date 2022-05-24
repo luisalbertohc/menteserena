@@ -30,6 +30,7 @@ const useStyles = makeStyles(theme => ({
   },
   dialogImage: {
     position: 'absolute',
+    top: 40,
     right: 24,
     [theme.breakpoints.up('sm')]: {
       top: 'unset',
@@ -42,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     width: 128,
     height: 100,
-    backgroundImage: 'url(/images/sillon.png)',
+    backgroundImage: 'url(/images/sillon.svg)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
     [theme.breakpoints.up('sm')]: {
@@ -205,7 +206,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
     office_area_code
   } = profile || {}
 
-  const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
+  const smallSize = useMediaQuery('(min-width: 600px)') // verify that the size is greater than 600px
   const areaFocus = [...expertises, ...area_of_focus]
   const profileUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture/directory/${encodeURIComponent(profile_picture)}`
   const noProfileUrl = '/images/user.png'
