@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getMessaging, getToken, onMessage, deleteToken } from "firebase/messaging"
+import { getMessaging, getToken, onMessage, deleteToken, isSupported } from "firebase/messaging"
 
 export async function analyticsLogEvents(event, params) {
   if (!isNode) {
@@ -19,8 +19,8 @@ var firebaseConfig = {
   measurementId: "G-S918Q2BJP5"
 }
 
-const firebaseApp = initializeApp(firebaseConfig)
-const messaging = getMessaging(firebaseApp)
+// const firebaseApp = initializeApp(firebaseConfig)
+// const messaging = getMessaging(firebaseApp)
 
 // send data to backend
 const sendToken = (currentToken, operationType , userId) => {

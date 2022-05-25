@@ -1,9 +1,8 @@
-import { Grid, makeStyles } from '@material-ui/core';
-import { AddPhotoAlternate as AddPhotoAlternateIcon } from '@material-ui/icons/';
-import classnames from 'classnames';
-
-import { useCognito } from '@components/context/AuthContext';
-import config from '@config';
+import { Grid, makeStyles } from '@material-ui/core'
+import { AddPhotoAlternate as AddPhotoAlternateIcon } from '@material-ui/icons/'
+import classnames from 'classnames'
+import { useCognito } from '@components/context/AuthContext'
+import config from '@config'
 
 const useStyles = makeStyles(theme => ({
   circle: {
@@ -20,11 +19,14 @@ const useStyles = makeStyles(theme => ({
     },
   },
   noPictureContainer: {
+    position: 'absolute',
+    top: -30,
+    border: '4px solid #FFFFFF',
+    borderRadius: '50%',
     height: 120,
     width: 120,
-    top: -30,
-    position: 'absolute',
-    borderRadius: '50%',
+    backgroundColor: '#E5E7EB',
+    // filter: 'drop-shadow(-3px 3px 3px #00000050)',
     '&.small': {
       width: 40,
       height: 40,
@@ -32,8 +34,23 @@ const useStyles = makeStyles(theme => ({
       position: 'unset',
     },
   },
-  noPicture: {
-    background: theme.palette.grey[200],
+  // noPicture: {
+  //   backgroundColor: '#E5E7EB'
+  // },
+  noPictureImage: {
+    position: 'absolute',
+    // top: -8,
+    // left: '50%',
+    // transform: 'translateX(-50%)',
+    borderRadius: '50%',
+    width: 100,
+    height: 100,
+    objectFit: 'cover',
+    '.small &': {
+      width: 40,
+      height: 40,
+      position: 'unset',
+    },
   },
   image: {
     height: 120,
@@ -49,49 +66,42 @@ const useStyles = makeStyles(theme => ({
       position: 'unset',
     },
   },
-}));
+}))
 
 interface AvatarProps {
-  avatarUrl: string;
-  isDirectory?: boolean;
-  small?: boolean;
+  avatarUrl: string
+  isDirectory?: boolean
+  small?: boolean
 }
 
-// Avatar for Profile Photos
 const Avatar = ({ avatarUrl, small, isDirectory }: AvatarProps) => {
-  const classes = useStyles();
-  const { getAccessToken } = useCognito();
-  const token = getAccessToken();
-
-  const baseUrl = `${config.MENTE_SERENA_API_BASE_URL}/api/profile_picture`;
-
+  const classes = useStyles()
+  const { getAccessToken } = useCognito()
+  const token = getAccessToken()
+  const baseUrl = `${ config.MENTE_SERENA_API_BASE_URL }/api/profile_picture`
   const profileUrl = isDirectory
-    ? `${baseUrl}/directory/${encodeURIComponent(avatarUrl)}`
-    : `${baseUrl}/${encodeURIComponent(avatarUrl)}?authorization=${token}`;
+    ? `${ baseUrl }/directory/${ encodeURIComponent(avatarUrl) }`
+    : `${ baseUrl }/${ encodeURIComponent(avatarUrl) }?authorization=${ token }`
+  const noProfileUrl = '/images/user.png'
 
   return (
     <Grid
-      className={classnames(classes.circle, {
-        small,
-      })}
-    >
+      className={ classnames(classes.circle, { small }) }>
       {avatarUrl ? (
-        <img src={profileUrl || ''} className={classes.image} />
+        <img src={ profileUrl || noProfileUrl } className={ classes.image } />
       ) : (
         <Grid
-          className={classnames(classes.noPictureContainer, {
-            [classes.noPicture]: !Boolean(avatarUrl),
-            small,
-          })}
+          className={ classnames(classes.noPictureContainer, { [classes.noPicture]: !Boolean(avatarUrl), small }) }
           container
           justify="center"
           alignItems="center"
         >
-          <AddPhotoAlternateIcon color="disabled" fontSize={small ? 'small' : 'large'} />
+          <img src={ noProfileUrl } className={ classes.noPictureImage } />
+          {/* <AddPhotoAlternateIcon color="disabled" fontSize={ small ? 'small' : 'large' }/> */}
         </Grid>
       )}
     </Grid>
-  );
-};
+  )
+}
 
-export default Avatar;
+export default Avatar

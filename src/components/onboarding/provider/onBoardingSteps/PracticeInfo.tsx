@@ -5,7 +5,7 @@ import { AREA_OF_FOCUS, POPULATION_SERV, THEORETICAL_APPROACHES, EXPERTISE } fro
 
 // Notas:
 // - Eliminar tanto el componente como la importación de las constantes de expertises
-// - Estandarizar componente
+// - Evaluar optimización componente
 
 const useStyles = makeStyles(theme => ({
   inputContainer: {

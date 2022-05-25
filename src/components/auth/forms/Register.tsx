@@ -1,14 +1,13 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import { Grid, makeStyles, TextField, MenuItem, Typography, Collapse } from '@material-ui/core';
-import { useForm } from 'react-hook-form';
-
-import { SubmitButton, Header, SimpleCheckBox, Loading } from '@components/shared';
-import PasswordInput from './shared/PasswordInput';
-import { useCognito } from '@components/context/AuthContext';
-import CheckEmail from '@components/layout/CheckEmail';
-import { cognitoErrorHandling } from './utils/cognitoErrorHandling';
-import Alert from '@material-ui/lab/Alert';
+import { useState } from 'react'
+import Link from 'next/link'
+import { Grid, makeStyles, TextField, MenuItem, Typography, Collapse } from '@material-ui/core'
+import { useForm } from 'react-hook-form'
+import { SubmitButton, Header, SimpleCheckBox, Loading } from '@components/shared'
+import PasswordInput from './shared/PasswordInput'
+import { useCognito } from '@components/context/AuthContext'
+import CheckEmail from '@components/layout/CheckEmail'
+import { cognitoErrorHandling } from './utils/cognitoErrorHandling'
+import Alert from '@material-ui/lab/Alert'
 
 const useStyles = makeStyles(theme => ({
   inputContainer: {
@@ -61,15 +60,15 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.grey[400]
     },
   }
-}));
+}))
 
 interface SignUpFormValues {
-  email: string;
-  first_name: string;
-  password: string;
-  last_name: string;
-  is_provider: boolean;
-  terms_of_services: boolean;
+  email: string
+  first_name: string
+  password: string
+  last_name: string
+  is_provider: boolean
+  terms_of_services: boolean
 }
 
 const defaultValues = {
@@ -79,12 +78,11 @@ const defaultValues = {
   last_name: '',
   is_provider: false,
   terms_of_services: false,
-};
+}
 
 const Register = () => {
-  const classes = useStyles();
-  const [cognitoError, setCognitoError] = useState('');
-
+  const classes = useStyles()
+  const [cognitoError, setCognitoError] = useState('')
   const [showAlert, setShowAlert] = useState<boolean>(false)
   const [rol, setRol] = useState<string>('Selecciona tu rol')
   const rolHandler = (e) => {
@@ -106,14 +104,11 @@ const Register = () => {
     formState: { errors, isSubmitted, isSubmitSuccessful, isSubmitting },
   } = useForm<SignUpFormValues>({
     defaultValues,
-  });
+  })
 
-  const isTermsAccepted = watch('terms_of_services');
-
-  const { signUpWithEmail } = useCognito();
-
-  const checkEmail = isSubmitted && isSubmitSuccessful;
-
+  const isTermsAccepted = watch('terms_of_services')
+  const { signUpWithEmail } = useCognito()
+  const checkEmail = isSubmitted && isSubmitSuccessful
   const onSubmit = async submitValues => {
     // change the is_provider value for true or false
     if (submitValues.is_provider === 'Terapeuta') {
@@ -129,15 +124,15 @@ const Register = () => {
         submitValues.password,
         submitValues.is_provider,
         submitValues.terms_of_services
-      );
-      setCognitoError('');
+      )
+      setCognitoError('')
     } catch (err) {
-      setCognitoError(cognitoErrorHandling(err.code));
+      setCognitoError(cognitoErrorHandling(err.code))
     }
-  };
+  }
 
   if (checkEmail && !Boolean(cognitoError)) {
-    return <CheckEmail email={getValues('email')} />;
+    return <CheckEmail email={getValues('email')} />
   }
 
   return (
@@ -147,7 +142,7 @@ const Register = () => {
         <Grid className={classes.inputContainer} container item direction="column">
           <Collapse in={showAlert} classes={{entered: classes.warningContainer}}>
             <Alert severity="warning" classes={{root: classes.warningText}}>
-              Estas a punto de registrarte como <strong>{rol}</strong>
+              Estás a punto de registrarte como <strong>{rol}</strong>
             </Alert>
           </Collapse>
           <TextField
@@ -280,7 +275,7 @@ const Register = () => {
         </Typography>
       </Grid>
     </Grid>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register

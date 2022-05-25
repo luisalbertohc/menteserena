@@ -189,7 +189,7 @@ const EditProfileForms = ({ backToProfile, profile }: EditProfileFormsProps) => 
         {/* successful message */}
         {isSubmitted && isSubmitSuccessful && (
           <Typography className={ classes.infoBox } variant="body2" align="center" color="primary">
-            Se Guardo Exitosamente
+            Se Guardó Exitosamente
           </Typography>
         )}
 
