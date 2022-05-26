@@ -131,8 +131,8 @@ const defaultValues: FormValues = {
   medical_degree: '',
   office_phone: '',
   personal_phone: '',
-  phone_area_code: '1',
-  office_area_code: '1'
+  phone_area_code: '',
+  office_area_code: ''
 };
 
 const onSubmit = async (submitValues: FormValues, getSession: () => Promise<CognitoUserSession>) => {

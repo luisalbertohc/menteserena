@@ -4,6 +4,10 @@ import classnames from 'classnames'
 import { useCognito } from '@components/context/AuthContext'
 import config from '@config'
 
+// Notas:
+// - Depurar código
+// - Evaluar optimización del componente
+
 const useStyles = makeStyles(theme => ({
   circle: {
     width: 120,
@@ -28,10 +32,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#E5E7EB',
     // filter: 'drop-shadow(-3px 3px 3px #00000050)',
     '&.small': {
+      position: 'unset',
+      top: 'unset',
+      border: 'none',
       width: 40,
       height: 40,
-      top: 'unset',
-      position: 'unset',
     },
   },
   // noPicture: {
@@ -47,9 +52,9 @@ const useStyles = makeStyles(theme => ({
     height: 100,
     objectFit: 'cover',
     '.small &': {
-      width: 40,
-      height: 40,
       position: 'unset',
+      width: 35,
+      height: 35,
     },
   },
   image: {
@@ -61,9 +66,10 @@ const useStyles = makeStyles(theme => ({
     border: '4px solid #FFFFFF',
     objectFit: 'cover',
     '.small &': {
+      position: 'unset',
+      border: 'none',
       width: 40,
       height: 40,
-      position: 'unset',
     },
   },
 }))

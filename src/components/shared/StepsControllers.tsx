@@ -3,6 +3,10 @@ import { Button, CircularProgress, Grid, makeStyles, Typography } from '@materia
 import { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
 
+// Notas:
+// - Eliminar console logs y código en desuso
+// - Evaluar optimización del componente
+
 const useStyles = makeStyles(theme => ({
   buttonContainer: {
     width: '100%',

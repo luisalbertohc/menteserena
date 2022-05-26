@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getMessaging, getToken, onMessage, deleteToken, isSupported } from "firebase/messaging"
+import { getMessaging, getToken, onMessage, deleteToken } from "firebase/messaging"
 
 export async function analyticsLogEvents(event, params) {
   if (!isNode) {
