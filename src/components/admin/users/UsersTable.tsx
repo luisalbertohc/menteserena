@@ -32,7 +32,13 @@ const useStyles = makeStyles(theme => ({
   },
   tableContainer: {
     margin: theme.spacing(5, 0),
-  },
+    '& .MuiTableCell-root:nth-child(5)': {
+      minWidth: 130
+    },
+    '& .MuiTableCell-root:nth-child(6)': {
+      minWidth: 130
+    }
+  }
 }));
 
 const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
