@@ -17,7 +17,7 @@ const CheckOnboarding = ({ user, redirectTo, children }) => {
   // useEffect(() => {
   //   createToken()
   // }, [setTokenFound])
-  console.log(`userId`, user.user.id)
+  // console.log(`userId`, user.user.id)
   return <>{children}</>;
 };
 

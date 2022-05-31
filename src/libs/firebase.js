@@ -35,7 +35,7 @@ const sendToken = (currentToken, operationType , userId) => {
     "ip_address": "localhost"
   })
   
-  console.log(DATA)
+  // console.log(DATA)
 
   const REQUEST = {
     method: 'POST',
@@ -53,30 +53,30 @@ const sendToken = (currentToken, operationType , userId) => {
 export const getTokenFirebase = (setTokenFound, operationType, userId) => {
   return getToken(messaging, { vapidKey: 'BKpGmGaE2RpLDNa1Mbo4WJkUTOrHxZumHqL1x9KgJ_wzz9Z0X4pj9TihYQpxR3moiR4zFVPemp6ug-tNWASKpaA' }).then((currentToken) => {
     if (currentToken) {
-      console.log('current token for client: ', currentToken)
+      // console.log('current token for client: ', currentToken)
       setTokenFound(true)
       sendToken(currentToken, operationType, userId)
     } else {
-      console.log('No registration token available. Request permission to generate one.')
+      // console.log('No registration token available. Request permission to generate one.')
       setTokenFound(false)
     }
   }).catch((err) => {
     // catch error while creating client token
-    console.log('An error occurred while retrieving token. ', err)
+    // console.log('An error occurred while retrieving token. ', err)
   })
 }
 
 export const deleteTokenFirebase = () => {
   return deleteToken(messaging).then((currentToken) => {
     if (currentToken) {
-      console.log('Token deleted: ', currentToken)
+      // console.log('Token deleted: ', currentToken)
       setTokenFound(false)
     } else {
-      console.log('The token could not be deleted')
+      // console.log('The token could not be deleted')
       setTokenFound(true)
     }
   }).catch((err) => {
-    console.log('An error occurred while trying to remove the token. ', err)
+    // console.log('An error occurred while trying to remove the token. ', err)
   })
 }
 

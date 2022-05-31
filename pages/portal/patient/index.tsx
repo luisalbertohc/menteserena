@@ -22,8 +22,6 @@ const useStyles = makeStyles(theme => ({
 const PatientPortal = () => {
   const { isLoading, data: entity } = useUser();
   const classes = useStyles();
-  console.log('Entre como paciente')
-  console.log(`Estos son mis datos: ${entity}`)
   if (isLoading) {
     return <Loading />;
   }

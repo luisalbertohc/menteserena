@@ -153,7 +153,7 @@ const onSubmit = async (submitValues: FormValues, getSession: () => Promise<Cogn
       authorization: `bearer ${session.getAccessToken().getJwtToken()}`,
     },
   });
-  console.log(formData)
+  // console.log(formData)
 
   if (response.status === 200) {
     Router.push('/portal/provider');

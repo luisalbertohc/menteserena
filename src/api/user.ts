@@ -116,14 +116,14 @@ const signOutLog = async ({ signOut, getSession, router }: SignOutLogProps): Pro
       signOut();
       // Here must goes the unsubscribe of Firebase
       // firebase.deleteTokenFirebase()
-      console.log('useSignOutLog')
+      // console.log('useSignOutLog')
       router.push('/');
     }
   } catch (error) {
     signOut();
     // Here must goes the unsubscribe of Firebase
     // firebase.deleteTokenFirebase()
-    console.log('useSignOutLog')
+    // console.log('useSignOutLog')
     router.push('/');
   }
 };
@@ -131,6 +131,6 @@ const signOutLog = async ({ signOut, getSession, router }: SignOutLogProps): Pro
 export const useSignOut = (useMutationOptions?: UseMutationOptions): UseMutationResult => {
   const { getSession, signOut } = useCognito();
   const router = useRouter();
-  console.log('useSignOut')
+  // console.log('useSignOut')
   return useMutation(() => signOutLog({ getSession, signOut, router }), useMutationOptions ?? {});
 };

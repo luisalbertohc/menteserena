@@ -24,8 +24,6 @@ const ProviderPortalPage = () => {
     refetchOnWindowFocus: false,
   });
   const classes = useStyles();
-  console.log('Entre como terapeuta')
-  console.log(`Estos son mis datos: ${entity}`)
 
   if (isLoading) {
     return <Loading />;

@@ -60,7 +60,7 @@ const LoginForm = () => {
     try {
       await authContext.signInWithEmail(submitValues.email, submitValues.password);
       // firebase.getTokenFirebase()
-      console.log('login!')
+      // console.log('login!')
       router.push('/portal');
     } catch (err) {
       setCognitoError(cognitoErrorHandling(err.code));

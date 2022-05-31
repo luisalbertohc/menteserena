@@ -119,7 +119,7 @@ const StepsControllers = ({
         <Grid container>
           <Button variant="contained" fullWidth color="primary" onClick={handleNext}>
             Siguiente
-            {console.log(getValues())}
+            {/* {console.log(getValues())} */}
           </Button>
         </Grid>
       )}
