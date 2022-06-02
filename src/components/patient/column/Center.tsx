@@ -98,10 +98,12 @@ const Center = ({ openDirectoryTab }: CenterProps) => {
               Primeros Pasos
             </Typography>
             <Typography className={classes.details}>
-              Como ya completaste tu perfil, puedes explorar el Directorio de Terapeutas para seleccionar tu mejor opción y comunícate por medio del chat para hacer una cita.
-              <br/>
-              <br/>
-              Si ya cuentas con un terapeuta, comuníquese por medio del chat para solicitar su código y poder comenzar la videoconferencia.
+              <p>
+                Como ya completaste tu perfil, puedes explorar el Directorio de Terapeutas para seleccionar tu mejor opción y comunícate por medio del chat para hacer una cita.
+              </p>
+              <p>
+                Si ya cuentas con un terapeuta, comuníquese por medio del chat para solicitar su código y poder comenzar la videoconferencia.
+              </p>              
             </Typography>
             <Grid container justify="center" direction="column" className={classes.buttonContainer}>
               <Button variant="contained" color="primary" onClick={openDirectoryTab}>
