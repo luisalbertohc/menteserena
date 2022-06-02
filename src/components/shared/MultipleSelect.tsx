@@ -56,7 +56,7 @@ const MultipleSelect = ({
         <TextField
           {...params}
           label={label}
-          placeholder="Seleccione o añada las que apliquen"
+          placeholder="Seleccione según orden de preferencia"
           variant="outlined"
           error={Boolean(errors[name])}
           helperText={errors[name]?.message}

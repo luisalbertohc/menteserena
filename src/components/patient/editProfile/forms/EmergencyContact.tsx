@@ -1,7 +1,7 @@
 import { makeStyles, TextField } from '@material-ui/core';
 import { useFormContext } from 'react-hook-form';
 
-import { PhoneField } from '@components/shared';
+import { PhoneField, PhoneFieldPersonal } from '@components/shared';
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -54,7 +54,7 @@ const EmergencyContact = () => {
         }}
       />
 
-      <PhoneField errors={errors} register={register} defaultValue={getValues('contact_phone')} name="contact_phone" />
+      <PhoneFieldPersonal errors={errors} register={register} defaultValue={getValues('contact_phone')} name="contact_phone" />
     </>
   );
 };
