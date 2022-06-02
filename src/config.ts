@@ -19,7 +19,7 @@ const configByEnvironment: {
     MENTE_SERENA_API_BASE_URL: 'https://api-qa.tumenteserena.com',
   },
   [Environments.PROD]: {
-    MENTE_SERENA_API_BASE_URL: 'https://api-dev.tumenteserena.com',
+    MENTE_SERENA_API_BASE_URL: 'https://tumenteserena.com',
   },
 };
 

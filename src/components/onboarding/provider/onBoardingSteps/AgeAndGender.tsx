@@ -217,7 +217,7 @@ const AgeAndGender = () => {
                   {...params}
                   variant="outlined"
                   name="spoken_languages"
-                  label="Idiomas Hablados"
+                  label="Idiomas o Lenguajes"
                   placeholder="Seleccione las que apliquen"
                   InputLabelProps={{
                     shrink: true
