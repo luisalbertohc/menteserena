@@ -252,7 +252,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
           <Grid item classes={{ root: classes.dialogItem }} className={ classes.dialogTargetPopulation }>
             <PersonIcon style={{ color: theme.palette.secondary.main }}/>
             <Typography>
-              <strong>Población objetivo: </strong>
+              <strong>Poblaciones de interés: </strong>
               <span>{Boolean(populations_serve.length > 0) ? populations_serve?.join(', ') : '' }</span>
             </Typography>
           </Grid>
@@ -346,7 +346,7 @@ const ProfileView = ({ editProfile, actionProfile, profile }: EditProfileScreenP
         {/* rate and services */}
         <Grid item xs={12} sm={6} className={ `${classes.dialogContentLeft} ${classes.dialogItemMargin}` }>
           <Grid item>
-            <Typography className={ classes.dialogTitle }>Atenciones o servicios</Typography>
+            <Typography className={ classes.dialogTitle }>Servicios</Typography>
           </Grid>
           <Grid container item>
             {Boolean(rate_and_services?.length) && (

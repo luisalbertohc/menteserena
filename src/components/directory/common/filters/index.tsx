@@ -120,7 +120,7 @@ const Filters = ({ className, isPortalFilters }: FiltersProps) => {
       />
 
       <FilterSelect
-        label="Idiomas Hablados"
+        label="Idiomas o Lenguajes"
         options={LANGUAGES}
         className={filterSelectClasses}
         name="spoken_languages"
