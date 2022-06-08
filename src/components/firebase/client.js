@@ -85,16 +85,16 @@ export const tokenFirebase = {
         }
 
     },
-    delete: async function (user){
+    delete: async function (){
         const app = initializeApp(firebaseConfig);
         const messaging = getMessaging(app);
         return deleteToken(messaging).then(() => {
            
-            console.log(user);
-            let operationType = "unsubscribe";
-            dbToken(user.user, operationType, "for now this is a currentToken")
+            //console.log(user);
+            //let operationType = "unsubscribe";
+            //dbToken(user.user, operationType, "for now this is a currentToken")
             console.log('unsubscribe Token deleted.');
-            // ...
+            
           }).catch((err) => {
             console.log('Unable to delete token. ', err);
           });    

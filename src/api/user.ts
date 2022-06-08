@@ -112,13 +112,10 @@ export const usuario = () => {
 
 async function revokeFirebaseToken(){
   try{
-    //console.log(usuario());
-    await tokenFirebase.delete(usuario());
-    
+    await tokenFirebase.delete();
   }catch (error) {
     
-    console.log("Cannot set Token on User", error);
-    ///exit;
+    console.log("Cannot delete firebase Token on User", error);
   }
 }
 
@@ -136,7 +133,7 @@ const signOutLog = async ({ signOut, getSession, router }: SignOutLogProps): Pro
       }
     );
     if (response.status === 200) {
-      //console.log(token);
+      
       signOut();
       router.push('/');
     }
