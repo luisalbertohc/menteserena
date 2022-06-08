@@ -17,17 +17,3 @@ const firebaseApp = firebase.initializeApp( {
 
 console.log(firebaseApp);
 const messaging = firebase.messaging(firebaseApp);
-/*
-firebase.onBackgroundMessage(messaging, (payload) => {
-  console.log('Received background message ', payload)
-  // Customize notification here
-  const notificationTitle = payload.notification.title
-  const notificationOptions = {
-    body: 'Background Message body.',
-    icon: './images/mente_serena_single_logo.png'
-  };
-
-  self.registration.showNotification(notificationTitle,
-    notificationOptions);
-});
-*/

@@ -40,6 +40,7 @@ const PatientPortal = () => {
     return <UnauthorizedUser />;
   }
 
+  setToken(entity.user);
   return (
     <IdleTimerContext>
       <SocketContext>
