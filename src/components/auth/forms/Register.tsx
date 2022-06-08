@@ -229,7 +229,7 @@ const Register = () => {
             helperText={errors.last_name?.message}
           />
           {cognitoError && (
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Typography variant="caption" color="error">
                 {cognitoError}
               </Typography>
@@ -237,7 +237,7 @@ const Register = () => {
           )}
         </Grid>
 
-        <Grid container item justify="flex-start">
+        <Grid container item justifyContent="flex-start">
 
           <SimpleCheckBox
             name="terms_of_services"
@@ -259,14 +259,14 @@ const Register = () => {
         </Grid>
       </form>
 
-      <Grid container item justify="center">
+      <Grid container item justifyContent="center">
         <SubmitButton
           label={isSubmitting ? <Loading /> : `Crear Cuenta`}
           onClick={handleSubmit(onSubmit)}
           disabled={!isTermsAccepted}
         />
       </Grid>
-      <Grid container item justify="center">
+      <Grid container item justifyContent="center">
         <Typography className={classes.login} variant="body2">
           Ya tiene cuenta?{' '}
           <Link passHref href="/auth/login">

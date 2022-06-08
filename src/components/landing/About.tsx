@@ -57,9 +57,9 @@ const AboutUs = () => {
 
   return (
     <Container id="about">
-      <Grid container justify="center" alignItems="center" className={classes.container}>
+      <Grid container justifyContent="center" alignItems="center" className={classes.container}>
         <Hidden smDown>
-          <Grid container item md={6} sm={12} justify="flex-end" className={classes.imageContainer}>
+          <Grid container item md={6} sm={12} justifyContent="flex-end" className={classes.imageContainer}>
             <img src="/images/landing/about/aboutUs.svg" alt="mente-serena" />
           </Grid>
         </Hidden>
@@ -67,7 +67,7 @@ const AboutUs = () => {
           <Typography className={classes.title}>¿Qué Hacemos?</Typography>
           <Typography className={classes.header}>Actualizamos los servicios clínicos a la tecnología</Typography>
           <Hidden mdUp>
-            <Grid container item sm={12} justify="center" className={classes.imageContainer}>
+            <Grid container item sm={12} justifyContent="center" className={classes.imageContainer}>
               <img src="/images/landing/about/aboutUs.svg" alt="mente-serena" />
             </Grid>
           </Hidden>

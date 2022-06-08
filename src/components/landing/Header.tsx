@@ -68,7 +68,7 @@ const Header = () => {
 
   return (
     <Container>
-      <Grid container className={classes.hero} justify="center" alignItems="center">
+      <Grid container className={classes.hero} justifyContent="center" alignItems="center">
         <Grid container item md={6} sm={12} className={classes.detailsContainer}>
           <Typography variant="h2" className={classes.title}>
             Mente Serena
@@ -91,7 +91,7 @@ const Header = () => {
             </Button>
           </Grid>
         </Grid>
-        <Grid container className={classes.imageContainer} item md={6} sm={12} justify="flex-end">
+        <Grid container className={classes.imageContainer} item md={6} sm={12} justifyContent="flex-end">
           <Hidden smDown>
             <img src="/images/landing/header/header_placeholder_desktop.svg" alt="mente-serena" />
           </Hidden>

@@ -53,12 +53,12 @@ const RateOfService = ({ rateAndServices }: RateOfServiceProps) => {
       <Grid className={classes.container}>
         {rateAndServices.map((rate, idx) => {
           return (
-            <Grid container alignItems="center" justify="space-between" className={classes.card} key={idx}>
+            <Grid container alignItems="center" justifyContent="space-between" className={classes.card} key={idx}>
               <Grid>
                 <Typography className={classes.service}>{rate.session_type}</Typography>
                 <Typography className={classes.minutes}>{rate.session_length} minutos</Typography>
               </Grid>
-              <Grid container alignItems="center" justify="center" className={classes.price}>
+              <Grid container alignItems="center" justifyContent="center" className={classes.price}>
                 <Typography>$ {rate.cost} USD</Typography>
               </Grid>
             </Grid>

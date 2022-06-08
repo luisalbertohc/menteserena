@@ -132,14 +132,14 @@ const FullScreenVideo = ({
           lg={!isOpenChat ? 12 : 8}
           xs={12}
           alignItems="center"
-          justify="center"
+          justifyContent="center"
         >
-          <Grid item container xs={12} justify="center">
+          <Grid item container xs={12} justifyContent="center">
             <VideoCallPlayer audioTrack={localAudioTrack} videoTrack={localVideoTrack} isLocalTrack />
           </Grid>
           {remoteUsers.map(({ uid, audioTrack, videoTrack }) => (
             // For MVP: UI is built for 2 users only for now
-            <Grid key={uid} item container xs={12} justify="center">
+            <Grid key={uid} item container xs={12} justifyContent="center">
               <VideoCallPlayer audioTrack={audioTrack} videoTrack={videoTrack} />
             </Grid>
           ))}

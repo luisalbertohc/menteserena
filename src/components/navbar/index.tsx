@@ -75,7 +75,8 @@ const NavBar = () => {
   return (
     <Grid alignItems="center" container className={classes.navBar}>
       <Container maxWidth="lg">
-        <Grid container alignItems="center" justify="space-between" className={classes.container}>
+      
+        <Grid container alignItems="center" justifyContent="space-between" className={classes.container}>
           <Hidden smDown>
             <img src="/images/mente_serena_logo.svg" alt="mente-serena" />
           </Hidden>
@@ -83,7 +84,7 @@ const NavBar = () => {
             <img src="/images/mente_serena_single_logo.svg" alt="mente-serena" />
           </Hidden>
           <Hidden smDown>
-            <Grid container item justify="flex-end" alignItems="center">
+            <Grid container item justifyContent="flex-end" alignItems="center">
               <Typography onClick={signOut} className={classes.logout}>
                 Cerrar sesión
               </Typography>

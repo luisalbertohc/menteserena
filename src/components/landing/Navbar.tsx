@@ -86,7 +86,7 @@ const Navbar = () => {
           </Hidden>
           <Hidden smDown>
             <Grid container alignItems="center">
-              <Grid container justify="flex-end">
+              <Grid container justifyContent="flex-end">
                 <Link href="/#feature" passHref>
                   <a className={classes.link}>Funcionalidades</a>
                 </Link>

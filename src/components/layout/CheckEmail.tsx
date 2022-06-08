@@ -51,13 +51,13 @@ const useStyles = makeStyles(theme => ({
 const CheckEmail = ({ email }: { email: string }) => {
   const classes = useStyles();
   return (
-    <Grid container justify="center" alignItems="center" direction="column">
+    <Grid container justifyContent="center" alignItems="center" direction="column">
       <Grid item>
         <img src="/images/checkEmail.svg" alt="email" />
       </Grid>
       <Grid item>
         <Typography className={classes.title}>Verifica tu correo electrónico.</Typography>
-        <Grid container justify="center" alignItems="center" className={classes.buttonContainer}>
+        <Grid container justifyContent="center" alignItems="center" className={classes.buttonContainer}>
           <Button 
             variant="contained"
             color="primary"

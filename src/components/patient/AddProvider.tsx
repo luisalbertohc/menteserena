@@ -15,7 +15,7 @@ interface AddProviderProps {
 const AddProvider = ({ openMessageTab }: AddProviderProps) => {
   const classes = useStyles();
   return (
-    <Grid container justify="center" alignItems="center" className="center">
+    <Grid container justifyContent="center" alignItems="center" className="center">
       <ProviderCodeInput className={classes.container} openMessageTab={openMessageTab} />
     </Grid>
   );

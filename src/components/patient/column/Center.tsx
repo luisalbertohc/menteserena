@@ -84,7 +84,7 @@ const Center = ({ openDirectoryTab }: CenterProps) => {
         <MessagesList chatList={chatList} chatMessage={chatMessage} setChatMessage={setChatMessage} />
       ) : (
         <Grid className="center">
-          <Grid container justify="center" item className={classes.imagecontainer}>
+          <Grid container justifyContent="center" item className={classes.imagecontainer}>
             <Hidden smDown>
               <img src="/images/homescreen/placeholder.svg" alt="mente-serena" />
             </Hidden>
@@ -105,7 +105,7 @@ const Center = ({ openDirectoryTab }: CenterProps) => {
                 Si ya cuentas con un terapeuta, comuníquese por medio del chat para solicitar su código y poder comenzar la videoconferencia.
               </p>              
             </Typography>
-            <Grid container justify="center" direction="column" className={classes.buttonContainer}>
+            <Grid container justifyContent="center" direction="column" className={classes.buttonContainer}>
               <Button variant="contained" color="primary" onClick={openDirectoryTab}>
                 Ver Directorio
               </Button>

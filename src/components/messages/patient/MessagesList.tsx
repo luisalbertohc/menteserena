@@ -42,7 +42,7 @@ const MessagesList = ({ chatList, chatMessage, setChatMessage }: MessageListProp
         />
       ) : (
         <Grid className={classes.listContainer}>
-          <Grid container alignItems="center" justify="space-between" className={classes.headerContainer}>
+          <Grid container alignItems="center" justifyContent="space-between" className={classes.headerContainer}>
             <Typography className={classes.title} color="primary">
               Mensajes
             </Typography>

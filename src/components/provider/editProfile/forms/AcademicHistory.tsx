@@ -277,7 +277,7 @@ const AcademicHistory = () => {
         })}
 
         {/* next button */}
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           <Button variant="contained" color="primary" onClick={() => append({ degree: '', institution: '', year: null, })}>
             <AddIcon />
             Añadir

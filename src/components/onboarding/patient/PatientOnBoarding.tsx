@@ -93,11 +93,11 @@ const PatientOnboardingScreen = () => {
   return (
     <IdleTimerContext>
       <OnBoardingLayout>
-        <Grid container justify="center" direction="column">
+        <Grid container justifyContent="center" direction="column">
           <Grid className={classes.indicatorContainer}>
             <StepsIndicator step={step} steps={STEPS} />
           </Grid>
-          <Grid className={classes.root} container justify="center">
+          <Grid className={classes.root} container justifyContent="center">
             <FormProvider {...formMethods}>
               <SelectedStepForm step={step} />
               <StepsControllers

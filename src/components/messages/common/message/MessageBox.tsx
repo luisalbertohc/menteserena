@@ -74,7 +74,7 @@ const MessageBox = ({ chatId, providerId, isVideoScreen, joinVideoCall }: Messag
 
         return (
           <ListItem key={idx}>
-            <Grid container justify={isProvider ? 'flex-end' : 'flex-start'}>
+            <Grid container justifyContent={isProvider ? 'flex-end' : 'flex-start'}>
               <Grid item xs={12}>
                 <ListItemText className={classes.timeText} secondary={format(new Date(utcDate), 'h:mm aaa')} />
               </Grid>
@@ -99,7 +99,7 @@ const MessageBox = ({ chatId, providerId, isVideoScreen, joinVideoCall }: Messag
       {Boolean(selectedImage) && (
         <Dialog open onClose={() => setSelectedImage(null)} maxWidth="md">
           <DialogContent>
-            <Grid container justify="flex-end">
+            <Grid container justifyContent="flex-end">
               <CloseIcon onClick={() => setSelectedImage(null)} />
             </Grid>
             <img className={classes.imagePreview} src={selectedImage} alt="Mente-Serena" />

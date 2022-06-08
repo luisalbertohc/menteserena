@@ -68,7 +68,7 @@ const RateAndService = ({ rateAndServices }: RateAndServiceProps) => {
       <Grid container item>
         {rateAndServices.map((service, index) => {
           return (
-            <Grid container item justify="space-between" alignItems="center" className={ classes.serviceContainer } key={ index }>
+            <Grid container item justifyContent="space-between" alignItems="center" className={ classes.serviceContainer } key={ index }>
 
               <Grid container item direction="column" className={ classes.serviceItem }>
 

@@ -113,7 +113,7 @@ const ProviderCodeInput = ({ openMessageTab, className }: ProviderCodeInputProps
           Su restricción del chat ha sido eliminada.
         </Typography>
       )}
-      <Grid container justify="center" direction="column" className={`${classes.buttonContainer} subscribe`}>
+      <Grid container justifyContent="center" direction="column" className={`${classes.buttonContainer} subscribe`}>
         <Button
           disabled={isSubmitting || Boolean(Object.keys(errors).length)}
           variant="contained"

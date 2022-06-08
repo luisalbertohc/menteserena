@@ -87,7 +87,7 @@ const AcademicHistory = ({ academicHistory }: AcademicHistoryProps) => {
       <Grid container item>
         {academicHistoryOrdered.map((academic, index) => {
           return (
-            <Grid container item justify="space-between" alignItems="center" className={ classes.academicContainer } key={ index }>
+            <Grid container item justifyContent="space-between" alignItems="center" className={ classes.academicContainer } key={ index }>
 
               <Grid container item direction="column" className={ classes.academicItem }>
 

@@ -50,12 +50,12 @@ const FEATURES = [
 const Feature = () => {
   const classes = useStyles();
   return (
-    <Grid id="feature" container justify="flex-start" className={classes.container}>
+    <Grid id="feature" container justifyContent="flex-start" className={classes.container}>
       <Container>
         <Typography variant="h3" className={classes.title}>
           Nuestras Funcionalidades
         </Typography>
-        <Grid container justify="space-between" className={classes.featureContainer}>
+        <Grid container justifyContent="space-between" className={classes.featureContainer}>
           {FEATURES.map(feature => {
             return (
               <Grid key={feature.title} className={classes.feature} item>

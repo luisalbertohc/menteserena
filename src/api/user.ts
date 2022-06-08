@@ -5,7 +5,9 @@ import { Entity } from '@types';
 import { useQuery, UseQueryOptions, useMutation, UseMutationOptions, UseMutationResult } from 'react-query';
 import { useCognito, GetSession } from '@components/context/AuthContext';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
-import * as firebase from '@libs/firebase'
+
+import { tokenFirebase } from '@components/firebase/client'; 
+import { exit } from 'process';
 
 async function getUser({
   queryKey: [_key, { getSession, getAttributes }],
@@ -99,10 +101,31 @@ interface SignOutLogProps {
   router: NextRouter;
 }
 
+export const usuario = () => {
+  
+  const user = useUser().data;
+  setTimeout(function () {
+    
+  }, 500);
+  return user;
+}
+
+async function revokeFirebaseToken(){
+  try{
+    //console.log(usuario());
+    await tokenFirebase.delete(usuario());
+    
+  }catch (error) {
+    
+    console.log("Cannot set Token on User", error);
+    ///exit;
+  }
+}
+
 const signOutLog = async ({ signOut, getSession, router }: SignOutLogProps): Promise<void> => {
   try {
+    await revokeFirebaseToken();
     const session = await getSession();
-
     const response = await api.post(
       '/api/user/log_out',
       {},
@@ -113,24 +136,20 @@ const signOutLog = async ({ signOut, getSession, router }: SignOutLogProps): Pro
       }
     );
     if (response.status === 200) {
+      //console.log(token);
       signOut();
-      // Here must goes the unsubscribe of Firebase
-      // firebase.deleteTokenFirebase()
-      // console.log('useSignOutLog')
       router.push('/');
     }
   } catch (error) {
+    
     signOut();
-    // Here must goes the unsubscribe of Firebase
-    // firebase.deleteTokenFirebase()
-    // console.log('useSignOutLog')
     router.push('/');
   }
 };
 
 export const useSignOut = (useMutationOptions?: UseMutationOptions): UseMutationResult => {
+  //console.log(usuario());
   const { getSession, signOut } = useCognito();
   const router = useRouter();
-  // console.log('useSignOut')
   return useMutation(() => signOutLog({ getSession, signOut, router }), useMutationOptions ?? {});
 };

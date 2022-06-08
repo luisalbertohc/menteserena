@@ -27,15 +27,15 @@ const PracticeInfo = () => {
   const { control, getValues } = useFormContext()
 
   return (
-    <Grid container direction="column" justify="center" alignItems="center">
+    <Grid container direction="column" justifyContent="center" alignItems="center">
 
-      <Grid container item justify="center" direction="column" alignItems="center">
+      <Grid container item justifyContent="center" direction="column" alignItems="center">
         <Typography className={ classes.title } color="primary">
           Información de la Práctica
         </Typography>
       </Grid>
 
-      <Grid className={ classes.inputContainer } container item direction="column" justify="center">
+      <Grid className={ classes.inputContainer } container item direction="column" justifyContent="center">
 
         {/* area of focus */}
         <MultipleSelect

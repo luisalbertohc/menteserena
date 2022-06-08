@@ -7,9 +7,19 @@ import { withAuthenticationRequired } from '@components/context/AuthContext';
 import { SocketContext, IdleTimerContext } from '@components/context';
 import { UnauthorizedUser } from '@components/layout';
 
-// Notas:
-// - Eliminar console logs
-// - Depurar código
+import { tokenFirebase } from '@components/firebase/client'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+async function setToken( user ) {
+  try{
+    await tokenFirebase.init(user); 
+    await tokenFirebase.listen();
+
+  }catch (error) {
+    console.log("Cannot set Token on User", error);
+  }
+}
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -35,6 +45,7 @@ const PatientPortal = () => {
       <SocketContext>
         <CheckOnboarding user={entity} redirectTo="/portal/patient/onboarding">
           <Container maxWidth="lg" className={classes.container}>
+            <ToastContainer />
             <HomeScreen />
           </Container>
         </CheckOnboarding>

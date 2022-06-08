@@ -80,9 +80,9 @@ const AgeAndGender = () => {
   const { getValues, control, register, formState: { errors }, } = useFormContext()
 
   return (
-    <Grid container direction="column" justify="center" alignItems="center" item>
+    <Grid container direction="column" justifyContent="center" alignItems="center" item>
 
-      <Grid container item justify="center" direction="column" alignItems="center">
+      <Grid container item justifyContent="center" direction="column" alignItems="center">
         <Typography className={classes.title} color="primary">
           ¡Bienvenido a Mente Serena!
         </Typography>
@@ -91,7 +91,7 @@ const AgeAndGender = () => {
         </Typography>
       </Grid>
 
-      <Grid className={classes.inputContainer} container item direction="column" justify="center">
+      <Grid className={classes.inputContainer} container item direction="column" justifyContent="center">
 
         {/* date of birth */}
         <DatePickerField

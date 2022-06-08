@@ -148,7 +148,7 @@ const ConversationPreviewCard = ({
     : ''
 
   return (
-    <Grid container justify="space-between" className={ classes.cardContainer } onClick={ setChatMessage }>
+    <Grid container justifyContent="space-between" className={ classes.cardContainer } onClick={ setChatMessage }>
       <Grid className={ classes.userInfo } item>
         <Grid className={ classes.imageContainer }>
           <img src={ user.profile_picture ? profileUrl : noProfileUrl } className={ classes.image } />

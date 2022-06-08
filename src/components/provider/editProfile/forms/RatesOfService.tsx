@@ -209,7 +209,7 @@ const RatesOfService = () => {
         )
       })}
 
-      <Grid container justify="center" className={ classes.addButton }>
+      <Grid container justifyContent="center" className={ classes.addButton }>
         <Button variant="contained" color="primary" onClick={ () => append({ cost: null, sessionType: '', sessionLength: 0, isDisable: false }) }>
           <AddIcon />
           Añadir

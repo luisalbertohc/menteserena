@@ -18,6 +18,9 @@ const PortalPage = () => {
   }
 
   if (user && user.user_type) {
+
+    console.log(user);
+    //setToken(user.id);
     router.push(entity.user.user_type === 'PATIENT' ? '/portal/patient' : '/portal/provider');
     return null;
   }

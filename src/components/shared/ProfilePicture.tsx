@@ -134,13 +134,13 @@ const ProfilePicture = ({ isProfileView }: ProfilePictureProps) => {
   }, [profile_picture])
 
   return (
-    <Grid container item direction="column" justify="center" className={ classes.container }>
+    <Grid container item direction="column" justifyContent="center" className={ classes.container }>
 
-      <Grid item container justify="center" className={ classnames({ [classes.imageContainer]: isProfileView }) }>
-        <Grid container alignItems="center" justify="center" className={classes.circle}>
+      <Grid item container justifyContent="center" className={ classnames({ [classes.imageContainer]: isProfileView }) }>
+        <Grid container alignItems="center" justifyContent="center" className={classes.circle}>
           {profile_picture && objectUrl ? (
             <>
-              <Grid container justify="center" alignItems="center" className={ classes.removeButton } onClick={ () => { setValue('profile_picture', '') }}>
+              <Grid container justifyContent="center" alignItems="center" className={ classes.removeButton } onClick={ () => { setValue('profile_picture', '') }}>
                 <CloseIcon />
               </Grid>
               <img id="frame" src={ objectUrl || profile_picture } className={ classes.profileImage }/>
@@ -165,7 +165,7 @@ const ProfilePicture = ({ isProfileView }: ProfilePictureProps) => {
             </>
           )}
         </Grid>
-        <Grid container item justify="center" className={ classnames({[classes.details]: true, [classes.smallDetails]: isProfileView }) }>
+        <Grid container item justifyContent="center" className={ classnames({[classes.details]: true, [classes.smallDetails]: isProfileView }) }>
           <Typography>Sube tu foto de perfil aquí </Typography>
           <Typography>(Tamaño recomendado de al menos 200 x 200)</Typography>
         </Grid>

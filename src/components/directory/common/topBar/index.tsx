@@ -77,8 +77,8 @@ const TopBar = ({ mutate, clearFilters }) => {
 
   return (
     <Collapse in={collapsed} collapsedHeight={70} className={classes.filterContainer}>
-      <Grid container component={Container} justify="flex-end" wrap="nowrap">
-        <Grid container item justify="flex-end">
+      <Grid container component={Container} justifyContent="flex-end" wrap="nowrap">
+        <Grid container item justifyContent="flex-end">
           <TextField
             variant="outlined"
             InputProps={{
@@ -102,7 +102,7 @@ const TopBar = ({ mutate, clearFilters }) => {
       <Grid container className={classes.fieldsContainer}>
         <Container>
           <Filters />
-          <Grid container justify="center" className={classes.buttonContainer}>
+          <Grid container justifyContent="center" className={classes.buttonContainer}>
             <Button color="primary" variant="contained" onClick={handleSubmit(mutate)}>
               Filtrar
             </Button>

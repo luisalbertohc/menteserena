@@ -71,7 +71,7 @@ const Center = ({ provider }: CenterProps) => {
         <PatientList chatList={chatList} />
       ) : (
         <Grid className={`${classes.infoContainer} center`}>
-          <Grid container justify="center" item>
+          <Grid container justifyContent="center" item>
             <img src="/images/homescreen/placeholder.svg" alt="mente-serena" />
           </Grid>
 

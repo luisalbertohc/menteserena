@@ -64,13 +64,13 @@ const RatesOfService = () => {
   const { fields, append, remove } = useFieldArray<RateAndServiceValues>({ name: 'rate_and_services' });
 
   return (
-    <Grid container justify="center" direction="column" alignItems="center">
-      <Grid container item justify="center" alignItems="center" direction="column">
+    <Grid container justifyContent="center" direction="column" alignItems="center">
+      <Grid container item justifyContent="center" alignItems="center" direction="column">
         <Typography className={classes.title} color="primary">
           Seguro de Salud
         </Typography>
       </Grid>
-      <Grid className={classes.inputContainer} container item direction="column" justify="center">
+      <Grid className={classes.inputContainer} container item direction="column" justifyContent="center">
         <MultipleSelect
           name="health_cares"
           options={HEALTH_PLANS}
@@ -79,14 +79,14 @@ const RatesOfService = () => {
           defaultValue={getValues('health_cares')}
         />
       </Grid>
-      <Grid container item justify="center" alignItems="center">
+      <Grid container item justifyContent="center" alignItems="center">
         <Typography className={classes.title} color="primary">
           Honorario Sin Seguro de Salud
         </Typography>
       </Grid>
       {fields.map((item, index) => {
         return (
-          <Grid key={item.id} container justify="center" wrap="nowrap" className={classes.inputContainer}>
+          <Grid key={item.id} container justifyContent="center" wrap="nowrap" className={classes.inputContainer}>
             <TextField
               disabled={item?.isDisable}
               label="Tipo de Sesión"
@@ -156,7 +156,7 @@ const RatesOfService = () => {
           </Grid>
         );
       })}
-      <Grid container justify="center" className={classes.addButton}>
+      <Grid container justifyContent="center" className={classes.addButton}>
         <Button
           onClick={() =>
             append({

@@ -48,7 +48,7 @@ const CopyClipboard = ({ providerCode }: CopyClipboardProps) => {
       </Typography>
       <Grid
         container
-        justify="center"
+        justifyContent="center"
         alignItems="center"
         className={classnames(classes.copyText, {
           isCopied,

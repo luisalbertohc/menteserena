@@ -50,7 +50,7 @@ const Credentials = ({ academicHistory }: CredentialsProps) => {
         {academicHistory.map((academic, idx) => {
           return (
             <Grid container alignItems="center" className={classes.card} key={idx}>
-              <Grid container alignItems="center" justify="center" className={classes.square}>
+              <Grid container alignItems="center" justifyContent="center" className={classes.square}>
                 <SchoolIcon />
               </Grid>
               <Grid>

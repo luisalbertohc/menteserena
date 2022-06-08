@@ -21,12 +21,12 @@ const AuthLayout = ({ children }) => {
 
   return (
     <Container>
-      <Grid container alignItems="center" justify="center">
-        <Grid container className={classes.formContainer} item md={6} sm={12} alignItems="center" justify="center">
+      <Grid container alignItems="center" justifyContent="center">
+        <Grid container className={classes.formContainer} item md={6} sm={12} alignItems="center" justifyContent="center">
           {children}
         </Grid>
         <Hidden mdDown>
-          <Grid className={classes.imageContainer} container item xs={6} justify="flex-end">
+          <Grid className={classes.imageContainer} container item xs={6} justifyContent="flex-end">
             <img src="/images/register_placeholder.svg" alt="mente-serena" />
           </Grid>
         </Hidden>

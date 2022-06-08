@@ -136,14 +136,14 @@ const NewPassword = () => {
         </>
       )}
 
-      <Grid container item justify="center">
+      <Grid container item justifyContent="center">
         <SubmitButton
           label={isPasswordReseted && !Boolean(cognitoError) ? 'Volver a Iniciar sesión' : `Guardar Contraseña`}
           onClick={handleSubmit(onSubmit)}
         />
       </Grid>
       {!isPasswordReseted && (
-        <Grid container item justify="center">
+        <Grid container item justifyContent="center">
           <Typography className={classes.login} variant="body2">
             <Link passHref href={`/auth/login?email=${encodeURIComponent(getValues('email') || '')}`}>
               <a className={classes.link}>Volver a Iniciar sesión</a>

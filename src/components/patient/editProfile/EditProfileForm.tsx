@@ -119,7 +119,7 @@ const EditProfileForm = ({ backToProfile, patient }: EditProfileFormProps) => {
         <Typography className={classes.subHeader}>Actualiza tu Información Personal</Typography>
       </Grid>
       <FormProvider {...formMethods}>
-        <Grid container justify="space-between">
+        <Grid container justifyContent="space-between">
           <Grid container item md={6} sm={12} className={classes.inputsContainer}>
             <PersonalInformation />
           </Grid>

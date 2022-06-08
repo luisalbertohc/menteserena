@@ -7,9 +7,19 @@ import { SocketContext, IdleTimerContext } from '@components/context';
 import { withAuthenticationRequired } from '@components/context/AuthContext';
 import { UnauthorizedUser } from '@components/layout';
 
-// Notas:
-// - Eliminar console logs
-// - Depurar código
+import { tokenFirebase } from '@components/firebase/client'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+async function setToken( user ) {
+  try{
+    await tokenFirebase.init(user); 
+    await tokenFirebase.listen();
+
+  }catch (error) {
+    console.log("Cannot set Token on User", error);
+  }
+}
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -25,20 +35,26 @@ const ProviderPortalPage = () => {
   });
   const classes = useStyles();
 
+  //tokenFirebase.delete();
   if (isLoading) {
     return <Loading />;
   }
 
   if (!entity.user.user_active) {
+
     return <UnauthorizedUser />;
   }
+ 
+  //console.log(entity.user)
+  setToken(entity.user);
 
   return (
     <IdleTimerContext>
       <SocketContext>
         <CheckOnboarding user={entity} redirectTo="/portal/provider/onboarding">
           <Container maxWidth="lg" className={classes.container}>
-            <HomeScreen />
+          <ToastContainer />
+          <HomeScreen/>
           </Container>
         </CheckOnboarding>
       </SocketContext>

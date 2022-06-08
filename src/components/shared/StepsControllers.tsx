@@ -83,7 +83,7 @@ const StepsControllers = ({
   return (
     <Grid container className={classes.buttonContainer}>
       {step >= 1 ? (
-        <Grid container justify="space-between" spacing={1}>
+        <Grid container justifyContent="space-between" spacing={1}>
           <Grid item xs={6}>
             <Button
               className={`${classes.smallButton} backButton`}

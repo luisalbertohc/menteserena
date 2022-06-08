@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 const ErrorPage = () => {
   const classes = useStyles();
   return (
-    <Grid container justify="center" alignItems="center" direction="column">
+    <Grid container justifyContent="center" alignItems="center" direction="column">
       <Grid item className={classes.iconContainer}>
         <SentimentVeryDissatisfiedIcon color="error" />
       </Grid>

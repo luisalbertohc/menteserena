@@ -217,7 +217,7 @@ const UsersTable = ({ token }) => {
       label: 'Active',
       options: {
         customBodyRender: (value: boolean) => {
-          return !value ? 'Yes' : 'No' // flip the value since we're showing as 'active'
+          return !value ? 'Yes' : 'No'  //flip the value since we're showing as 'active'
         }
       }
     },
@@ -263,7 +263,7 @@ const UsersTable = ({ token }) => {
   ]
 
   return (
-    <Grid container alignItems="center" justify="center">
+    <Grid container alignItems="center" justifyContent="center">
 
       <Container className={ classes.tableContainer }>
         {selectedUserLogs ? (

@@ -70,7 +70,7 @@ const ActionController = ({ localAudioTrack, localVideoTrack, leave, isOpenChat,
   };
 
   return (
-    <Grid className={classes.root} container justify="space-around">
+    <Grid className={classes.root} container justifyContent="space-around">
       <div className={classes.endCallBtn}>
         <IconButton onClick={leave} size="medium">
           <CallEndIcon className={classes.icon} />

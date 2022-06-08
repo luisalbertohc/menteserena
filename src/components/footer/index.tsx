@@ -50,7 +50,7 @@ const Footer = () => {
           &copy; Mente Serena {new Date().getFullYear()}
         </Typography>
       </Grid>
-      <Grid container item xs={6} justify="flex-end" className={classes.terms}>
+      <Grid container item xs={6} justifyContent="flex-end" className={classes.terms}>
         <Grid item>
           <Typography className={classes.text} variant="body2">
             Privacy Policy

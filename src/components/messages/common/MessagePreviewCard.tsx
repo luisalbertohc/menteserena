@@ -67,7 +67,7 @@ const MessagePreviewCard = ({ messageData, setIsOpenMessage }: MessagePreviewCar
   return (
     <Grid
       container
-      justify="space-between"
+      justifyContent="space-between"
       className={classes.cardContainer}
       onClick={() => setIsOpenMessage(messageData)}
     >

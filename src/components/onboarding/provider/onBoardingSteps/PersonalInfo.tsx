@@ -92,8 +92,8 @@ const PersonalInfo = () => {
   const smallSize = useMediaQuery('(min-width: 414px)') // verify that the size is greater than 414px
 
   return (
-    <Grid container direction="column" justify="center" alignItems="center" item>
-      <Grid className={classes.inputContainer} container item direction="column" justify="center">
+    <Grid container direction="column" justifyContent="center" alignItems="center" item>
+      <Grid className={classes.inputContainer} container item direction="column" justifyContent="center">
 
         <Grid container direction="column" alignItems="center">
           <Typography className={classes.title} color="primary">
@@ -179,7 +179,7 @@ const PersonalInfo = () => {
         {/* academic histories */}
         {fields.map((item, index) => {
           return (
-            <Grid key={ item.id } container justify="center" wrap="nowrap" className={ classes.inputContainer }>
+            <Grid key={ item.id } container justifyContent="center" wrap="nowrap" className={ classes.inputContainer }>
 
               {/* degree */}
               <TextField
@@ -265,7 +265,7 @@ const PersonalInfo = () => {
         })}
 
         {/* next button */}
-        <Grid container justify="center">
+        <Grid container justifyContent="center">
           <Button onClick={() => append({ degree: '', institution: '', year: null, })}>
             <AddIcon />
             Añadir

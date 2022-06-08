@@ -86,7 +86,7 @@ const NewsList = () => {
 
         return (
           <Grid key={index} container>
-            <Grid container justify="space-between" className={classes.cardContainer}>
+            <Grid container justifyContent="space-between" className={classes.cardContainer}>
               <Grid className={classes.userInfo} item>
                 <Grid className={classes.imageContainer}>
                   <img src={`/images/homescreen/${imageSrc}`} alt="mente-serena" className={classes.image} />

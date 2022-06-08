@@ -172,13 +172,13 @@ const ProviderOnboardingScreen = () => {
   return (
     <IdleTimerContext>
       <OnBoardingLayout>
-        <Grid container justify="center" direction="column">
+        <Grid container justifyContent="center" direction="column">
           <Grid className={classes.indicatorContainer}>
             <StepsIndicator step={step} steps={STEPS} />
           </Grid>
           <FormProvider {...formMethods}>
             <SelectedStepForm step={step} />
-            <Grid className={classes.root} container justify="center">
+            <Grid className={classes.root} container justifyContent="center">
               <StepsControllers
                 step={step}
                 setStep={setStep}

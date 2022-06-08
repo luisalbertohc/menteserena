@@ -14,6 +14,9 @@ import LandingPageNavBar from '@components/landing/Navbar';
 import store from '@store/index';
 import AuthProvider from '@components/context/AuthContext';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
+
 const description =
   'Mantén tu salud mental donde quieras y cuando quieras producto puertorriqueño que actualiza la práctica clínica a los tiempos tecnológicos en los que vivimos. Fomentamos una comunidad que prioriza la salud mental, a la vez que los hace más accesibles, cool y libres de estigma.';
 
@@ -66,6 +69,7 @@ const MyApp = ({ Component, pageProps, err }: AppProps & {err: any}) => {
                 <NavBar />
               )}
               <main>
+                
                 <Component {...pageProps} err={err}/>
               </main>
               {isOnboarding && <Footer />}

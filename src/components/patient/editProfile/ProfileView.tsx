@@ -92,7 +92,7 @@ const ProfileView = ({ editProfile, patient, isProviderSideProfileView }: Profil
       <Grid className={classes.banner} />
       <Container>
         <Grid container>
-          <Grid container justify="center" item xs={6}>
+          <Grid container justifyContent="center" item xs={6}>
             <Avatar avatarUrl={profile_picture} />
           </Grid>
           {!isProviderSideProfileView && (

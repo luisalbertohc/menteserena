@@ -82,13 +82,13 @@ const useStyles = makeStyles(theme => ({
 const Footer = () => {
   const classes = useStyles();
   return (
-    <Grid container justify="center" alignItems="center" className={classes.footer}>
+    <Grid container justifyContent="center" alignItems="center" className={classes.footer}>
       <Container>
-        <Grid container justify="center" alignItems="center" direction="column">
-          <Grid container justify="center" item className={classes.image}>
+        <Grid container justifyContent="center" alignItems="center" direction="column">
+          <Grid container justifyContent="center" item className={classes.image}>
             <img src="/images/mente_serena_logo.svg" alt="mente-serena" />
           </Grid>
-          <Grid container item justify="center" className={classes.linkContainer}>
+          <Grid container item justifyContent="center" className={classes.linkContainer}>
             <Typography>Funcionalidades</Typography>
 
             <Typography component="a" href="/privacy-policy" target="_blank">
@@ -107,24 +107,24 @@ const Footer = () => {
               &copy; {new Date().getFullYear()} Mente Serena. All rights reserved
             </Typography>
           </Grid>
-          <Grid container justify="flex-end" item xs={6} className={classes.iconContainer}>
+          <Grid container justifyContent="flex-end" item xs={6} className={classes.iconContainer}>
             <a href="https://www.instagram.com/tumenteserena/?hl=en" target="_blank">
-              <Grid container justify="center" alignItems="center" className={classes.socialMediaIcon}>
+              <Grid container justifyContent="center" alignItems="center" className={classes.socialMediaIcon}>
                 <img src="/images/landing/SocialMedia/instagram.svg" alt="instagram" />
               </Grid>
             </a>
             <a href="https://twitter.com/tumenteserena" target="_blank">
-              <Grid container justify="center" alignItems="center" className={classes.socialMediaIcon}>
+              <Grid container justifyContent="center" alignItems="center" className={classes.socialMediaIcon}>
                 <img src="/images/landing/SocialMedia/twitter.svg" alt="twitter" />
               </Grid>
             </a>
             <a href="https://www.facebook.com/tumenteserena" target="_blank">
-              <Grid container justify="center" alignItems="center" className={classes.socialMediaIcon}>
+              <Grid container justifyContent="center" alignItems="center" className={classes.socialMediaIcon}>
                 <img src="/images/landing/SocialMedia/facebook.svg" alt="facebook" />
               </Grid>
             </a>
             <a href="https://www.linkedin.com/company/menteserena/" target="_blank">
-              <Grid container justify="center" alignItems="center" className={classes.socialMediaIcon}>
+              <Grid container justifyContent="center" alignItems="center" className={classes.socialMediaIcon}>
                 <img src="/images/landing/SocialMedia/linkedin.svg" alt="linkedin" />
               </Grid>
             </a>

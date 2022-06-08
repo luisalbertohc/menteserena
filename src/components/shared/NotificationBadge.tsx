@@ -25,7 +25,7 @@ const NotificationBadge = ({ notificationAvailables, className }: NotificationBa
   const classes = useStyles();
 
   return notificationAvailables ? (
-    <Grid container justify="center" alignItems="center" className={`${classes.notificationBadge} ${className}`}>
+    <Grid container justifyContent="center" alignItems="center" className={`${classes.notificationBadge} ${className}`}>
       <NotificationIcon />
     </Grid>
   ) : null;

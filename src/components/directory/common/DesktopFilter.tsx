@@ -38,7 +38,7 @@ const DesktopFilter = ({ className, mutate, clearFilters }) => {
   const { handleSubmit, register } = useFormContext();
 
   return (
-    <Grid container justify="center" className={className}>
+    <Grid container justifyContent="center" className={className}>
       <Typography color="primary" variant="h5" className={classes.title}>
         Filtros <FilterListIcon />
       </Typography>
@@ -52,10 +52,10 @@ const DesktopFilter = ({ className, mutate, clearFilters }) => {
         inputProps={register('search_term')}
         onChange={handleSubmit(mutate)}
       />
-      <Grid container justify="center">
+      <Grid container justifyContent="center">
         <Filters className={classes.filters} isPortalFilters />
 
-        <Grid container direction="column" justify="center" className={classes.buttonContainer}>
+        <Grid container direction="column" justifyContent="center" className={classes.buttonContainer}>
           <Button color="primary" variant="contained" onClick={handleSubmit(mutate)}>
             Filtrar
           </Button>

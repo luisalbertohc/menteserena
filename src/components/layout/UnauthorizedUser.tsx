@@ -22,7 +22,7 @@ const UnauthorizedUser = () => {
   }, []);
 
   return (
-    <Grid container justify="center" alignItems="center">
+    <Grid container justifyContent="center" alignItems="center">
       <Container maxWidth="sm">
         <Typography variant="h6">
           Ha sido inactivado por nuestro administrador por haber incumplido con los términos de servicios. Si entiende

@@ -48,13 +48,13 @@ const useStyles = makeStyles(theme => ({
 const Directory = () => {
   const classes = useStyles();
   return (
-    <Grid id="directory" container justify="center" className={classes.container}>
+    <Grid id="directory" container justifyContent="center" className={classes.container}>
       <Container>
         <Hidden smDown>
           <Grid alignItems="center" container className={classes.contentContainer}>
             <img className={classes.banner} src="/images/landing/directory/banner-desktop.svg" alt="mente-serena" />
-            <Grid container justify="center" alignItems="center" className={classes.content}>
-              <Grid item container justify="center" xs={6}>
+            <Grid container justifyContent="center" alignItems="center" className={classes.content}>
+              <Grid item container justifyContent="center" xs={6}>
                 <img src="/images/landing/directory/inbox.svg" alt="mente-serena" />
               </Grid>
               <Grid item xs={6}>
@@ -70,13 +70,13 @@ const Directory = () => {
         </Hidden>
 
         <Hidden mdUp>
-          <Grid justify="center" alignItems="center" container className={classes.contentContainer}>
+          <Grid justifyContent="center" alignItems="center" container className={classes.contentContainer}>
             <img className={classes.banner} src="/images/landing/directory/banner-mobile.svg" alt="mente-serena" />
-            <Grid container justify="center" direction="column" className={classes.content}>
-              <Grid item container justify="center">
+            <Grid container justifyContent="center" direction="column" className={classes.content}>
+              <Grid item container justifyContent="center">
                 <img src="/images/landing/directory/inbox.svg" alt="mente-serena" />
               </Grid>
-              <Grid container item direction="column" alignItems="center" justify="center">
+              <Grid container item direction="column" alignItems="center" justifyContent="center">
                 <Typography className={classes.title}>
                   Visita y explora nuestro directorio de profesionales de salud mental.{' '}
                 </Typography>

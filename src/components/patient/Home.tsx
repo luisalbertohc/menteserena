@@ -91,7 +91,7 @@ const HomeScreen = () => {
   }
 
   return (
-    <Grid container wrap="nowrap" justify="flex-start" className={classes.container}>
+    <Grid container wrap="nowrap" justifyContent="flex-start" className={classes.container}>
       <Hidden mdDown>
         <SideMenu
           className="left"

@@ -34,13 +34,13 @@ const EmergencyContact = () => {
   } = useFormContext();
 
   return (
-    <Grid container direction="column" justify="center" item>
-      <Grid container item justify="center">
+    <Grid container direction="column" justifyContent="center" item>
+      <Grid container item justifyContent="center">
         <Typography color="primary" className={classes.title}>
           Información de Contacto de Emergencia
         </Typography>
       </Grid>
-      <Grid className={classes.inputContainer} container item direction="column" justify="center">
+      <Grid className={classes.inputContainer} container item direction="column" justifyContent="center">
         <Controller
           control={control}
           name="contact_first_name"

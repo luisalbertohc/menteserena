@@ -53,7 +53,7 @@ const Directory = ({ className }: DirectoryProps) => {
   return (
     <FormProvider {...formMethods}>
       <Grid className={`${classes.root} ${className}`}>
-        <Grid container justify="center" className={classes.container}>
+        <Grid container justifyContent="center" className={classes.container}>
           <TopBar mutate={mutate} clearFilters={clearFilters} />
         </Grid>
 

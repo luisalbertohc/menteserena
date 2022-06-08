@@ -9,7 +9,7 @@ interface ShareProviderCodeProps {
 
 const ShareProviderCode = ({ provider }: ShareProviderCodeProps) => {
   return (
-    <Grid container justify="center" alignItems="center" className="center">
+    <Grid container justifyContent="center" alignItems="center" className="center">
       <ClientInvitation provider={provider} />
     </Grid>
   );

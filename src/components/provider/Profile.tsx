@@ -25,7 +25,7 @@ const Profile = ({ provider }: ProfileProps) => {
         {isEditProfile ? (
           <EditProfileForms profile={profile} backToProfile={() => setIsEditProfile(false)} />
         ) : (
-          <Grid container justify="center">
+          <Grid container justifyContent="center">
             <ProfileView profile={profile} editProfile={() => setIsEditProfile(true)} />
           </Grid>
         )}

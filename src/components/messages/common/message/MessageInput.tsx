@@ -141,7 +141,7 @@ const MessageInput = ({ senderId, receiverId, chatId, isVideoCallChat }: Message
           onKeyPress={event => handleSubmitMessage(event)}
         />
       </Grid>
-      <Grid item container alignItems="center" justify="center" xs={3} sm={2}>
+      <Grid item container alignItems="center" justifyContent="center" xs={3} sm={2}>
         <IconButton size="small" onClick={handleSubmitMessage} disabled={isUploading || !messageContent}>
           <ArrowForwardIcon />
         </IconButton>

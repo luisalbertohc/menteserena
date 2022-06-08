@@ -100,7 +100,7 @@ const ResetPassword = () => {
                 helperText={errors.email?.message}
               />
               {Boolean(cognitoError) && (
-                <Grid container justify="center">
+                <Grid container justifyContent="center">
                   <Typography variant="caption" color="error">
                     {cognitoError}
                   </Typography>
@@ -111,14 +111,14 @@ const ResetPassword = () => {
         </>
       )}
 
-      <Grid container item justify="center">
+      <Grid container item justifyContent="center">
         <SubmitButton
           label={isEmailSent && !Boolean(cognitoError) ? 'Cambiar Contraseña' : 'Enviar Correo Electrónico'}
           onClick={handleSubmit(onSubmit)}
         />
       </Grid>
       {!isEmailSent && (
-        <Grid container item justify="center">
+        <Grid container item justifyContent="center">
           <Typography className={classes.login} variant="body2">
             <Link passHref href="/auth/login">
               <a className={classes.link}>Volver a Iniciar sesión</a>

@@ -99,7 +99,7 @@ const LoginForm = () => {
             helperText={errors.password?.message}
           />
           {cognitoError && (
-            <Grid container justify="center">
+            <Grid container justifyContent="center">
               <Typography variant="caption" color="error">
                 {cognitoError}
               </Typography>
@@ -107,14 +107,14 @@ const LoginForm = () => {
           )}
         </Grid>
       </form>
-      <Grid container item justify="center">
+      <Grid container item justifyContent="center">
         <Typography variant="body2" color="primary">
           <Link href="/auth/reset-password">
             <a className={classes.link}>¿Olvidó su contraseña?</a>
           </Link>
         </Typography>
       </Grid>
-      <Grid container item justify="center">
+      <Grid container item justifyContent="center">
         <SubmitButton label={isSubmitting ? <Loading /> : `Iniciar Sesión`} onClick={handleSubmit(onSubmit)} />
       </Grid>
       <Grid item>

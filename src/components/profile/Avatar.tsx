@@ -120,7 +120,7 @@ const Avatar = ({ avatarUrl, small, tiny, isDirectory }: AvatarProps) => {
         <Grid
           className={ classnames(classes.noPictureContainer, { [classes.noPicture]: !Boolean(avatarUrl), small, tiny }) }
           container
-          justify="center"
+          justifyContent="center"
           alignItems="center"
         >
           <img src={ noProfileUrl } className={ classes.noPictureImage } />
