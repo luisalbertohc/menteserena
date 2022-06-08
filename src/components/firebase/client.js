@@ -69,6 +69,7 @@ export const tokenFirebase = {
                         <div>
                          <h3> { payload.data.title }</h3>
                          <p> { payload.data.body } </p>
+                         <a href={payload.data.linkUrl} > <b>{payload.data.linkName}</b> </a>
                         </div>
                     )
                     toast(<Msg />, options);
@@ -123,7 +124,7 @@ export async function dbToken(user, operationType, currentToken){
     }
     const x = await fetch(url, REQUEST)
     .then(response => response.json())
-    .then(result => console.log(result))
+    //.then(result => console.log(result))
     .catch(error => console.log('error', error))
 }
 
