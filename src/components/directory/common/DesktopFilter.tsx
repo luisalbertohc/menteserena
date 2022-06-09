@@ -48,7 +48,7 @@ const DesktopFilter = ({ className, mutate, clearFilters }) => {
           className: classes.searchBar,
           endAdornment: <SearchIcon className={classes.searchIcon} />,
         }}
-        placeholder="Nombre o Apellido"
+        placeholder="Nombre o apellido"
         inputProps={register('search_term')}
         onChange={handleSubmit(mutate)}
       />

@@ -89,7 +89,7 @@ const TopBar = ({ mutate, clearFilters }) => {
                 </InputAdornment>
               ),
             }}
-            placeholder="Buscar"
+            placeholder="Nombre o apellido"
             inputProps={register('search_term')}
             onChange={handleSubmit(mutate)}
           />

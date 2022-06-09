@@ -107,9 +107,9 @@ const ActionController = ({ localAudioTrack, localVideoTrack, leave, isOpenChat,
       </IconButton>
 
       {/* share screen button */}
-      <IconButton onClick={ shareScreen } size="small">
+      {/* <IconButton onClick={ shareScreen } size="small">
         <ScreenShareIcon className={ classes.icon } />
-      </IconButton>
+      </IconButton> */}
     </Grid>
   )
 }
