@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
       marginBottom: theme.spacing(4)
     },
     '& > .inputField': {
-      [theme.breakpoints.up('sm')]: {
+      [theme.breakpoints.up('md')]: {
         marginBottom: 0
       }
     }
